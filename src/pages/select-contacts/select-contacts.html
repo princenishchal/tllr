@@ -1,0 +1,91 @@
+<!--
+  Generated ng-template for the SelectContactsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <div class="custom-navbar">
+        <div class="flex-row">
+          <button class="back" navPop>
+            <</button>
+              <h4 class="title">invite employees</h4>
+        </div>
+       
+      </div>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="flex-center">
+    <img src="assets/imgs/emoji_hi.png" class="title-image"/>
+  </div>
+
+  <div class="flex-center">
+    <input class="searchbar" placeholder="search employees" />
+  </div>
+
+  <div class="selected-employees">
+    <h6>selected employees</h6>
+    <p class="no-selection" *ngIf="!listNotEmpty">you haven’t selected anyone yet</p>
+
+    <span  *ngFor="let contact of contacts">
+    <div class="contact-card" *ngIf="contact.selected">
+        <img class="avatar" [attr.src]="contact.picture">
+
+        <div class="info">
+          <h4>{{contact.name}}</h4>
+          <p>{{contact.phone}}</p>
+        </div>
+        
+        <div class="controls">
+            <button  class="delete" (click)="removeContact(contact.idx)">Delete</button>
+        </div>
+    </div>
+  </span> 
+    
+  </div>
+
+  <div class="existing-employees">
+      <h6>Employees on Teller</h6>
+
+      <!-- dummy contact card 
+
+      <div class="contact-card" >
+          <img class="avatar" src="https://placeholdit.co//i/26x26?">
+
+          <div class="info">
+            <h4>aman gupta</h4>
+            <p>9717748633</p>
+          </div>
+          
+          <div class="controls">
+            <button  class="add">Add</button>
+            
+          </div>
+      </div>
+   dummy card ends -->
+      <span  *ngFor="let contact of contacts">
+      <div class="contact-card" *ngIf="!contact.selected" >
+          <img class="avatar" [attr.src]="contact.picture">
+
+          <div class="info">
+            <h4>{{contact.name}}</h4>
+            <p>{{contact.phone}}</p>
+          </div>
+          
+          <div class="controls">
+            <button  class="add" (click)="selectContact(contact.idx)">Add</button>
+            
+          </div>
+      </div>
+    </span>
+  </div>
+
+  <div class="continue-button" *ngIf="listNotEmpty">
+      <button class="continue" (click)="confirm()">continue</button>
+  </div>
+
+</ion-content>

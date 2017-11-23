@@ -1,0 +1,135 @@
+page-select-contacts {
+    .flex-center{
+        display: flex;
+        justify-content: center;
+    }
+
+    .fixed-content{
+        background:#fafafa;
+    }
+
+    .title-image{
+        width:64px;
+        height:64px;
+    }
+
+    .searchbar{
+        width:100%;
+        color:#c5d8df;
+        margin-top:17px;
+        margin-bottom: 40px;
+        border-radius: 20px;
+        height: 38px;
+        text-align: center;
+        border: 1px solid #a0b6be;
+        box-shadow: inset 1px 1px 2px #eee;
+
+
+    }
+
+    .selected-employees,.existing-employees{
+        border-top:1px solid #5a7f8e;
+        padding-bottom: 15px;
+        h6{
+            text-align: center;
+            margin: auto;
+            width: 40%;
+            margin-top: -8px!important;
+            font-size: 12px;
+            color: #5a7f8e;
+            background: #fafafa;
+            margin-bottom: 15px;
+          
+        }
+        .no-selection{
+            color:#d0dce0;
+            font-size: 18px;
+            margin:46px 0;
+            text-align: center;
+         
+        }
+    }
+
+    .contact-card{
+        border-radius: 5px;
+        background: white;
+        box-shadow: 1px 1px 5px #9b9b9b;
+        margin:5px 0;
+        padding:10px;
+        display: flex;
+        justify-content: space-between;
+
+        .avatar{
+            
+            width:64px;
+            height:64px;
+            border-radius: 100%;
+            box-shadow: 1px 1px 5px #9b9b9b;
+            border:1px solid white;
+        }
+
+        .info{
+            padding-left:20px;
+            flex:2;
+            h4{
+                font-size: 18px;
+                color:#5a7f8e;
+                margin-bottom: -10px;
+                margin-top: 10px;
+                font-family: 'KGAlwaysAGoodTime';
+            }
+
+            p{
+                font-size: 14px;
+                color: #1f314a;
+                font-family: 'KGAlwaysAGoodTime';
+            }
+        }
+
+        .controls{
+            flex:1;
+            border-left: 2px solid #eee;
+            button{
+                margin:25px;
+                background: none;
+                font-size: 18px;
+                font-family: 'KGAlwaysAGoodTime';
+                &.add{
+                    color:#4a90e2;
+                    margin-left:40px;
+                }
+
+                &.delete{
+                    color:#d0021b
+                }
+            }
+        }
+    }
+
+    .continue-button{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        z-index: 2;
+        width:100%;
+        bottom:15px;
+        margin-left:-15px;
+        button{
+            height: 56px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: black;
+            border-radius: 10px;
+            width: 97%;
+            /* background-image: url(/assets/imgs/btn_close_app.png); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #4a90e2;
+            color: white;
+            border: 3px solid white;
+            font-size: 18px;
+            font-family: 'KGAlwaysAGoodTime';
+            
+        }
+    }
+}

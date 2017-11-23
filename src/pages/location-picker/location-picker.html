@@ -1,0 +1,41 @@
+<!--
+  Generated template for the LocationPickerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <div class="custom-navbar">
+    <div class="flex-row">
+      <button class="back" navPop>
+        <</button>
+          <h4 class="title">Pick a location</h4>
+    </div>
+    <h6 class="subtitle"> tell us where your business is located</h6>
+  </div>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true">
+    <custom-marker [position]="center">
+      <div>
+        <b>{{address.name}}</b>
+        <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+      </div>
+    </custom-marker>
+  </ngui-map>
+
+  <!-- address search bar -->
+  <div class="address-search-box">
+    <input type="text" places-auto-complete (place_changed)="placeChanged($event)" (input)="checkIfnotEmpty($event)" [types]="['geocode']" placeholder="Enter business location"
+    />
+  </div>
+
+  <div class="continue-button" *ngIf="canContinue">
+    <button class="continue" (click)="confirm()">continue</button>
+  </div>
+
+</ion-content>

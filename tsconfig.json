@@ -1,4 +1,10 @@
 {
+  "rules": {
+    "no-duplicate-variable": true,
+    "no-unused-variable": [
+      false
+    ]
+  },
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": false,
