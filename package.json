@@ -26,8 +26,6 @@
     "@ionic/storage": "2.1.3",
     "@ngui/map": "^0.20.0",
     "@types/googlemaps": "^3.30.0",
-    "com.dbaq.cordova.contactsPhoneNumbers": "~0.0.9",
-    "cordova-plugin-contacts-phonenumbers": "0.0.9",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -50,8 +48,7 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
-      "com.dbaq.cordova.contactsPhoneNumbers": {}
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": []
   }
