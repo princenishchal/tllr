@@ -1,0 +1,291 @@
+page-transdetail {
+	/* Transaction Details View Block */
+	.transDetailBlock{
+		top:0px;
+		//left: -100%;
+		height: 100%;
+		width: 100%;
+		position:fixed;
+		z-index: 100;
+		background-color: white;
+		overflow-y:scroll;
+		//display: none;
+/*		box-shadow: 0px 2px 4px 5px rgba(17,0,0,0.12);
+		-webkit-box-shadow: 0px 2px 4px 5px rgba(17,0,0,0.12);*/
+	}
+	.animateTransDetailShow{
+		transition: 0.30s;
+    	left: 0;
+	}
+	.animateTransDetailHide{
+		transition: 0.30s;
+    	left: -102%;
+	}
+	.leftBackBtn{
+		float:left;
+		width: 36px;
+		text-align: right;
+		//margin-top: 36px;
+	}
+	.rightOnHeader{
+		width:89%;
+		text-align: center;
+		font-family: KGAlwaysAGoodTime;
+		font-size: 18px;
+		font-weight: 400;
+		letter-spacing: -0.7px;
+		color: #5a7f8e;
+		margin-top: 36px;
+	}
+	.mainTransViewDataBlock{
+		position:fixed;
+		background-color: rgb(247,249,250);
+		top:107px;
+		height:86%;
+		width:100%;
+		text-align: center;
+		overflow-y: scroll;
+	}
+	.mainBonusViewDataBlock{
+		position:fixed;
+		background-color: rgb(247,249,250);
+		top:107px;
+		height:86%;
+		width:100%;
+		text-align: center;
+		overflow-y: scroll;
+	}
+	.transDetailCard{
+		width:96%;
+		margin-left:3%;
+	}
+	.transDetailSeparator{
+		width:100%;
+		margin-top:12px;
+	}
+	.linePiece{
+		float:left;
+		width: 18%;
+		height: 2px;
+		margin-top: 6px;
+		background-color: rgba(90, 127, 142, 0.26);
+	}
+	.lineSeparatorText{
+		float:left;
+		width:64%;
+		text-align: center;
+		font-family: 'Roboto', sans-serif;
+		font-size: 12px;
+		font-weight: 400;
+		letter-spacing: 0.9px;
+		color: rgba(90, 127, 142, 0.43);
+	}
+	.detailsCard{
+		box-shadow: 0px 2px 4px 0px rgba(31,30,49, 0.12);
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(31,30,49, 0.12);
+		width: 93.5%;
+		min-height: 104px;
+		margin-left: 3.5%;
+		margin-top:9px;
+		background-color: #ffffff;
+		border-radius: 10px;
+		overflow: auto;
+	}
+	.verticalSpace{
+		width: 100%;
+		height: 15px;
+	}
+	.detailsCardHeader{
+		width:100%;
+	}
+	.detailsCardHeaderLeftText{
+		float: left;
+		width:83%;
+		margin-left:12px;
+		text-align: left;
+		font-family: KGAlwaysAGoodTime;
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: -0.6px;
+		color: #5a7f8e;
+	}
+	.detailsCardHeaderButton{
+		width:38px;
+		height:38px;
+		margin-top:-6px;
+		float:left;
+	}
+	.recategorizeHeaderButton{
+		width:56px;
+		height: 56px;
+		float:left;
+		margin-top: -16px;
+    	margin-left: 12px;
+	}
+	.detailsCardContent{
+		float: left;
+		margin-top: 12px;
+		margin-left: 12px;
+	}
+	.detailsCardTipText{
+		text-align: left;
+		font-family: 'Roboto', sans-serif;
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: -0.5px;
+		color: #a5adb7;
+	}
+	.detailsCardPlusBtn{
+		margin-top: 0px;
+	}
+	.detailsCardTagEditInput{
+		width:300px;
+		font-family: 'Roboto', sans-serif;
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: -0.5px;
+		color: #4A90E2;  //#75b600;
+		border: none;
+	}
+	.detailsCardNotesEditInput{
+		width:310px;
+		height:115px;
+		font-family: 'Roboto', sans-serif;
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: -0.5px;
+		color: #4A90E2;
+		border: none;
+	}
+	.labelHeader{
+		float: left;
+		text-align: left;
+		font-family: KGAlwaysAGoodTime;
+		font-size: 14px;
+		font-weight: 400;
+		letter-spacing: -0.5px;
+		color: #a5adb7;
+	}
+	.labelContent{
+		text-align: left;
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: -0.6px;
+		color: #a5adb7;
+		margin-top: 1px;
+	}
+	.fullrow{
+		width:330px;
+		min-height: 32px;
+		overflow: auto;
+	}
+	.back-icon{
+		width:31px;
+		height:31px;
+  	}
+
+	/* Transaction Details View Block - End*/
+
+		.cardsGap{
+		width: 100%;
+		height: 14px;
+	}
+
+	.statsCard{
+		box-shadow: 0px 2px 4px 0px rgba(31,30,49, 0.12);
+		-webkit-box-shadow: 0px 2px 4px 0px rgba(31,30,49, 0.12);
+		width: 97%;
+		height: 143px;
+		left: 0;
+		margin-left: 2px;
+		background-color: #ffffff;
+		border-radius: 10px;
+	}
+	.scTopLeft{
+		margin-top: 3.5px;
+		width: 76px;
+		float: left;
+		text-align: center;
+		height:140px;
+	}
+	.scTopRight{
+		margin-top: 14px;
+		width: 75%;
+		float: left;
+		text-align: left;
+	}
+	.scTopRightName{
+		font-family: KGAlwaysAGoodTime;
+		font-size: 18px;
+		font-weight: 500;
+		color: #1e314a;
+	}
+
+	.scTopRightInfoTextSmall{
+		font-family: 'Roboto', sans-serif;
+		font-size: 12px;
+		font-weight: 400;
+		color: rgba(30,49,74, 0.7);
+		margin-top: 2px;
+	}
+		.scProgress{
+		height: 6px;
+		width:90%;
+		border-radius: 100px;
+		//background-color: rgba(255,92,71, 1);
+	}
+	.scDivider{
+		margin-top: 14px;
+		float:left;
+		height: 1.4px;
+		width:75%;
+		background-color: rgba(30,49,74, 0.1);
+	}
+	.scDividerCards{
+		margin-top: 6px;
+		float:left;
+		height: 1.4px;
+		width:75%;
+		background-color: rgba(30,49,74, 0.1);
+	}
+	.scCreditAmountLabel{
+		float:left;
+		min-width:100px;
+		margin-top: 10px;
+		text-align: left;
+		font-family: KGAlwaysAGoodTime;
+		font-size: 18px;
+		font-weight: 500;
+		color: rgba(30,49,74, 0.9);
+	}
+	.scCreditAmountLabelSpan{
+		color: rgb(155,155,155);
+	}
+
+	.scPercentValue{
+		float:left;
+		margin-top: 17px;
+		margin-left: 5px;
+		font-family: 'Roboto', sans-serif;
+		font-size: 10px;
+		color: #b0b0b0;
+	}
+
+	.scAmountLabel{
+		float:left;
+		min-width:60px;
+		margin-top: 10px;
+		text-align: left;
+		font-family: KGAlwaysAGoodTime;
+		font-size: 18px;
+		font-weight: 500;
+		color: rgba(30,49,74, 0.8);
+	}
+	.scAmountLabelSpan{
+		font-family: 'Roboto', sans-serif;
+		font-size: 14px;
+		font-weight: 400;
+		color: rgba(30,49,74, 0.4);
+	}
+}

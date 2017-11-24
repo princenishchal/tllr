@@ -25970,3 +25970,327 @@ page-select-contacts .continue-button button {
   font-size: 18px;
   font-family: 'KGAlwaysAGoodTime';
 }
+
+page-transdetail {
+  /* Transaction Details View Block */
+  /* Transaction Details View Block - End*/
+}
+
+page-transdetail .transDetailBlock {
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  background-color: white;
+  overflow-y: scroll;
+  /*		box-shadow: 0px 2px 4px 5px rgba(17,0,0,0.12);
+		-webkit-box-shadow: 0px 2px 4px 5px rgba(17,0,0,0.12);*/
+}
+
+page-transdetail .animateTransDetailShow {
+  -webkit-transition: 0.30s;
+  transition: 0.30s;
+  left: 0;
+}
+
+page-transdetail .animateTransDetailHide {
+  -webkit-transition: 0.30s;
+  transition: 0.30s;
+  left: -102%;
+}
+
+page-transdetail .leftBackBtn {
+  float: left;
+  width: 36px;
+  text-align: right;
+}
+
+page-transdetail .rightOnHeader {
+  width: 89%;
+  text-align: center;
+  font-family: KGAlwaysAGoodTime;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  color: #5a7f8e;
+  margin-top: 36px;
+}
+
+page-transdetail .mainTransViewDataBlock {
+  position: fixed;
+  background-color: #f7f9fa;
+  top: 107px;
+  height: 86%;
+  width: 100%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+page-transdetail .mainBonusViewDataBlock {
+  position: fixed;
+  background-color: #f7f9fa;
+  top: 107px;
+  height: 86%;
+  width: 100%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+page-transdetail .transDetailCard {
+  width: 96%;
+  margin-left: 3%;
+}
+
+page-transdetail .transDetailSeparator {
+  width: 100%;
+  margin-top: 12px;
+}
+
+page-transdetail .linePiece {
+  float: left;
+  width: 18%;
+  height: 2px;
+  margin-top: 6px;
+  background-color: rgba(90, 127, 142, 0.26);
+}
+
+page-transdetail .lineSeparatorText {
+  float: left;
+  width: 64%;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.9px;
+  color: rgba(90, 127, 142, 0.43);
+}
+
+page-transdetail .detailsCard {
+  box-shadow: 0px 2px 4px 0px rgba(31, 30, 49, 0.12);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(31, 30, 49, 0.12);
+  width: 93.5%;
+  min-height: 104px;
+  margin-left: 3.5%;
+  margin-top: 9px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+page-transdetail .verticalSpace {
+  width: 100%;
+  height: 15px;
+}
+
+page-transdetail .detailsCardHeader {
+  width: 100%;
+}
+
+page-transdetail .detailsCardHeaderLeftText {
+  float: left;
+  width: 83%;
+  margin-left: 12px;
+  text-align: left;
+  font-family: KGAlwaysAGoodTime;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  color: #5a7f8e;
+}
+
+page-transdetail .detailsCardHeaderButton {
+  width: 38px;
+  height: 38px;
+  margin-top: -6px;
+  float: left;
+}
+
+page-transdetail .recategorizeHeaderButton {
+  width: 56px;
+  height: 56px;
+  float: left;
+  margin-top: -16px;
+  margin-left: 12px;
+}
+
+page-transdetail .detailsCardContent {
+  float: left;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+page-transdetail .detailsCardTipText {
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: #a5adb7;
+}
+
+page-transdetail .detailsCardPlusBtn {
+  margin-top: 0px;
+}
+
+page-transdetail .detailsCardTagEditInput {
+  width: 300px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: #4A90E2;
+  border: none;
+}
+
+page-transdetail .detailsCardNotesEditInput {
+  width: 310px;
+  height: 115px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: #4A90E2;
+  border: none;
+}
+
+page-transdetail .labelHeader {
+  float: left;
+  text-align: left;
+  font-family: KGAlwaysAGoodTime;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  color: #a5adb7;
+}
+
+page-transdetail .labelContent {
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  color: #a5adb7;
+  margin-top: 1px;
+}
+
+page-transdetail .fullrow {
+  width: 330px;
+  min-height: 32px;
+  overflow: auto;
+}
+
+page-transdetail .back-icon {
+  width: 31px;
+  height: 31px;
+}
+
+page-transdetail .cardsGap {
+  width: 100%;
+  height: 14px;
+}
+
+page-transdetail .statsCard {
+  box-shadow: 0px 2px 4px 0px rgba(31, 30, 49, 0.12);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(31, 30, 49, 0.12);
+  width: 97%;
+  height: 143px;
+  left: 0;
+  margin-left: 2px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+page-transdetail .scTopLeft {
+  margin-top: 3.5px;
+  width: 76px;
+  float: left;
+  text-align: center;
+  height: 140px;
+}
+
+page-transdetail .scTopRight {
+  margin-top: 14px;
+  width: 75%;
+  float: left;
+  text-align: left;
+}
+
+page-transdetail .scTopRightName {
+  font-family: KGAlwaysAGoodTime;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1e314a;
+}
+
+page-transdetail .scTopRightInfoTextSmall {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(30, 49, 74, 0.7);
+  margin-top: 2px;
+}
+
+page-transdetail .scProgress {
+  height: 6px;
+  width: 90%;
+  border-radius: 100px;
+}
+
+page-transdetail .scDivider {
+  margin-top: 14px;
+  float: left;
+  height: 1.4px;
+  width: 75%;
+  background-color: rgba(30, 49, 74, 0.1);
+}
+
+page-transdetail .scDividerCards {
+  margin-top: 6px;
+  float: left;
+  height: 1.4px;
+  width: 75%;
+  background-color: rgba(30, 49, 74, 0.1);
+}
+
+page-transdetail .scCreditAmountLabel {
+  float: left;
+  min-width: 100px;
+  margin-top: 10px;
+  text-align: left;
+  font-family: KGAlwaysAGoodTime;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(30, 49, 74, 0.9);
+}
+
+page-transdetail .scCreditAmountLabelSpan {
+  color: #9b9b9b;
+}
+
+page-transdetail .scPercentValue {
+  float: left;
+  margin-top: 17px;
+  margin-left: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  color: #b0b0b0;
+}
+
+page-transdetail .scAmountLabel {
+  float: left;
+  min-width: 60px;
+  margin-top: 10px;
+  text-align: left;
+  font-family: KGAlwaysAGoodTime;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(30, 49, 74, 0.8);
+}
+
+page-transdetail .scAmountLabelSpan {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(30, 49, 74, 0.4);
+}

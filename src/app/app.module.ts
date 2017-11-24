@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TransdetailPage } from '../pages/transdetail/transdetail';
 
  /** COPY THIS */
 import {LocationPickerPage} from '../pages/location-picker/location-picker';
@@ -17,7 +18,8 @@ import { NguiMapModule} from '@ngui/map';
     MyApp,
     HomePage,
     LocationPickerPage,
-    SelectContactsPage
+    SelectContactsPage,
+    TransdetailPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { NguiMapModule} from '@ngui/map';
     HomePage,
      /** COPY THIS */
     LocationPickerPage,
-    SelectContactsPage
+    SelectContactsPage,
+    TransdetailPage
   ],
   providers: [
     StatusBar,
