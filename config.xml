@@ -89,10 +89,7 @@
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
-<<<<<<< HEAD
     <plugin name="com.dbaq.cordova.contactsPhoneNumbers" spec="~0.0.9">
         <variable name="CONTACTS_USAGE_DESCRIPTION" value=" " />
     </plugin>
-=======
->>>>>>> 62ec1d719ae8d54060b9342c82ef2f2bbbbd81bc
 </widget>
