@@ -39,7 +39,7 @@ chat-message {
 
             .emoji-only{
                 font-size:60px;
-                margin: 0 0 5px 0;
+                margin: 0 0 5px -10px;
             }
 
             .location-message{
@@ -97,6 +97,11 @@ chat-message {
             .text-message, {
                 background:#4a90e2;
                 color: white;
+            }
+
+            .emoji-only{
+                text-align: right;
+                margin: 0 0px 5px 0;
             }
 
         .location-message{

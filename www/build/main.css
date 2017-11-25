@@ -26369,7 +26369,7 @@ chat-message .chat-message-container .messages-container .text-message {
 
 chat-message .chat-message-container .messages-container .emoji-only {
   font-size: 60px;
-  margin: 0 0 5px 0;
+  margin: 0 0 5px -10px;
 }
 
 chat-message .chat-message-container .messages-container .location-message {
@@ -26432,6 +26432,11 @@ chat-message .chat-message-container.self .delivery-status ion-icon {
 chat-message .chat-message-container.self .text-message {
   background: #4a90e2;
   color: white;
+}
+
+chat-message .chat-message-container.self .emoji-only {
+  text-align: right;
+  margin: 0 0px 5px 0;
 }
 
 chat-message .chat-message-container.self .location-message .location-display {
