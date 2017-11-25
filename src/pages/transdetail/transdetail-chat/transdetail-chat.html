@@ -28,5 +28,12 @@
 
     
     <chat-message *ngFor="let chatMessage of chatMessages"  [data]="chatMessage"></chat-message>
+
+    <div class="chat-bar-container">
+      <textarea></textarea>
+      <button class="send">
+          <ion-icon ios="md-send" md="md-send"></ion-icon>
+      </button>
+    </div>
   
   </ion-content>

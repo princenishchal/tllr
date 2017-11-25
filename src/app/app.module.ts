@@ -18,6 +18,7 @@ import { EmojifyModule } from 'angular2-emojify';
 import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/transdetail-chat';
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
 
+
 @NgModule({
   declarations: [
     MyApp,

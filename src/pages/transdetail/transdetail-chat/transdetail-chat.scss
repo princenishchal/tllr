@@ -27,4 +27,28 @@ page-transdetail-chat {
             display: block;
         }
     }
+
+
+    .chat-bar-container{
+        position: fixed;
+        bottom: 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+        margin: 0;
+        left: 0;
+        textarea{
+            width:80%;
+        }
+        button{
+            width:48px;
+            height:48px;
+            border-radius: 100%;
+            margin:10px;
+        }
+    }
+
 }
