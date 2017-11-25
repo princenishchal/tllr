@@ -1,0 +1,122 @@
+chat-message {
+    .chat-message-container{
+        display: flex;
+
+      
+
+      
+
+        .avatar{
+            
+            width:48px;
+            height:48px;
+            border-radius: 100%;
+            box-shadow: 1px 1px 5px #9b9b9b;
+            border:1px solid white;
+        }
+        
+
+        .messages-container{
+            padding-left:10px;
+
+            .user-name{
+                color: #324654;
+                font-size: 14px;
+                font-family: sans-serif;
+                font-weight: bold;
+                margin: 8px 0 5px 0;
+                padding-left:5px;
+            }
+
+            .text-message{
+                background: white;
+                padding:10px 14px;
+                color:#9b9b9b;
+                border-radius: 20px;
+                margin: 0 0 5px 0;
+                max-width: 70vw;
+            }
+
+            .emoji-only{
+                font-size:60px;
+                margin: 0 0 5px 0;
+            }
+
+            .location-message{
+                border-radius: 20px;
+                height: 225px;
+                width:230px;
+                margin: 0 0 5px 0;
+                .location-container{
+                    max-height: 163px;
+                    border-radius: 20px 20px 0 0;
+                    overflow: hidden;
+                    ngui-map{
+                        height:163px;
+                    }
+                }
+
+                .location-display{
+                    background:white;
+                    padding:10px 16px;
+                    border-radius: 0 0 20px 20px;
+                    h6{
+                        font-size: 16px;
+                        color:#2a2a2a;
+                        font-weight: normal;
+                        margin:0;
+                    }
+
+                    p{
+                        color: #6f6f6f;
+                        font-size: 16px;
+                        font-weight: light;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        /*
+            style the messages for self
+        */
+        &.self{
+            margin-top:20px;
+            .delivery-status{
+               width:8px;
+               margin-left:2px;
+               ion-icon{
+                display: inline-block;
+                font-size: 1em;
+                font-weight: bold;
+                color:#1aeec2;
+               }
+            }
+
+            justify-content: flex-end;
+            .text-message, {
+                background:#4a90e2;
+                color: white;
+            }
+
+        .location-message{
+     
+            
+
+                .location-display{
+                    background:#4a90e2;
+    
+                    h6{
+                        background: transparent;
+                        color: white;
+                    }
+
+                    p{
+                        background: transparent;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

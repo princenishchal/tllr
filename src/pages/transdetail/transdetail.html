@@ -30,7 +30,7 @@
     				<div class="verticalSpace"></div>
     				<div class="detailsCardHeader">
     					<div class="detailsCardHeaderLeftText">Friends</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" ></div>
+    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams" ></div>
     					<div class="scDividerCards" style="margin-left:12px;"></div>
     				</div>
     				<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">

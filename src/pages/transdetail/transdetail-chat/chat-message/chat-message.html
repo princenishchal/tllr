@@ -1,0 +1,86 @@
+<!-- Generated template for the ChatMessageComponent component -->
+<div class="chat-message-container" *ngIf="currentUserID != data.userID">
+
+  <!-- section for the messages from other users  -->
+
+  <img src="https://placeholdit.co//i/26x26?" class="avatar">
+
+  <!-- chat messages of the user start here -->
+  <div class="messages-container">
+    <p class="user-name">{{data.displayName}}</p>
+
+    <div *ngFor="let message of data.data">
+      {{message.data | json}}
+      <p class="text-message" *ngIf="message.messageType == 'text'">{{ message.payload | emojify }}</p>
+
+      <!-- emoji only -->
+
+      <p class="emoji-only" *ngIf="message.messageType == 'emoji-only'">{{ message.payload | emojify }}</p>
+
+
+      <!-- location attachment -->
+      <div class="location-message" *ngIf="message.messageType == 'location'">
+        <div class="location-container">
+          <ngui-map [center]="'RR Nagar, Bengaluru, Karnataka, India'" [fullscreenControl]="false" [disableDefaultUI]="true">
+            <custom-marker [position]="'RR Nagar, Bengaluru, Karnataka, India'">
+              <div>
+                <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+              </div>
+            </custom-marker>
+          </ngui-map>
+        </div>
+        <div class="location-display">
+          <h6>title</h6>
+          <p>address</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--section for app user message, needs to be put in ng-if -->
+
+
+
+
+<div class="chat-message-container self" *ngIf="currentUserID == data.userID">
+
+  <!-- this is just for creating an empty space for the flex to work correctly -->
+
+
+  <!-- chat messages of the user start here -->
+  <div class="messages-container">
+    
+  
+      <div *ngFor="let message of data.data">
+          <p class="text-message" *ngIf="message.messageType == 'text'">{{ message.payload | emojify }}</p>
+          
+                <!-- emoji only -->
+          
+                <p class="emoji-only" *ngIf="message.messageType == 'emoji-only'">{{ message.payload | emojify }}</p>
+  
+  
+        <!-- location attachment -->
+        <div class="location-message" *ngIf="message.messageType == 'location'">
+          <div class="location-container">
+            <ngui-map [center]="'RR Nagar, Bengaluru, Karnataka, India'" [fullscreenControl]="false" [disableDefaultUI]="true">
+              <custom-marker [position]="'RR Nagar, Bengaluru, Karnataka, India'">
+                <div>
+                  <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+                </div>
+              </custom-marker>
+            </ngui-map>
+          </div>
+          <div class="location-display">
+            <h6>title</h6>
+            <p>address</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="delivery-status">
+    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+  </div>
+</div>

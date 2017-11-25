@@ -26131,6 +26131,7 @@ page-transdetail .detailsCardTipText {
 
 page-transdetail .detailsCardPlusBtn {
   margin-top: 0px;
+  cursor: pointer;
 }
 
 page-transdetail .detailsCardTagEditInput {
@@ -26293,4 +26294,156 @@ page-transdetail .scAmountLabelSpan {
   font-size: 14px;
   font-weight: 400;
   color: rgba(30, 49, 74, 0.4);
+}
+
+page-transdetail-chat .custom-navbar {
+  background: #ffffff;
+  padding: 20px 20px 20px 20px;
+}
+
+page-transdetail-chat .custom-navbar .back {
+  color: #5a7f8e;
+  font-size: 13.5px;
+}
+
+page-transdetail-chat .custom-navbar h4.title {
+  font-size: 18px;
+  color: #5a7f8e;
+}
+
+page-transdetail-chat .chat-window {
+  background: #f7f9fa;
+}
+
+page-transdetail-chat .chat-window .date-stamp {
+  font-size: 12px;
+  color: #828789;
+  text-align: center;
+  position: relative;
+  top: auto;
+  width: inherit;
+  margin: 0;
+  display: block;
+}
+
+chat-message .chat-message-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  /*
+            style the messages for self
+        */
+}
+
+chat-message .chat-message-container .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  -webkit-box-shadow: 1px 1px 5px #9b9b9b;
+  box-shadow: 1px 1px 5px #9b9b9b;
+  border: 1px solid white;
+}
+
+chat-message .chat-message-container .messages-container {
+  padding-left: 10px;
+}
+
+chat-message .chat-message-container .messages-container .user-name {
+  color: #324654;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin: 8px 0 5px 0;
+  padding-left: 5px;
+}
+
+chat-message .chat-message-container .messages-container .text-message {
+  background: white;
+  padding: 10px 14px;
+  color: #9b9b9b;
+  border-radius: 20px;
+  margin: 0 0 5px 0;
+  max-width: 70vw;
+}
+
+chat-message .chat-message-container .messages-container .emoji-only {
+  font-size: 60px;
+  margin: 0 0 5px 0;
+}
+
+chat-message .chat-message-container .messages-container .location-message {
+  border-radius: 20px;
+  height: 225px;
+  width: 230px;
+  margin: 0 0 5px 0;
+}
+
+chat-message .chat-message-container .messages-container .location-message .location-container {
+  max-height: 163px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+chat-message .chat-message-container .messages-container .location-message .location-container ngui-map {
+  height: 163px;
+}
+
+chat-message .chat-message-container .messages-container .location-message .location-display {
+  background: white;
+  padding: 10px 16px;
+  border-radius: 0 0 20px 20px;
+}
+
+chat-message .chat-message-container .messages-container .location-message .location-display h6 {
+  font-size: 16px;
+  color: #2a2a2a;
+  font-weight: normal;
+  margin: 0;
+}
+
+chat-message .chat-message-container .messages-container .location-message .location-display p {
+  color: #6f6f6f;
+  font-size: 16px;
+  font-weight: light;
+  margin: 0;
+}
+
+chat-message .chat-message-container.self {
+  margin-top: 20px;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+chat-message .chat-message-container.self .delivery-status {
+  width: 8px;
+  margin-left: 2px;
+}
+
+chat-message .chat-message-container.self .delivery-status ion-icon {
+  display: inline-block;
+  font-size: 1em;
+  font-weight: bold;
+  color: #1aeec2;
+}
+
+chat-message .chat-message-container.self .text-message {
+  background: #4a90e2;
+  color: white;
+}
+
+chat-message .chat-message-container.self .location-message .location-display {
+  background: #4a90e2;
+}
+
+chat-message .chat-message-container.self .location-message .location-display h6 {
+  background: transparent;
+  color: white;
+}
+
+chat-message .chat-message-container.self .location-message .location-display p {
+  background: transparent;
+  color: white;
 }
