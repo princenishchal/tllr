@@ -48,14 +48,10 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "ionic-plugin-keyboard": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "com.dbaq.cordova.contactsPhoneNumbers": {
-        "CONTACTS_USAGE_DESCRIPTION": " "
-      },
       "cordova-plugin-statusbar": {}
     },
     "platforms": [
