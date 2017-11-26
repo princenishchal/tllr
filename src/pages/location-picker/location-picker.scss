@@ -5,6 +5,16 @@ page-location-picker {
             height:90vh;
         }
 
+        ion-header.custom-navbar{
+           box-shadow: none!important;
+            .back{
+           
+                font-size: 40px!important;
+          
+            }
+         
+        }
+
         .address-search-box{
             position: absolute;
             display: flex;

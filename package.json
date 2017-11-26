@@ -28,7 +28,6 @@
     "@types/googlemaps": "^3.30.0",
     "angular2-autosize": "^1.0.2",
     "angular2-emojify": "^0.1.0",
-    "com.dbaq.cordova.contactsPhoneNumbers": "~0.0.9",
     "cordova-android": "6.3.0",
     "cordova-ios": "4.5.4",
     "cordova-plugin-contacts-phonenumbers": "0.0.9",

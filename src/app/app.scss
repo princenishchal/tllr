@@ -44,13 +44,17 @@
     background: #fafafa;
     .custom-navbar{
       
-       padding: 20px 20px 0 20px;
+       padding: 20px 20px 20px 20px;
         background: #fafafa;
+        box-shadow: 1px 2px 1px #eee;
+  
        .back{
         background: none;
         color: #4a90e2;
         font-family: 'KGAlwaysAGoodTime';
         font-size: 40px;
+        font-size: 20.5px;
+        margin-top: 5px;
        }
 
        h4.title{

@@ -25701,8 +25701,10 @@ ion-header {
 }
 
 ion-header .custom-navbar {
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 20px 20px;
   background: #fafafa;
+  -webkit-box-shadow: 1px 2px 1px #eee;
+  box-shadow: 1px 2px 1px #eee;
 }
 
 ion-header .custom-navbar .back {
@@ -25710,6 +25712,8 @@ ion-header .custom-navbar .back {
   color: #4a90e2;
   font-family: 'KGAlwaysAGoodTime';
   font-size: 40px;
+  font-size: 20.5px;
+  margin-top: 5px;
 }
 
 ion-header .custom-navbar h4.title {
@@ -25768,6 +25772,15 @@ page-location-picker .scroll-content {
 
 page-location-picker .scroll-content ngui-map {
   height: 90vh;
+}
+
+page-location-picker .scroll-content ion-header.custom-navbar {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+page-location-picker .scroll-content ion-header.custom-navbar .back {
+  font-size: 40px !important;
 }
 
 page-location-picker .scroll-content .address-search-box {
@@ -26325,7 +26338,8 @@ page-transdetail-chat .custom-navbar {
 
 page-transdetail-chat .custom-navbar .back {
   color: #5a7f8e;
-  font-size: 13.5px;
+  font-size: 20.5px;
+  margin-top: 5px;
 }
 
 page-transdetail-chat .custom-navbar h4.title {
