@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs';
+import {ChatServiceProvider} from "../../../providers/chat-service/chat-service"
 /**
  * Generated class for the TransdetailChatPage page.
  *
@@ -11,84 +12,27 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'page-transdetail-chat',
   templateUrl: 'transdetail-chat.html',
+  providers: [ChatServiceProvider]
 })
 export class TransdetailChatPage {
   chatName = "some random place";
 
-  currentUserID = 1;
-  
-    // messages queued in thread
-    messages = [
-      {
-        displayName: 'Fei Pan',
-        userID: 2,
-        deliveredAt: Date.now(),
-        messageType: 'text',
-        data: 'Hellooooo'
-      },
-  
-      {
-        displayName: 'Fei Pan',
-        userID: 2,
-        deliveredAt: Date.now(),
-        messageType: 'text',
-        data: 'how much do I owe you?'
-      },
-  
-      {
-        displayName: 'me',
-        userID: 1,
-        deliveredAt: Date.now(),
-        messageType: 'text',
-        data: 'Hey thanks! $2.50'
-      },
-  
-      {
-        displayName: 'Akshya P',
-        userID: 2,
-        deliveredAt: Date.now(),
-        messageType: 'emoji-only',
-        data: ':laughing:'
-      },
-  
-      {
-        displayName: 'Akshya P',
-        userID: 2,
-        deliveredAt: Date.now(),
-        messageType: 'text',
-        data: 'We should go to this place , heard great things about it'
-      },
-  
-      {
-        displayName: 'Akshya P',
-        userID: 2,
-        deliveredAt: Date.now(),
-        messageType: 'location',
-        data: {
-          coords: {},
-          name: "",
-          address: ""
-        }
-      }
+  currentUserID = 1; // this should come from a service or localstorage 
   
   
-    ];
+   
   
     // actual messages shown in the window.
   
     chatMessages = [];
     
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatServiceProvider) {
 
-       // emulate chat messages coming in every one second , remove this
+     chatService.newMessage.subscribe(message=>{
+       this.onMessage(message);
+     });
 
-       let timer = Observable.interval(1500)
-       .take(this.messages.length);
- 
-     timer.subscribe(val => {
-   
-       this.onMessage(this.messages[val])
-     })
+     
 
   }
 
