@@ -406,7 +406,7 @@ var TransdetailChatPage = (function () {
             displayName: this.userDisplayName,
             userID: this.currentUserID,
             messageType: new RegExp(/^@|:$/).test(message.trim()) == true ? 'emoji-only' : 'text',
-            data: message,
+            data: message.trim(),
         };
         // send the message via the chat service :
         this.chatService.send(chatMessageObj);
@@ -418,7 +418,7 @@ var TransdetailChatPage = (function () {
             displayName: "Akshay P",
             userID: 2,
             messageType: new RegExp(/^@|:$/).test(message.trim()) == true ? 'emoji-only' : 'text',
-            data: message,
+            data: message.trim(),
         };
         this.chatService.send(chatMessageObj2);
     };
@@ -429,9 +429,10 @@ var TransdetailChatPage = (function () {
             selector: 'page-transdetail-chat',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail-chat\transdetail-chat.html"*/'<!--\n  Generated template for the TransactionDetailsChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  \n   \n      <div class="custom-navbar">\n        <div class="flex-row">\n          <button class="back" navPop>\n            <</button>\n              <h4 class="title">Chat @ {{chatName}}</h4>\n        </div>\n        \n      </div>\n    \n  \n  </ion-header>\n  \n  \n  <ion-content padding class="chat-window"  no-bounce overflow-scroll="true">\n\n    <h6 class="date-stamp">\n      Today \n    </h6>\n\n    \n    <chat-message *ngFor="let chatMessage of chatMessages"  [data]="chatMessage"></chat-message>\n\n    <div class="chat-bar-container">\n      <textarea [(ngModel)]="message" placeholder="send a message .."></textarea>\n      <button class="send" (click)="sendMessage(message,\'text\')" [attr.disabled]="message.length? null: true"> \n         <img src="assets/imgs/send_on.png" *ngIf="message.length">\n         <img src="assets/imgs/send_off.png " *ngIf="!message.length">\n      </button>\n    </div>\n  \n  </ion-content>\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail-chat\transdetail-chat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]) === "function" && _c || Object])
     ], TransdetailChatPage);
     return TransdetailChatPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=transdetail-chat.js.map

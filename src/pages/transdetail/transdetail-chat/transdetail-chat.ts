@@ -94,7 +94,7 @@ export class TransdetailChatPage {
           displayName: this.userDisplayName,
           userID: this.currentUserID,
           messageType :  new RegExp(/^@|:$/).test(message.trim()) == true ? 'emoji-only' : 'text' ,
-          data: message,
+          data: message.trim(),
         }
 
 
@@ -110,7 +110,7 @@ export class TransdetailChatPage {
           displayName: "Akshay P",
           userID: 2,
           messageType :  new RegExp(/^@|:$/).test(message.trim()) == true ? 'emoji-only' : 'text' ,
-          data: message,
+          data: message.trim(),
         }
 
         this.chatService.send(chatMessageObj2);
