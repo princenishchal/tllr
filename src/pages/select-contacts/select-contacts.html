@@ -33,7 +33,7 @@
 
     <span  *ngFor="let contact of contacts">
     <div class="contact-card" *ngIf="contact.selected">
-        <img class="avatar" [attr.src]="contact.picture">
+        <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>
 
         <div class="info">
           <h4>{{contact.name}}</h4>
@@ -69,8 +69,7 @@
    dummy card ends -->
       <span  *ngFor="let contact of contacts">
       <div class="contact-card" *ngIf="!contact.selected" >
-          <img class="avatar" [attr.src]="contact.picture">
-
+          <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>
           <div class="info">
             <h4>{{contact.name}}</h4>
             <p>{{contact.phone}}</p>

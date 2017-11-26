@@ -1,0 +1,26 @@
+avatar {
+    img.avatar{
+        
+        width:64px;
+        height:64px;
+        border-radius: 100%;
+        box-shadow: 1px 1px 5px #9b9b9b;
+        border:2px solid white;
+    }
+
+    div.avatar{
+        background: #5a7f8e;
+        color: white;
+        width: 64px;
+        height: 64px;
+        border-radius: 100%;
+        -webkit-box-shadow: 1px 1px 5px #9b9b9b;
+        box-shadow: 1px 1px 5px #9b9b9b;
+        border: 2px solid white;
+        text-align: center;
+        font-size: 30px;
+        font-family: Dosis-Bold;
+        padding-top: 10px;
+        
+    }
+}

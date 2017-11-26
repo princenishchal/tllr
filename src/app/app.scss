@@ -28,6 +28,16 @@
     font-style: normal;
    }
 
+
+   @font-face {
+    font-family: 'Dosis-Bold';
+
+    src: url('../assets/Dosis-Bold.ttf') format('truetype');
+  
+    font-weight: normal;
+    font-style: normal;
+   }
+
     /** COPY THIS */
    /*custom header */
    ion-header {

@@ -25687,6 +25687,13 @@ ion-navbar.toolbar {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Dosis-Bold';
+  src: url("../assets/Dosis-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /** COPY THIS */
 /*custom header */
 ion-header {
@@ -25729,6 +25736,30 @@ ion-header .custom-navbar h6.subtitle {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+
+avatar img.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  -webkit-box-shadow: 1px 1px 5px #9b9b9b;
+  box-shadow: 1px 1px 5px #9b9b9b;
+  border: 2px solid white;
+}
+
+avatar div.avatar {
+  background: #5a7f8e;
+  color: white;
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  -webkit-box-shadow: 1px 1px 5px #9b9b9b;
+  box-shadow: 1px 1px 5px #9b9b9b;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 30px;
+  font-family: Dosis-Bold;
+  padding-top: 10px;
 }
 
 page-location-picker .scroll-content {
@@ -25882,15 +25913,6 @@ page-select-contacts .contact-card {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
-
-page-select-contacts .contact-card .avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 100%;
-  -webkit-box-shadow: 1px 1px 5px #9b9b9b;
-  box-shadow: 1px 1px 5px #9b9b9b;
-  border: 1px solid white;
 }
 
 page-select-contacts .contact-card .info {
@@ -26370,15 +26392,6 @@ chat-message .chat-message-container {
   /*
             style the messages for self
         */
-}
-
-chat-message .chat-message-container .avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 100%;
-  -webkit-box-shadow: 1px 1px 5px #9b9b9b;
-  box-shadow: 1px 1px 5px #9b9b9b;
-  border: 1px solid white;
 }
 
 chat-message .chat-message-container .messages-container {

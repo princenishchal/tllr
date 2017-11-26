@@ -1,0 +1,7 @@
+<!-- Generated template for the AvatarComponent component -->
+
+<div class="avatar" *ngIf="!img">
+  {{initials}}
+</div>
+<img class="avatar" [attr.src]="img" *ngIf="img" />
+

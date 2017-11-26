@@ -20,6 +20,9 @@ import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
+/** import the components module here */
+import {ComponentsModule} from '../components/components.module';
+
 /** COPY this config for socet io */
 
 const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} };
@@ -37,6 +40,7 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
     /** place api key here */
     /** COPY THIS */

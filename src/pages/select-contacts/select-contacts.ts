@@ -38,7 +38,7 @@ export class SelectContactsPage {
             this.contacts.push({
               idx:i,
               id:contacts[i].id,
-              picture:contacts[i].thumbnail ? this.domsanitizer.bypassSecurityTrustUrl(contacts[i].thumbnail) : "https://placeholdit.co//i/26x26?",
+              picture:contacts[i].thumbnail ? this.domsanitizer.bypassSecurityTrustUrl(contacts[i].thumbnail) : null,
               phone:contacts[i].phoneNumbers[0].normalizedNumber,
               name:contacts[i].displayName,
               selected:false
