@@ -18,6 +18,11 @@ import { EmojifyModule } from 'angular2-emojify';
 import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/transdetail-chat';
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+/** COPY this config for socet io */
+
+const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} };
 
 
 @NgModule({
@@ -36,7 +41,8 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
     /** place api key here */
     /** COPY THIS */
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?v=3&key=AIzaSyD9o5nDS5Okm1FqSXocY0rhGAoBxeb8-8k&libraries=places'}),
-    EmojifyModule
+    EmojifyModule,
+    SocketIoModule.forRoot(config) 
   ],
   bootstrap: [IonicApp],
   entryComponents: [

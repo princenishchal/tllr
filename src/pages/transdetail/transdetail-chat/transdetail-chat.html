@@ -30,9 +30,10 @@
     <chat-message *ngFor="let chatMessage of chatMessages"  [data]="chatMessage"></chat-message>
 
     <div class="chat-bar-container">
-      <textarea></textarea>
-      <button class="send">
-          <ion-icon ios="md-send" md="md-send"></ion-icon>
+      <textarea [(ngModel)]="message" placeholder="send a message .."></textarea>
+      <button class="send" (click)="sendMessage(message,'text')" [attr.disabled]="message.length? null: true"> 
+         <img src="assets/imgs/send_on.png" *ngIf="message.length">
+         <img src="assets/imgs/send_off.png " *ngIf="!message.length">
       </button>
     </div>
   

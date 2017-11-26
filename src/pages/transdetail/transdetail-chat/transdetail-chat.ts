@@ -17,18 +17,19 @@ import {ChatServiceProvider} from "../../../providers/chat-service/chat-service"
 export class TransdetailChatPage {
   chatName = "some random place";
 
+  userDisplayName = "Aman gupta";
   currentUserID = 1; // this should come from a service or localstorage 
-  
+  message = '';
   
    
   
     // actual messages shown in the window.
   
-    chatMessages = [];
-    
+    chatMessages:any = [];
+    private chatSubscription:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatServiceProvider) {
 
-     chatService.newMessage.subscribe(message=>{
+    this.chatSubscription = chatService.newMessage.subscribe(message=>{
        this.onMessage(message);
      });
 
@@ -85,6 +86,39 @@ export class TransdetailChatPage {
     
         }
     
+      }
+
+      sendMessage(message,type){
+
+        let chatMessageObj ={
+          displayName: this.userDisplayName,
+          userID: this.currentUserID,
+          messageType :  new RegExp(/^@|:$/).test(message.trim()) == true ? 'emoji-only' : 'text' ,
+          data: message,
+        }
+
+
+        // send the message via the chat service :
+        this.chatService.send(chatMessageObj);
+        // clear the text area
+        this.message = '';
+
+        /**TODO: remove below code  */
+        /** emulate other person talking  */
+
+        let chatMessageObj2 ={
+          displayName: "Akshay P",
+          userID: 2,
+          messageType :  new RegExp(/^@|:$/).test(message.trim()) == true ? 'emoji-only' : 'text' ,
+          data: message,
+        }
+
+        this.chatService.send(chatMessageObj2);
+
+      }
+
+      ionViewWillLeave(){
+          
       }
 
 }
