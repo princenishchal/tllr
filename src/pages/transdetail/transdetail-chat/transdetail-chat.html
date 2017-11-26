@@ -22,12 +22,21 @@
   
   <ion-content padding class="chat-window"  no-bounce overflow-scroll="true">
 
-    <h6 class="date-stamp">
-      Today 
+   <div *ngFor="let chatMessage of chatMessages; let i = index">
+
+    <h6 class="date-stamp" *ngIf="shouldAddStamp(chatMessage,i)">
+      {{ getDateStamp(chatMessage.time)  |  amCalendar}} 
     </h6>
 
     
-    <chat-message *ngFor="let chatMessage of chatMessages"  [data]="chatMessage"></chat-message>
+    <chat-message   [data]="chatMessage"></chat-message>
+
+    </div>
+
+
+<div id="myScrollLabel" style="height:10px">&nbsp;</div>
+
+
 
     <div class="chat-bar-container">
       <textarea [(ngModel)]="message" placeholder="Write your message .."></textarea>

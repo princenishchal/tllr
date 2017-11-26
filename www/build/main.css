@@ -26364,6 +26364,7 @@ page-transdetail-chat .chat-window .date-stamp {
   width: inherit;
   margin: 0;
   display: block;
+  margin-bottom: 20px;
 }
 
 page-transdetail-chat .chat-bar-container {

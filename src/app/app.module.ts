@@ -19,6 +19,7 @@ import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/trans
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import {MomentModule} from 'angular2-moment'
 
 /** import the components module here */
 import {ComponentsModule} from '../components/components.module';
@@ -40,10 +41,11 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
   ],
   imports: [
     BrowserModule,
-    ComponentsModule,
     IonicModule.forRoot(MyApp),
     /** place api key here */
     /** COPY THIS */
+    ComponentsModule,
+    MomentModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?v=3&key=AIzaSyD9o5nDS5Okm1FqSXocY0rhGAoBxeb8-8k&libraries=places'}),
     EmojifyModule,
     SocketIoModule.forRoot(config) 
