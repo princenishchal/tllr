@@ -19,10 +19,10 @@
 
 
 <ion-content padding>
-  <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true">
+  <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #mapComponent >
     <custom-marker [position]="center">
       <div>
-        <b>{{address.name}}</b>
+        <b *ngIf="address">{{address.name}}</b>
         <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
       </div>
     </custom-marker>
@@ -30,7 +30,7 @@
 
   <!-- address search bar -->
   <div class="address-search-box">
-    <input type="text" places-auto-complete (place_changed)="placeChanged($event)" (input)="checkIfnotEmpty($event)" [types]="['geocode']" placeholder="Enter business location"
+    <input type="text" #autoCompleteForm places-auto-complete (place_changed)="placeChanged($event)" [location]="" [bounds]="autoCompleteBounds" (input)="checkIfnotEmpty($event)" [types]="['establishment']"  placeholder="Enter business location"
     />
   </div>
 

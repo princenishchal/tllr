@@ -1,6 +1,8 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef,ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {SelectContactsPage} from '../select-contacts/select-contacts'
+import {Geolocation} from '@ionic-native/geolocation'
+import {SelectContactsPage} from '../select-contacts/select-contacts';
+import {NguiMapComponent,PlacesAutoComplete, NguiMap} from '@ngui/map'
 
 
 /**
@@ -16,18 +18,47 @@ import {SelectContactsPage} from '../select-contacts/select-contacts'
 })
 export class LocationPickerPage {
 
+  @ViewChild('mapComponent') mapComponent:NguiMapComponent;
+  @ViewChild('autoCompleteForm') autoComplete:PlacesAutoComplete;
+
    /** view vars used by ngui-maps */
    autocomplete: any;
    address: any = {};
-   center: any = "RR Nagar, Bengaluru, Karnataka, India";
+   center: any = "";
    code: string;
    canContinue = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ref: ChangeDetectorRef) {
+   /**vars to control the map auto complete and map object */
+   autoCompleteBounds:any;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ref: ChangeDetectorRef, private geolocaton:Geolocation) {
+
+   
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     console.log('ionViewDidLoad LocationPickerPage');
+
+    this.mapComponent.mapReady$.subscribe(r=>{
+      
+        
+            this.geolocaton.getCurrentPosition().then(loc=>{
+              console.log(loc);
+              let userPos ={
+                lat: loc.coords.latitude,
+                lng: loc.coords.longitude
+              }
+              this.center = userPos;
+              this.autoCompleteBounds = this.mapComponent.map.getBounds()
+              
+            })
+      
+      
+            this.autoCompleteBounds = this.mapComponent.map.getBounds()
+           
+         })  
+
   }
 
   // recenters the map to the location selected from auto complete 
