@@ -17,9 +17,11 @@ import { NguiMapModule} from '@ngui/map';
 import { EmojifyModule } from 'angular2-emojify';
 import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/transdetail-chat';
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
+import { SelectPhotosPage} from '../pages/select-photos/select-photos';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-import {MomentModule} from 'angular2-moment'
+import {MomentModule} from 'angular2-moment';
+import {PhotoLibrary} from '@ionic-native/photo-library';
 
 /** import the components module here */
 import {ComponentsModule} from '../components/components.module';
@@ -38,6 +40,7 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     TransdetailPage,
     TransdetailChatPage,
     ChatMessageComponent,
+    SelectPhotosPage
   ],
   imports: [
     BrowserModule,
@@ -59,12 +62,14 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     SelectContactsPage,
     TransdetailPage,
     TransdetailChatPage,
-    ChatMessageComponent
+    ChatMessageComponent,
+    SelectPhotosPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PhotoLibrary
   ]
 })
 export class AppModule {}

@@ -1,0 +1,35 @@
+page-select-photos {
+    .custom-navbar{
+        background: #ffffff;
+        padding: 20px 20px 20px 20px;
+        .back{
+            color:#5a7f8e;
+            font-size: 20.5px;
+            margin-top: 5px;
+        }
+        h4.title{
+            font-size: 18px;
+            color:#5a7f8e;
+            
+        }
+    }
+
+    .date-stamp{
+        color:#5a7f8e;
+        font-size: 16x;
+        text-align: left;
+        margin: 10px 0;
+        font-family: 'KGAlwaysAGoodTime';
+        width:100%;
+        display: block;
+        clear: both;
+    }
+
+    .thumbnail{
+        width: 20%;
+        height: 71px;
+        float: left;
+        margin-right: 5%;
+        margin-bottom: 20px;
+    }
+}
