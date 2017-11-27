@@ -30,7 +30,7 @@
 
   <!-- address search bar -->
   <div class="address-search-box">
-    <input type="text" #autoCompleteForm places-auto-complete (place_changed)="placeChanged($event)" [location]="" [bounds]="autoCompleteBounds" (input)="checkIfnotEmpty($event)" [types]="['establishment']"  placeholder="Enter business location"
+    <input type="text" #autoCompleteForm places-auto-complete (place_changed)="placeChanged($event)"  [bounds]="autoCompleteBounds" (input)="checkIfnotEmpty($event)" [types]="['establishment']"  placeholder="Enter business location"
     />
   </div>
 
