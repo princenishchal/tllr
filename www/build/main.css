@@ -26044,7 +26044,7 @@ page-select-photos .thumbnail {
 }
 
 page-select-photos .thumbnail .overlay {
-  background: rgba(90, 127, 142, 0.7);
+  background: rgba(90, 127, 142, 0.6);
   width: inherit;
   height: inherit;
   color: white;

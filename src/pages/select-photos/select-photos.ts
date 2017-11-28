@@ -63,7 +63,7 @@ export class SelectPhotosPage {
             }
           );
 
-          this.gallaryImages.slice(this.page-1,this.page*this.chunk).map(img => {
+          this.gallaryImages.slice(this.page*this.chunk,(this.page+1)*this.chunk).map(img => {
             
                         let imjObj = {
                           thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
@@ -94,7 +94,7 @@ export class SelectPhotosPage {
   }
 
   doInfinite(infiniteScroll) {
-    this.gallaryImages.slice(this.page-1,this.page*this.chunk).map(img => {
+    this.gallaryImages.slice(this.page*this.chunk,(this.page+1)*this.chunk).map(img => {
       
                   let imjObj = {
                     thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),

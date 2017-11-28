@@ -540,7 +540,7 @@ var SelectPhotosPage = (function () {
                     _this.gallaryImages = library.sort(function (a, b) {
                         return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
                     });
-                    _this.gallaryImages.slice(_this.page - 1, _this.page * _this.chunk).map(function (img) {
+                    _this.gallaryImages.slice(_this.page * _this.chunk, (_this.page + 1) * _this.chunk).map(function (img) {
                         var imjObj = {
                             thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
                             fileName: img.fileName,
@@ -562,7 +562,7 @@ var SelectPhotosPage = (function () {
     }
     SelectPhotosPage.prototype.doInfinite = function (infiniteScroll) {
         var _this = this;
-        this.gallaryImages.slice(this.page - 1, this.page * this.chunk).map(function (img) {
+        this.gallaryImages.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map(function (img) {
             var imjObj = {
                 thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
                 fileName: img.fileName,
