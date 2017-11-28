@@ -26375,10 +26375,10 @@ page-transdetail-chat .chat-bar-container {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  padding: 5px;
   margin: 0;
   left: 0;
   background: white;
+  height: 60px;
 }
 
 page-transdetail-chat .chat-bar-container textarea {
@@ -26392,11 +26392,13 @@ page-transdetail-chat .chat-bar-container textarea {
 }
 
 page-transdetail-chat .chat-bar-container button {
-  width: 48px;
-  height: 48px;
   border-radius: 100%;
-  margin: 10px;
+  margin: 10px 20px 10px 10px;
   background: transparent;
+}
+
+page-transdetail-chat .chat-bar-container button img {
+  width: 44px;
 }
 
 chat-message .chat-message-container {

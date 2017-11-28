@@ -46,10 +46,10 @@ page-transdetail-chat {
         display: -ms-flexbox;
         display: flex;
         width: 100%;
-        padding: 5px;
         margin: 0;
         left: 0;
         background: white;
+        height:60px;
         textarea{
             width: 80%;
             height: 50px;
@@ -60,11 +60,14 @@ page-transdetail-chat {
             border:none;
         }
         button{
-            width:48px;
-            height:48px;
+       
             border-radius: 100%;
-            margin:10px;
-            background: transparent
+            margin:10px 20px 10px 10px;
+            background: transparent;
+            img{
+                width:44px;
+          
+            }
         }
     }
 
