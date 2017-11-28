@@ -2,8 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
 declare var cordova: any;
-import { PhotoLibrary, LibraryItem, GetLibraryOptions } from '@ionic-native/photo-library';
-import { Observable } from 'rxjs';
+import { PhotoLibrary, LibraryItem, GetLibraryOptions,   } from '@ionic-native/photo-library';
+import { Observable,Subject } from 'rxjs';
 
 /**
  * Generated class for the SelectPhotosPage page.
@@ -19,18 +19,25 @@ import { Observable } from 'rxjs';
 export class SelectPhotosPage {
   images = [];
   private gallaryImages = null;
+  private pauser:Subject<boolean>; // used for pausing the library sequesnce
+  private infiniteScrollHandle:any; 
+  private page = 1 ;
+  private chunk = 30;
   constructor(public navCtrl: NavController, public navParams: NavParams, private photoLibrary: PhotoLibrary, private changeRef: ChangeDetectorRef, private sanitizer: DomSanitizer) {
+
+    this.pauser = new Subject();
+    
+  
     let opts: GetLibraryOptions = {};
-    opts.chunkTimeSec = 1;
-    opts.itemsInChunk = 50;
-    opts.quality = 0.6;
     opts.thumbnailHeight =76;
-    opts.thumbnailHeight = 71;
+    opts.thumbnailWidth = 71;
+    opts.includeAlbumData = true;
 
     this.photoLibrary.requestAuthorization().then(() => {
-      this.photoLibrary.getLibrary().subscribe({
+      this.photoLibrary.getLibrary(opts).subscribe({
         next: library => {
 
+         
 
           /* library.forEach(function(libraryItem) {
              console.log(libraryItem.id);          // ID of the photo
@@ -50,29 +57,31 @@ export class SelectPhotosPage {
 
 
 
-
-          library.map(img => {
-
-            let imjObj = {
-              thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
-              fileName: img.fileName,
-              id: img.id,
-              creationDate: img.creationDate
-            }
-            // sanitize the urls before pushing 
-
-            this.images.push(imjObj);
-
-          })
-
-          this.images.sort(
+           this.gallaryImages = library.sort(
             (a: LibraryItem, b: LibraryItem) => {
               return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
             }
           );
-          this.changeRef.detectChanges();
 
+          this.gallaryImages.slice(this.page-1,this.page*this.chunk).map(img => {
+            
+                        let imjObj = {
+                          thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+                          fileName: img.fileName,
+                          id: img.id,
+                          creationDate: img.creationDate,
+                          index: this.images.length
+                        }
+                        // sanitize the urls before pushing 
+            
+                        this.images.push(imjObj);
+            
+                      })
 
+        
+                      this.page+= 1;
+
+                      this.changeRef.detectChanges();
 
         },
         error: err => { console.log('could not get photos'); },
@@ -84,10 +93,32 @@ export class SelectPhotosPage {
 
   }
 
-  shouldAddStamp(img, index) {
+  doInfinite(infiniteScroll) {
+    this.gallaryImages.slice(this.page-1,this.page*this.chunk).map(img => {
+      
+                  let imjObj = {
+                    thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+                    fileName: img.fileName,
+                    id: img.id,
+                    creationDate: img.creationDate,
+                    index: this.images.length
+                  }
+                  // sanitize the urls before pushing 
+      
+                  this.images.push(imjObj);
+      
+                })
 
-    if (this.images.length >= 2 && index != 0)
-      return !this.sameDay(img.creationDate, this.images[index - 1].creationDate);
+                infiniteScroll.complete();
+                this.page +=1;
+
+                this.changeRef.detectChanges();
+  }
+
+  shouldAddStamp(img) {
+
+    if (this.images.length >= 2 && img.index != 0)
+      return !this.sameDay(img.creationDate, this.images[img.index - 1].creationDate);
     else
       return true;
 

@@ -43,7 +43,7 @@ webpackEmptyAsyncContext.id = 214;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_picker_location_picker__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__transdetail_transdetail__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(375);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -333,7 +333,7 @@ var TransdetailPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TransdetailChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__ = __webpack_require__(555);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__ = __webpack_require__(556);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -474,7 +474,7 @@ var TransdetailChatPage = (function () {
 
 /***/ }),
 
-/***/ 374:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -482,7 +482,9 @@ var TransdetailChatPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -492,6 +494,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -512,14 +515,15 @@ var SelectPhotosPage = (function () {
         this.sanitizer = sanitizer;
         this.images = [];
         this.gallaryImages = null;
+        this.page = 1;
+        this.chunk = 30;
+        this.pauser = new __WEBPACK_IMPORTED_MODULE_4_rxjs__["Subject"]();
         var opts = {};
-        opts.chunkTimeSec = 1;
-        opts.itemsInChunk = 50;
-        opts.quality = 0.6;
         opts.thumbnailHeight = 76;
-        opts.thumbnailHeight = 71;
+        opts.thumbnailWidth = 71;
+        opts.includeAlbumData = true;
         this.photoLibrary.requestAuthorization().then(function () {
-            _this.photoLibrary.getLibrary().subscribe({
+            _this.photoLibrary.getLibrary(opts).subscribe({
                 next: function (library) {
                     /* library.forEach(function(libraryItem) {
                        console.log(libraryItem.id);          // ID of the photo
@@ -533,19 +537,21 @@ var SelectPhotosPage = (function () {
                        console.log(libraryItem.longitude);
                        console.log(libraryItem.albumIds);    // array of ids of appropriate AlbumItem, only of includeAlbumsData was used
                      });*/
-                    library.map(function (img) {
+                    _this.gallaryImages = library.sort(function (a, b) {
+                        return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
+                    });
+                    _this.gallaryImages.slice(_this.page - 1, _this.page * _this.chunk).map(function (img) {
                         var imjObj = {
                             thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
                             fileName: img.fileName,
                             id: img.id,
-                            creationDate: img.creationDate
+                            creationDate: img.creationDate,
+                            index: _this.images.length
                         };
                         // sanitize the urls before pushing 
                         _this.images.push(imjObj);
                     });
-                    _this.images.sort(function (a, b) {
-                        return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
-                    });
+                    _this.page += 1;
                     _this.changeRef.detectChanges();
                 },
                 error: function (err) { console.log('could not get photos'); },
@@ -554,9 +560,26 @@ var SelectPhotosPage = (function () {
         })
             .catch(function (err) { return console.log('permissions weren\'t granted'); });
     }
-    SelectPhotosPage.prototype.shouldAddStamp = function (img, index) {
-        if (this.images.length >= 2 && index != 0)
-            return !this.sameDay(img.creationDate, this.images[index - 1].creationDate);
+    SelectPhotosPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.gallaryImages.slice(this.page - 1, this.page * this.chunk).map(function (img) {
+            var imjObj = {
+                thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+                fileName: img.fileName,
+                id: img.id,
+                creationDate: img.creationDate,
+                index: _this.images.length
+            };
+            // sanitize the urls before pushing 
+            _this.images.push(imjObj);
+        });
+        infiniteScroll.complete();
+        this.page += 1;
+        this.changeRef.detectChanges();
+    };
+    SelectPhotosPage.prototype.shouldAddStamp = function (img) {
+        if (this.images.length >= 2 && img.index != 0)
+            return !this.sameDay(img.creationDate, this.images[img.index - 1].creationDate);
         else
             return true;
     };
@@ -572,7 +595,7 @@ var SelectPhotosPage = (function () {
     };
     SelectPhotosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-select-photos',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/'<!--\n  Generated template for the SelectPhotosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n          <h4 class="title">Add photos</h4>\n    </div>\n    \n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n  \n  <div *ngFor="let img of images; let i = index">\n        \n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n      </h6>\n      <br *ngIf="shouldAddStamp(img,i)">\n    \n      <img class="thumbnail" [src]="img.thumbnailURL" width="100px;"/>\n    \n  </div>  \n \n  \n</ion-content>\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/,
+            selector: 'page-select-photos',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/'<!--\n\n  Generated template for the SelectPhotosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n\n\n  <div class="custom-navbar">\n\n    <div class="flex-row">\n\n      <button class="back" navPop>\n\n        <</button>\n\n          <h4 class="title">Add photos</h4>\n\n    </div>\n\n    \n\n  </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  \n\n  <ion-list *ngFor="let img of images; let i = index">\n\n        \n\n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n\n      </h6>\n\n      <br *ngIf="shouldAddStamp(img,i)">\n\n    \n\n      <div class="thumbnail">\n\n        <div class="overlay">\n\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n\n        </div>\n\n      <img class="image" [src]="img.thumbnailURL"/>\n\n      </div>  \n\n    \n\n    </ion-list>  \n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__["a" /* PhotoLibrary */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]])
     ], SelectPhotosPage);
@@ -583,13 +606,13 @@ var SelectPhotosPage = (function () {
 
 /***/ }),
 
-/***/ 506:
+/***/ 507:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(507);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(508);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(512);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -597,7 +620,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 511:
+/***/ 512:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -607,7 +630,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(555);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_transdetail_transdetail__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_picker_location_picker__ = __webpack_require__(260);
@@ -617,12 +640,12 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_emojify__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_transdetail_transdetail_chat_transdetail_chat__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_transdetail_transdetail_chat_chat_message_chat_message__ = __webpack_require__(859);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ng_socket_io__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_ng_socket_io__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular2_moment__ = __webpack_require__(860);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_angular2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_photo_library__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_photo_library__ = __webpack_require__(376);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_components_module__ = __webpack_require__(864);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -708,7 +731,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 554:
+/***/ 555:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -754,7 +777,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 555:
+/***/ 556:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -762,7 +785,7 @@ var MyApp = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng_socket_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(576);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -808,7 +831,7 @@ var ChatServiceProvider = (function () {
 
 /***/ }),
 
-/***/ 573:
+/***/ 574:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -866,242 +889,242 @@ var ChatMessageComponent = (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 377,
-	"./af.js": 377,
-	"./ar": 378,
-	"./ar-dz": 379,
-	"./ar-dz.js": 379,
-	"./ar-kw": 380,
-	"./ar-kw.js": 380,
-	"./ar-ly": 381,
-	"./ar-ly.js": 381,
-	"./ar-ma": 382,
-	"./ar-ma.js": 382,
-	"./ar-sa": 383,
-	"./ar-sa.js": 383,
-	"./ar-tn": 384,
-	"./ar-tn.js": 384,
-	"./ar.js": 378,
-	"./az": 385,
-	"./az.js": 385,
-	"./be": 386,
-	"./be.js": 386,
-	"./bg": 387,
-	"./bg.js": 387,
-	"./bm": 388,
-	"./bm.js": 388,
-	"./bn": 389,
-	"./bn.js": 389,
-	"./bo": 390,
-	"./bo.js": 390,
-	"./br": 391,
-	"./br.js": 391,
-	"./bs": 392,
-	"./bs.js": 392,
-	"./ca": 393,
-	"./ca.js": 393,
-	"./cs": 394,
-	"./cs.js": 394,
-	"./cv": 395,
-	"./cv.js": 395,
-	"./cy": 396,
-	"./cy.js": 396,
-	"./da": 397,
-	"./da.js": 397,
-	"./de": 398,
-	"./de-at": 399,
-	"./de-at.js": 399,
-	"./de-ch": 400,
-	"./de-ch.js": 400,
-	"./de.js": 398,
-	"./dv": 401,
-	"./dv.js": 401,
-	"./el": 402,
-	"./el.js": 402,
-	"./en-au": 403,
-	"./en-au.js": 403,
-	"./en-ca": 404,
-	"./en-ca.js": 404,
-	"./en-gb": 405,
-	"./en-gb.js": 405,
-	"./en-ie": 406,
-	"./en-ie.js": 406,
-	"./en-nz": 407,
-	"./en-nz.js": 407,
-	"./eo": 408,
-	"./eo.js": 408,
-	"./es": 409,
-	"./es-do": 410,
-	"./es-do.js": 410,
-	"./es-us": 411,
-	"./es-us.js": 411,
-	"./es.js": 409,
-	"./et": 412,
-	"./et.js": 412,
-	"./eu": 413,
-	"./eu.js": 413,
-	"./fa": 414,
-	"./fa.js": 414,
-	"./fi": 415,
-	"./fi.js": 415,
-	"./fo": 416,
-	"./fo.js": 416,
-	"./fr": 417,
-	"./fr-ca": 418,
-	"./fr-ca.js": 418,
-	"./fr-ch": 419,
-	"./fr-ch.js": 419,
-	"./fr.js": 417,
-	"./fy": 420,
-	"./fy.js": 420,
-	"./gd": 421,
-	"./gd.js": 421,
-	"./gl": 422,
-	"./gl.js": 422,
-	"./gom-latn": 423,
-	"./gom-latn.js": 423,
-	"./gu": 424,
-	"./gu.js": 424,
-	"./he": 425,
-	"./he.js": 425,
-	"./hi": 426,
-	"./hi.js": 426,
-	"./hr": 427,
-	"./hr.js": 427,
-	"./hu": 428,
-	"./hu.js": 428,
-	"./hy-am": 429,
-	"./hy-am.js": 429,
-	"./id": 430,
-	"./id.js": 430,
-	"./is": 431,
-	"./is.js": 431,
-	"./it": 432,
-	"./it.js": 432,
-	"./ja": 433,
-	"./ja.js": 433,
-	"./jv": 434,
-	"./jv.js": 434,
-	"./ka": 435,
-	"./ka.js": 435,
-	"./kk": 436,
-	"./kk.js": 436,
-	"./km": 437,
-	"./km.js": 437,
-	"./kn": 438,
-	"./kn.js": 438,
-	"./ko": 439,
-	"./ko.js": 439,
-	"./ky": 440,
-	"./ky.js": 440,
-	"./lb": 441,
-	"./lb.js": 441,
-	"./lo": 442,
-	"./lo.js": 442,
-	"./lt": 443,
-	"./lt.js": 443,
-	"./lv": 444,
-	"./lv.js": 444,
-	"./me": 445,
-	"./me.js": 445,
-	"./mi": 446,
-	"./mi.js": 446,
-	"./mk": 447,
-	"./mk.js": 447,
-	"./ml": 448,
-	"./ml.js": 448,
-	"./mr": 449,
-	"./mr.js": 449,
-	"./ms": 450,
-	"./ms-my": 451,
-	"./ms-my.js": 451,
-	"./ms.js": 450,
-	"./my": 452,
-	"./my.js": 452,
-	"./nb": 453,
-	"./nb.js": 453,
-	"./ne": 454,
-	"./ne.js": 454,
-	"./nl": 455,
-	"./nl-be": 456,
-	"./nl-be.js": 456,
-	"./nl.js": 455,
-	"./nn": 457,
-	"./nn.js": 457,
-	"./pa-in": 458,
-	"./pa-in.js": 458,
-	"./pl": 459,
-	"./pl.js": 459,
-	"./pt": 460,
-	"./pt-br": 461,
-	"./pt-br.js": 461,
-	"./pt.js": 460,
-	"./ro": 462,
-	"./ro.js": 462,
-	"./ru": 463,
-	"./ru.js": 463,
-	"./sd": 464,
-	"./sd.js": 464,
-	"./se": 465,
-	"./se.js": 465,
-	"./si": 466,
-	"./si.js": 466,
-	"./sk": 467,
-	"./sk.js": 467,
-	"./sl": 468,
-	"./sl.js": 468,
-	"./sq": 469,
-	"./sq.js": 469,
-	"./sr": 470,
-	"./sr-cyrl": 471,
-	"./sr-cyrl.js": 471,
-	"./sr.js": 470,
-	"./ss": 472,
-	"./ss.js": 472,
-	"./sv": 473,
-	"./sv.js": 473,
-	"./sw": 474,
-	"./sw.js": 474,
-	"./ta": 475,
-	"./ta.js": 475,
-	"./te": 476,
-	"./te.js": 476,
-	"./tet": 477,
-	"./tet.js": 477,
-	"./th": 478,
-	"./th.js": 478,
-	"./tl-ph": 479,
-	"./tl-ph.js": 479,
-	"./tlh": 480,
-	"./tlh.js": 480,
-	"./tr": 481,
-	"./tr.js": 481,
-	"./tzl": 482,
-	"./tzl.js": 482,
-	"./tzm": 483,
-	"./tzm-latn": 484,
-	"./tzm-latn.js": 484,
-	"./tzm.js": 483,
-	"./uk": 485,
-	"./uk.js": 485,
-	"./ur": 486,
-	"./ur.js": 486,
-	"./uz": 487,
-	"./uz-latn": 488,
-	"./uz-latn.js": 488,
-	"./uz.js": 487,
-	"./vi": 489,
-	"./vi.js": 489,
-	"./x-pseudo": 490,
-	"./x-pseudo.js": 490,
-	"./yo": 491,
-	"./yo.js": 491,
-	"./zh-cn": 492,
-	"./zh-cn.js": 492,
-	"./zh-hk": 493,
-	"./zh-hk.js": 493,
-	"./zh-tw": 494,
-	"./zh-tw.js": 494
+	"./af": 378,
+	"./af.js": 378,
+	"./ar": 379,
+	"./ar-dz": 380,
+	"./ar-dz.js": 380,
+	"./ar-kw": 381,
+	"./ar-kw.js": 381,
+	"./ar-ly": 382,
+	"./ar-ly.js": 382,
+	"./ar-ma": 383,
+	"./ar-ma.js": 383,
+	"./ar-sa": 384,
+	"./ar-sa.js": 384,
+	"./ar-tn": 385,
+	"./ar-tn.js": 385,
+	"./ar.js": 379,
+	"./az": 386,
+	"./az.js": 386,
+	"./be": 387,
+	"./be.js": 387,
+	"./bg": 388,
+	"./bg.js": 388,
+	"./bm": 389,
+	"./bm.js": 389,
+	"./bn": 390,
+	"./bn.js": 390,
+	"./bo": 391,
+	"./bo.js": 391,
+	"./br": 392,
+	"./br.js": 392,
+	"./bs": 393,
+	"./bs.js": 393,
+	"./ca": 394,
+	"./ca.js": 394,
+	"./cs": 395,
+	"./cs.js": 395,
+	"./cv": 396,
+	"./cv.js": 396,
+	"./cy": 397,
+	"./cy.js": 397,
+	"./da": 398,
+	"./da.js": 398,
+	"./de": 399,
+	"./de-at": 400,
+	"./de-at.js": 400,
+	"./de-ch": 401,
+	"./de-ch.js": 401,
+	"./de.js": 399,
+	"./dv": 402,
+	"./dv.js": 402,
+	"./el": 403,
+	"./el.js": 403,
+	"./en-au": 404,
+	"./en-au.js": 404,
+	"./en-ca": 405,
+	"./en-ca.js": 405,
+	"./en-gb": 406,
+	"./en-gb.js": 406,
+	"./en-ie": 407,
+	"./en-ie.js": 407,
+	"./en-nz": 408,
+	"./en-nz.js": 408,
+	"./eo": 409,
+	"./eo.js": 409,
+	"./es": 410,
+	"./es-do": 411,
+	"./es-do.js": 411,
+	"./es-us": 412,
+	"./es-us.js": 412,
+	"./es.js": 410,
+	"./et": 413,
+	"./et.js": 413,
+	"./eu": 414,
+	"./eu.js": 414,
+	"./fa": 415,
+	"./fa.js": 415,
+	"./fi": 416,
+	"./fi.js": 416,
+	"./fo": 417,
+	"./fo.js": 417,
+	"./fr": 418,
+	"./fr-ca": 419,
+	"./fr-ca.js": 419,
+	"./fr-ch": 420,
+	"./fr-ch.js": 420,
+	"./fr.js": 418,
+	"./fy": 421,
+	"./fy.js": 421,
+	"./gd": 422,
+	"./gd.js": 422,
+	"./gl": 423,
+	"./gl.js": 423,
+	"./gom-latn": 424,
+	"./gom-latn.js": 424,
+	"./gu": 425,
+	"./gu.js": 425,
+	"./he": 426,
+	"./he.js": 426,
+	"./hi": 427,
+	"./hi.js": 427,
+	"./hr": 428,
+	"./hr.js": 428,
+	"./hu": 429,
+	"./hu.js": 429,
+	"./hy-am": 430,
+	"./hy-am.js": 430,
+	"./id": 431,
+	"./id.js": 431,
+	"./is": 432,
+	"./is.js": 432,
+	"./it": 433,
+	"./it.js": 433,
+	"./ja": 434,
+	"./ja.js": 434,
+	"./jv": 435,
+	"./jv.js": 435,
+	"./ka": 436,
+	"./ka.js": 436,
+	"./kk": 437,
+	"./kk.js": 437,
+	"./km": 438,
+	"./km.js": 438,
+	"./kn": 439,
+	"./kn.js": 439,
+	"./ko": 440,
+	"./ko.js": 440,
+	"./ky": 441,
+	"./ky.js": 441,
+	"./lb": 442,
+	"./lb.js": 442,
+	"./lo": 443,
+	"./lo.js": 443,
+	"./lt": 444,
+	"./lt.js": 444,
+	"./lv": 445,
+	"./lv.js": 445,
+	"./me": 446,
+	"./me.js": 446,
+	"./mi": 447,
+	"./mi.js": 447,
+	"./mk": 448,
+	"./mk.js": 448,
+	"./ml": 449,
+	"./ml.js": 449,
+	"./mr": 450,
+	"./mr.js": 450,
+	"./ms": 451,
+	"./ms-my": 452,
+	"./ms-my.js": 452,
+	"./ms.js": 451,
+	"./my": 453,
+	"./my.js": 453,
+	"./nb": 454,
+	"./nb.js": 454,
+	"./ne": 455,
+	"./ne.js": 455,
+	"./nl": 456,
+	"./nl-be": 457,
+	"./nl-be.js": 457,
+	"./nl.js": 456,
+	"./nn": 458,
+	"./nn.js": 458,
+	"./pa-in": 459,
+	"./pa-in.js": 459,
+	"./pl": 460,
+	"./pl.js": 460,
+	"./pt": 461,
+	"./pt-br": 462,
+	"./pt-br.js": 462,
+	"./pt.js": 461,
+	"./ro": 463,
+	"./ro.js": 463,
+	"./ru": 464,
+	"./ru.js": 464,
+	"./sd": 465,
+	"./sd.js": 465,
+	"./se": 466,
+	"./se.js": 466,
+	"./si": 467,
+	"./si.js": 467,
+	"./sk": 468,
+	"./sk.js": 468,
+	"./sl": 469,
+	"./sl.js": 469,
+	"./sq": 470,
+	"./sq.js": 470,
+	"./sr": 471,
+	"./sr-cyrl": 472,
+	"./sr-cyrl.js": 472,
+	"./sr.js": 471,
+	"./ss": 473,
+	"./ss.js": 473,
+	"./sv": 474,
+	"./sv.js": 474,
+	"./sw": 475,
+	"./sw.js": 475,
+	"./ta": 476,
+	"./ta.js": 476,
+	"./te": 477,
+	"./te.js": 477,
+	"./tet": 478,
+	"./tet.js": 478,
+	"./th": 479,
+	"./th.js": 479,
+	"./tl-ph": 480,
+	"./tl-ph.js": 480,
+	"./tlh": 481,
+	"./tlh.js": 481,
+	"./tr": 482,
+	"./tr.js": 482,
+	"./tzl": 483,
+	"./tzl.js": 483,
+	"./tzm": 484,
+	"./tzm-latn": 485,
+	"./tzm-latn.js": 485,
+	"./tzm.js": 484,
+	"./uk": 486,
+	"./uk.js": 486,
+	"./ur": 487,
+	"./ur.js": 487,
+	"./uz": 488,
+	"./uz-latn": 489,
+	"./uz-latn.js": 489,
+	"./uz.js": 488,
+	"./vi": 490,
+	"./vi.js": 490,
+	"./x-pseudo": 491,
+	"./x-pseudo.js": 491,
+	"./yo": 492,
+	"./yo.js": 492,
+	"./zh-cn": 493,
+	"./zh-cn.js": 493,
+	"./zh-hk": 494,
+	"./zh-hk.js": 494,
+	"./zh-tw": 495,
+	"./zh-tw.js": 495
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1241,5 +1264,5 @@ var AvatarComponent = (function () {
 
 /***/ })
 
-},[506]);
+},[507]);
 //# sourceMappingURL=main.js.map

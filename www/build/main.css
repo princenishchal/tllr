@@ -26034,11 +26034,39 @@ page-select-photos .date-stamp {
 }
 
 page-select-photos .thumbnail {
-  width: 20%;
-  height: 71px;
+  width: 71px;
+  height: 76px;
   float: left;
-  margin-right: 5%;
+  margin-right: 16px;
   margin-bottom: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+page-select-photos .thumbnail .overlay {
+  background: rgba(90, 127, 142, 0.7);
+  width: inherit;
+  height: inherit;
+  color: white;
+  text-align: center;
+  position: absolute;
+  font-size: 20px;
+  padding: 25px;
+  z-index: 2;
+}
+
+page-select-photos .thumbnail .image {
+  width: inherit;
+  height: inherit;
+  position: relative;
+}
+
+page-select-photos ion-infinite-scroll {
+  clear: both;
+}
+
+page-select-photos .list {
+  margin: 0 !important;
 }
 
 page-transdetail {
