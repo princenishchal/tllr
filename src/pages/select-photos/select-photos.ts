@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
 declare var cordova: any;
-import { PhotoLibrary, LibraryItem, GetLibraryOptions,   } from '@ionic-native/photo-library';
+import { PhotoLibrary, LibraryItem, GetLibraryOptions,  } from '@ionic-native/photo-library';
 import { Observable,Subject } from 'rxjs';
 
 /**
@@ -23,9 +23,10 @@ export class SelectPhotosPage {
   private infiniteScrollHandle:any; 
   private page = 1 ;
   private chunk = 30;
+  listNotEmpty:boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, private photoLibrary: PhotoLibrary, private changeRef: ChangeDetectorRef, private sanitizer: DomSanitizer) {
 
-    this.pauser = new Subject();
+    this.listNotEmpty = false;
     
   
     let opts: GetLibraryOptions = {};
@@ -70,7 +71,8 @@ export class SelectPhotosPage {
                           fileName: img.fileName,
                           id: img.id,
                           creationDate: img.creationDate,
-                          index: this.images.length
+                          index: this.images.length,
+                          selected: false
                         }
                         // sanitize the urls before pushing 
             
@@ -126,7 +128,37 @@ export class SelectPhotosPage {
 
   }
 
+    select(index){
+      this.images[index].selected = true;
+      this.checkListEmpty();
+      this.changeRef.detectChanges();
+    }
 
+    unselect(index){
+      this.images[index].selected = false;
+      this.checkListEmpty();
+      this.changeRef.detectChanges();
+    }
+
+    // get actual iamges
+    getPhotos(){
+      let selectedPhotos = this.images.filter(i=> i.selected);
+
+      // fetch photos from the ionic native 
+      Promise.all(
+        selectedPhotos.map(sp=>{
+          return this.photoLibrary.getPhoto(sp.id)
+        })
+      ).then(photos=>{
+        console.log("photso fetched",photos);
+      })
+     
+    }
+
+
+  private checkListEmpty(){
+    this.listNotEmpty = this.images.filter(i=>i.selected).length ? true : false;
+  }
 
   private sameDay(date1, date2) {
 
