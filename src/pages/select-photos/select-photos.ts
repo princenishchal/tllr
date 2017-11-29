@@ -163,7 +163,8 @@ export class SelectPhotosPage {
           return this.photoLibrary.getPhoto(sp.id)
         })
       ).then(photos=>{
-        console.log("photso fetched",photos);
+              // returns the images as an arary ob blobs 
+              console.log("photso fetched",photos);
       })
      
     }

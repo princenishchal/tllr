@@ -26100,6 +26100,8 @@ page-select-photos .continue-button button {
   border: 3px solid white;
   font-size: 18px;
   font-family: 'KGAlwaysAGoodTime';
+  -webkit-box-shadow: 1px 1px 5px #333;
+  box-shadow: 1px 1px 5px #333;
 }
 
 page-select-photos .vertical-align {
