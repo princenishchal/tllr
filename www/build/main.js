@@ -611,6 +611,7 @@ var SelectPhotosPage = (function () {
         Promise.all(selectedPhotos.map(function (sp) {
             return _this.photoLibrary.getPhoto(sp.id);
         })).then(function (photos) {
+            // returns the images as an arary ob blobs 
             console.log("photso fetched", photos);
         });
     };
