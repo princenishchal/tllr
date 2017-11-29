@@ -27,3 +27,16 @@
  
  #  Important 
  the contacts page will not work in the browser and will fail, please test it with emulation or a real device.
+ 
+ # Select Photos component
+ 
+ ## plugins used:
+ 1. ionic native photos - https://ionicframework.com/docs/native/photo-library/   . follow installation steps in the page
+ 
+ ## copy contents
+ 1. copy the select-photos folder and add component class to app.module.
+
+## notes:
+1. The getPhotos function returns an array of photo blobs .. These can be directly uploaded using formData.
+2. The photos will not show up in the latest webview (Wk) .. when testing ensure that the app has the older webview .
+
