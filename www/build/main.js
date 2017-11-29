@@ -504,6 +504,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var SelectPhotosPage = (function () {
     function SelectPhotosPage(navCtrl, navParams, photoLibrary, changeRef, sanitizer) {
+        /**
+      * TODO : remove this after testing
+      */
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -514,6 +517,14 @@ var SelectPhotosPage = (function () {
         this.gallaryImages = null;
         this.page = 1;
         this.chunk = 30;
+        this.isLoading = true;
+        /* this.images = new Array(100).fill({
+           creationDate:Date.now(),
+           thumbnailURL: "https://placeholdit.co//i/71x76?&bg=9b9b9b"
+         }).map((img,index,arr)=>{
+           img.index = index;
+           return img
+         }) */
         this.listNotEmpty = false;
         var opts = {};
         opts.thumbnailHeight = 76;
@@ -550,6 +561,7 @@ var SelectPhotosPage = (function () {
                         _this.images.push(imjObj);
                     });
                     _this.page += 1;
+                    _this.isLoading = false;
                     _this.changeRef.detectChanges();
                 },
                 error: function (err) { console.log('could not get photos'); },
@@ -617,7 +629,7 @@ var SelectPhotosPage = (function () {
     };
     SelectPhotosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-select-photos',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/'<!--\n\n  Generated template for the SelectPhotosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n\n\n  <div class="custom-navbar">\n\n    <div class="flex-row">\n\n      <button class="back" navPop>\n\n        <</button>\n\n          <h4 class="title">Add photos</h4>\n\n    </div>\n\n    \n\n  </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  \n\n  <ion-list *ngFor="let img of images; let i = index">\n\n        \n\n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n\n      </h6>\n\n      <br *ngIf="shouldAddStamp(img,i)">\n\n    \n\n      <div class="thumbnail">\n\n        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">\n\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n\n        </div>\n\n      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>\n\n      </div>  \n\n    \n\n    </ion-list>  \n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n\n\n    <div class="continue-button" *ngIf="listNotEmpty">\n\n      <button class="continue" (click)="getPhotos()">continue</button>\n\n  </div>\n\n \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/,
+            selector: 'page-select-photos',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/'<!--\n\n  Generated template for the SelectPhotosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n\n\n  <div class="custom-navbar">\n\n    <div class="flex-row">\n\n      <button class="back" navPop>\n\n        <</button>\n\n          <h4 class="title">Add photos</h4>\n\n    </div>\n\n    \n\n  </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  \n\n  <div class="vertical-align" *ngIf="isLoading">\n\n    <div class="center-align">\n\n    <ion-spinner></ion-spinner>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-list *ngFor="let img of images; let i = index">\n\n        \n\n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n\n      </h6>\n\n      <br *ngIf="shouldAddStamp(img,i)">\n\n    \n\n      <div class="thumbnail">\n\n        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">\n\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n\n        </div>\n\n      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>\n\n      </div>  \n\n    \n\n    </ion-list>  \n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n\n\n    <div class="continue-button" *ngIf="listNotEmpty">\n\n      <button class="continue" (click)="getPhotos()">Done</button>\n\n  </div>\n\n \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__["a" /* PhotoLibrary */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]])
     ], SelectPhotosPage);

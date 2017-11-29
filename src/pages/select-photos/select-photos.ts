@@ -24,16 +24,29 @@ export class SelectPhotosPage {
   private page = 1 ;
   private chunk = 30;
   listNotEmpty:boolean;
+  isLoading:boolean = true;
   constructor(public navCtrl: NavController, public navParams: NavParams, private photoLibrary: PhotoLibrary, private changeRef: ChangeDetectorRef, private sanitizer: DomSanitizer) {
 
-    this.listNotEmpty = false;
+
+       /**
+     * TODO : remove this after testing 
+     */
     
-  
+
+   /* this.images = new Array(100).fill({
+      creationDate:Date.now(),
+      thumbnailURL: "https://placeholdit.co//i/71x76?&bg=9b9b9b"
+    }).map((img,index,arr)=>{
+      img.index = index;
+      return img
+    }) */
+
+    this.listNotEmpty = false;
     let opts: GetLibraryOptions = {};
     opts.thumbnailHeight =76;
     opts.thumbnailWidth = 71;
     opts.includeAlbumData = true;
-
+   
     this.photoLibrary.requestAuthorization().then(() => {
       this.photoLibrary.getLibrary(opts).subscribe({
         next: library => {
@@ -82,7 +95,7 @@ export class SelectPhotosPage {
 
         
                       this.page+= 1;
-
+                      this.isLoading = false;
                       this.changeRef.detectChanges();
 
         },

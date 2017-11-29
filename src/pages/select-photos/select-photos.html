@@ -21,6 +21,12 @@
 
 <ion-content padding>
   
+  <div class="vertical-align" *ngIf="isLoading">
+    <div class="center-align">
+    <ion-spinner></ion-spinner>
+    </div>
+  </div>
+
   <ion-list *ngFor="let img of images; let i = index">
         
         <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">
