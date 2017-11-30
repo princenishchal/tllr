@@ -40,3 +40,12 @@
 1. The getPhotos function returns an array of photo blobs .. These can be directly uploaded using formData.
 2. The photos will not show up in the latest webview (Wk) .. when testing ensure that the app has the older webview .
 
+
+# add-locaiton
+1. copy contents of components folder 
+2. install ionic native geolocation , follow steps mentioned 
+3. add this config in xml
+
+`<edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+        <string>To get your location </string>
+    </edit-config>`
