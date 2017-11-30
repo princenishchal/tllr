@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component,Input,Output , EventEmitter, ViewChild,ElementRef} from '@angular/core';
+declare var google:any;
 /**
  * Generated class for the PlacesAutoCompleteComponent component.
  *
@@ -12,11 +12,61 @@ import { Component } from '@angular/core';
 })
 export class PlacesAutoCompleteComponent {
 
-  text: string;
+  private acService:any;
+  public autocompleteItems:any[] = [];
+  private autocomplete:any ={};
+  @Input('center') center:any;
+  @Output('placeChanged')  placeChanged: EventEmitter<any>;
+  @ViewChild('input') input:ElementRef;
 
   constructor() {
     console.log('Hello PlacesAutoCompleteComponent Component');
-    this.text = 'Hello World';
+    this.placeChanged = new EventEmitter<any>();
   }
+
+  ngOnInit() {
+    this.acService = new google.maps.places.AutocompleteService();        
+    this.autocompleteItems = [];
+    this.autocomplete = {
+        query: ''
+    };        
+}
+
+updateSearch() {
+  //console.log('modal > updateSearch');
+  if (this.autocomplete.query == '') {
+      this.autocompleteItems = [];
+      return;
+      
+  }
+  let self = this;
+  //console.log("Update Search", this.userLat, this.userLng);
+  let config = { 
+    location: new google.maps.LatLng(this.center.lat, this.center.lng),
+    radius: 1000,
+      //componentRestrictions: { country: 'US' },
+      //types:  ['geocode', 'establishment', 'regions', 'cities'], // other types available in the API: 'establishment', 'regions', and 'cities'
+      input: this.autocomplete.query //componentRestrictions: { country: 'AR' } 
+  }
+  this.acService.getPlacePredictions(config, function (predictions, status) {
+      //console.log('modal > getPlacePredictions > status > ', status);
+      self.autocompleteItems = [];            
+      if(status == 'OK'){
+          if(predictions){
+              predictions.forEach(function (prediction) {              
+                  self.autocompleteItems.push(prediction);
+              });
+          }                
+      }
+      
+  });
+}
+
+chooseItem(item: any) {
+  
+  this.placeChanged.emit(item);
+ this.autocomplete.query = item.description;
+  this.autocompleteItems = [];
+}
 
 }

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef, Renderer} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { Geolocation,Geoposition, } from '@ionic-native/geolocation';
+import { NguiMapComponent, CustomMarker} from '@ngui/map';
+import {PlacesAutoCompleteComponent} from '../../components/places-auto-complete/places-auto-complete'
 /**
  * Generated class for the SendLocationPage page.
  *
@@ -17,15 +19,55 @@ export class SendLocationPage {
     /** view vars used by ngui-maps */
     autocomplete: any;
     address: any = {};
-    center: any = "RR Nagar, Bengaluru, Karnataka, India";
+    center: any = "";
     code: string;
     canContinue = false;
+    private selectedPlace:any =null;
+    @ViewChild('searchBar') searchBar:PlacesAutoCompleteComponent;
+    @ViewChild('map') map :NguiMapComponent;
+    @ViewChild('marker') marker:CustomMarker
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams ,private geoLocaction: Geolocation, private changeDetector:ChangeDetectorRef, private render:Renderer) {
+
+
+    this.geoLocaction.getCurrentPosition().then((loc:Geoposition)=>{
+      this.center = {
+        lat:loc.coords.latitude,
+        lng: loc.coords.longitude
+      }
+
+      
+
+      
+    })
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SendLocationPage');
+
+  placeChanged(place) {
+   if(place.description){
+     this.center = place.description;
+     this.address = place.description;
+     this.selectedPlace = place;
+     this.canContinue = true;
+   }
+    else{
+      this.center = ""
+      this.address = "";
+      this.selectedPlace = null;
+      this.canContinue = false;
+    }
+
+    this.changeDetector.detectChanges();
+  }
+
+  
+  ngAfterViewInit(){
+   this.render.invokeElementMethod(this.searchBar.input.nativeElement,'focus',[])
+  }
+
+  confirm(){
+    // send baack the current locaiton.
   }
 
 }

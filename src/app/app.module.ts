@@ -23,6 +23,7 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import {MomentModule} from 'angular2-moment';
 import {PhotoLibrary} from '@ionic-native/photo-library';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /** import the components module here */
 import {ComponentsModule} from '../components/components.module';
@@ -72,7 +73,8 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PhotoLibrary
+    PhotoLibrary,
+    Geolocation
   ]
 })
 export class AppModule {}

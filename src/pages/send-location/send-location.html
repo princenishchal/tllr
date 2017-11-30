@@ -12,7 +12,7 @@
         <</button>
         <div class="search-bar" placeholder="Enter location name or address">
           
-          <places-auto-complete></places-auto-complete>
+          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>
         </div>
     </div>
     
@@ -22,17 +22,18 @@
 
 
 <ion-content padding>
-    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true">
-        <custom-marker [position]="center">
+    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>
+        <custom-marker [position]="center" #marker>
           <div>
-            <b>{{address.name}}</b>
             <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+            <b>{{center}}</b>
+           
           </div>
         </custom-marker>
       </ngui-map>
     
     
       <div class="continue-button" *ngIf="canContinue">
-        <button class="continue" (click)="confirm()">continue</button>
+        <button class="continue" (click)="confirm()">Done</button>
       </div>
 </ion-content>
