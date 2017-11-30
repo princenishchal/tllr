@@ -14,6 +14,13 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SendLocationPage {
 
+    /** view vars used by ngui-maps */
+    autocomplete: any;
+    address: any = {};
+    center: any = "RR Nagar, Bengaluru, Karnataka, India";
+    code: string;
+    canContinue = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

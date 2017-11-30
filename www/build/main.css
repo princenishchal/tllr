@@ -25701,7 +25701,7 @@ ion-header {
 }
 
 ion-header .custom-navbar {
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 10px;
   background: #fafafa;
   -webkit-box-shadow: 1px 2px 1px #eee;
   box-shadow: 1px 2px 1px #eee;
@@ -26140,6 +26140,31 @@ page-select-photos .vertical-align .center-align {
   body > ion-app > ng-component > ion-nav > page-select-photos > ion-content > div.scroll-content > ion-list:nth-child(4n) > div {
     margin-right: 0;
   }
+}
+
+page-send-location .custom-navbar {
+  background: #ffffff;
+  padding: 20px 20px 20px 20px;
+}
+
+page-send-location .custom-navbar .back {
+  color: #5a7f8e;
+  font-size: 20.5px;
+  margin-top: 5px;
+}
+
+page-send-location .custom-navbar div.search-bar {
+  width: 100%;
+  text-align: center;
+}
+
+page-send-location .custom-navbar div.search-bar input {
+  width: 281px;
+  height: 50px;
+  border-radius: 20px;
+  border: 1px solid #5a7f8e;
+  padding: 20px 8px;
+  color: black;
 }
 
 page-transdetail {

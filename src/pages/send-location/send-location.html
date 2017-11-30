@@ -6,13 +6,33 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>send-location</ion-title>
-  </ion-navbar>
+  <div class="custom-navbar">
+    <div class="flex-row">
+      <button class="back" navPop>
+        <</button>
+        <div class="search-bar" placeholder="Enter location name or address">
+          
+          <places-auto-complete></places-auto-complete>
+        </div>
+    </div>
+    
+  </div>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true">
+        <custom-marker [position]="center">
+          <div>
+            <b>{{address.name}}</b>
+            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+          </div>
+        </custom-marker>
+      </ngui-map>
+    
+    
+      <div class="continue-button" *ngIf="canContinue">
+        <button class="continue" (click)="confirm()">continue</button>
+      </div>
 </ion-content>
