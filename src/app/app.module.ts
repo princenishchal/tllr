@@ -18,6 +18,7 @@ import { EmojifyModule } from 'angular2-emojify';
 import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/transdetail-chat';
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
 import { SelectPhotosPage} from '../pages/select-photos/select-photos';
+import {SendLocationPage} from '../pages/send-location/send-location';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import {MomentModule} from 'angular2-moment';
@@ -40,7 +41,8 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     TransdetailPage,
     TransdetailChatPage,
     ChatMessageComponent,
-    SelectPhotosPage
+    SelectPhotosPage,
+    SendLocationPage,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     TransdetailPage,
     TransdetailChatPage,
     ChatMessageComponent,
-    SelectPhotosPage
+    SelectPhotosPage,
+    SendLocationPage
   ],
   providers: [
     StatusBar,
