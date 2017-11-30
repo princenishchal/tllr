@@ -1,9 +1,7 @@
 {
   "rules": {
     "no-duplicate-variable": true,
-    "no-unused-variable": [
-      false
-    ]
+    "no-unused-variable":false
   },
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,

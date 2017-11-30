@@ -1,6 +1,6 @@
 import { Component,Input,Output , EventEmitter, ViewChild,ElementRef} from '@angular/core';
 declare var google:any;
-import {Observable,Subject} from 'rxjs'
+import {Subject} from 'rxjs'
 /**
  * Generated class for the PlacesAutoCompleteComponent component.
  *
@@ -29,7 +29,7 @@ export class PlacesAutoCompleteComponent {
 
 
     // add a debounce time to the input 
-    const subscription = this.Input
+    this.Input
     .map((event:any) => event.target.value)
     .debounceTime(100)
     .distinctUntilChanged()

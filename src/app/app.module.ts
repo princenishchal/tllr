@@ -19,7 +19,6 @@ import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/trans
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
 import { SelectPhotosPage} from '../pages/select-photos/select-photos';
 import {SendLocationPage} from '../pages/send-location/send-location';
-import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import {MomentModule} from 'angular2-moment';
 import {PhotoLibrary} from '@ionic-native/photo-library';

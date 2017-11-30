@@ -336,7 +336,7 @@ var TransdetailPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TransdetailChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__ = __webpack_require__(560);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__ = __webpack_require__(559);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -652,9 +652,9 @@ var SelectPhotosPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SendLocationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngui_map__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(866);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngui_map__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__ = __webpack_require__(379);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -676,23 +676,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var SendLocationPage = (function () {
-    function SendLocationPage(navCtrl, navParams, geoLocaction, changeDetector, render) {
+    function SendLocationPage(platform, navCtrl, navParams, changeDetector, render, geo) {
         var _this = this;
+        this.platform = platform;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.geoLocaction = geoLocaction;
         this.changeDetector = changeDetector;
         this.render = render;
+        this.geo = geo;
         this.address = {};
         this.center = "";
         this.canContinue = false;
         this.selectedPlace = null;
-        this.geoLocaction.getCurrentPosition().then(function (loc) {
-            console.log("user location", loc);
-            _this.center = {
-                lat: loc.coords.latitude,
-                lng: loc.coords.longitude
-            };
+        platform.ready().then(function () {
+            geo.getCurrentPosition().then(function (loc) {
+                console.log("user location", loc);
+                _this.center = {
+                    lat: loc.coords.latitude,
+                    lng: loc.coords.longitude
+                };
+            })
+                .catch(function (err) {
+                _this.err = err;
+            });
         });
     }
     SendLocationPage.prototype.placeChanged = function (place) {
@@ -714,7 +720,7 @@ var SendLocationPage = (function () {
         this.render.invokeElementMethod(this.searchBar.input.nativeElement, 'focus', []);
     };
     SendLocationPage.prototype.confirm = function () {
-        // send baack the current locaiton.
+        // send back the current location
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('searchBar'),
@@ -730,19 +736,19 @@ var SendLocationPage = (function () {
     ], SendLocationPage.prototype, "marker", void 0);
     SendLocationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-send-location',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/'<!--\n  Generated template for the SendLocationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n        <div class="search-bar" placeholder="Enter location name or address">\n          \n          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>\n        </div>\n    </div>\n    \n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n        <custom-marker [position]="center" #marker>\n          <div>\n            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n            <b>{{center}}</b>\n           \n          </div>\n        </custom-marker>\n      </ngui-map>\n    \n    \n      <div class="continue-button" *ngIf="canContinue">\n        <button class="continue" (click)="confirm()">Done</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/,
+            selector: 'page-send-location',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/'<!--\n  Generated template for the SendLocationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n        <div class="search-bar" placeholder="Enter location name or address">\n          \n          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>\n        </div>\n    </div>\n    \n  </div>\n{{err|json}}\n</ion-header>\n\n\n<ion-content padding>\n    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n        <custom-marker [position]="center" #marker>\n          <div>\n            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n            <b>{{center}}</b>\n           \n          </div>\n        </custom-marker>\n      </ngui-map>\n    \n    \n      <div class="continue-button" *ngIf="canContinue">\n        <button class="continue" (click)="confirm()">Done</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _j || Object])
     ], SendLocationPage);
     return SendLocationPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=send-location.js.map
 
 /***/ }),
 
-/***/ 380:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -776,7 +782,7 @@ var PlacesAutoCompleteComponent = (function () {
         console.log('Hello PlacesAutoCompleteComponent Component');
         this.placeChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         // add a debounce time to the input 
-        var subscription = this.Input
+        this.Input
             .map(function (event) { return event.target.value; })
             .debounceTime(100)
             .distinctUntilChanged()
@@ -829,11 +835,11 @@ var PlacesAutoCompleteComponent = (function () {
     ], PlacesAutoCompleteComponent.prototype, "center", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('placeChanged'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === "function" && _a || Object)
     ], PlacesAutoCompleteComponent.prototype, "placeChanged", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _b || Object)
     ], PlacesAutoCompleteComponent.prototype, "input", void 0);
     PlacesAutoCompleteComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -842,19 +848,20 @@ var PlacesAutoCompleteComponent = (function () {
         __metadata("design:paramtypes", [])
     ], PlacesAutoCompleteComponent);
     return PlacesAutoCompleteComponent;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=places-auto-complete.js.map
 
 /***/ }),
 
-/***/ 511:
+/***/ 510:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(512);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(515);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -862,7 +869,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 516:
+/***/ 515:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -872,24 +879,24 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(558);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_transdetail_transdetail__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_picker_location_picker__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_select_contacts_select_contacts__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngui_map__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify__ = __webpack_require__(857);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngui_map__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify__ = __webpack_require__(856);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_emojify__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_transdetail_transdetail_chat_transdetail_chat__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_transdetail_transdetail_chat_chat_message_chat_message__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_transdetail_transdetail_chat_chat_message_chat_message__ = __webpack_require__(861);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(375);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_send_location_send_location__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_ng_socket_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment__ = __webpack_require__(863);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment__ = __webpack_require__(862);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_angular2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_photo_library__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_geolocation__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_geolocation__ = __webpack_require__(866);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_components_module__ = __webpack_require__(867);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -980,7 +987,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 559:
+/***/ 558:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1026,7 +1033,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 560:
+/***/ 559:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1080,14 +1087,14 @@ var ChatServiceProvider = (function () {
 
 /***/ }),
 
-/***/ 578:
+/***/ 577:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 862:
+/***/ 861:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1134,246 +1141,246 @@ var ChatMessageComponent = (function () {
 
 /***/ }),
 
-/***/ 864:
+/***/ 863:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 382,
-	"./af.js": 382,
-	"./ar": 383,
-	"./ar-dz": 384,
-	"./ar-dz.js": 384,
-	"./ar-kw": 385,
-	"./ar-kw.js": 385,
-	"./ar-ly": 386,
-	"./ar-ly.js": 386,
-	"./ar-ma": 387,
-	"./ar-ma.js": 387,
-	"./ar-sa": 388,
-	"./ar-sa.js": 388,
-	"./ar-tn": 389,
-	"./ar-tn.js": 389,
-	"./ar.js": 383,
-	"./az": 390,
-	"./az.js": 390,
-	"./be": 391,
-	"./be.js": 391,
-	"./bg": 392,
-	"./bg.js": 392,
-	"./bm": 393,
-	"./bm.js": 393,
-	"./bn": 394,
-	"./bn.js": 394,
-	"./bo": 395,
-	"./bo.js": 395,
-	"./br": 396,
-	"./br.js": 396,
-	"./bs": 397,
-	"./bs.js": 397,
-	"./ca": 398,
-	"./ca.js": 398,
-	"./cs": 399,
-	"./cs.js": 399,
-	"./cv": 400,
-	"./cv.js": 400,
-	"./cy": 401,
-	"./cy.js": 401,
-	"./da": 402,
-	"./da.js": 402,
-	"./de": 403,
-	"./de-at": 404,
-	"./de-at.js": 404,
-	"./de-ch": 405,
-	"./de-ch.js": 405,
-	"./de.js": 403,
-	"./dv": 406,
-	"./dv.js": 406,
-	"./el": 407,
-	"./el.js": 407,
-	"./en-au": 408,
-	"./en-au.js": 408,
-	"./en-ca": 409,
-	"./en-ca.js": 409,
-	"./en-gb": 410,
-	"./en-gb.js": 410,
-	"./en-ie": 411,
-	"./en-ie.js": 411,
-	"./en-nz": 412,
-	"./en-nz.js": 412,
-	"./eo": 413,
-	"./eo.js": 413,
-	"./es": 414,
-	"./es-do": 415,
-	"./es-do.js": 415,
-	"./es-us": 416,
-	"./es-us.js": 416,
-	"./es.js": 414,
-	"./et": 417,
-	"./et.js": 417,
-	"./eu": 418,
-	"./eu.js": 418,
-	"./fa": 419,
-	"./fa.js": 419,
-	"./fi": 420,
-	"./fi.js": 420,
-	"./fo": 421,
-	"./fo.js": 421,
-	"./fr": 422,
-	"./fr-ca": 423,
-	"./fr-ca.js": 423,
-	"./fr-ch": 424,
-	"./fr-ch.js": 424,
-	"./fr.js": 422,
-	"./fy": 425,
-	"./fy.js": 425,
-	"./gd": 426,
-	"./gd.js": 426,
-	"./gl": 427,
-	"./gl.js": 427,
-	"./gom-latn": 428,
-	"./gom-latn.js": 428,
-	"./gu": 429,
-	"./gu.js": 429,
-	"./he": 430,
-	"./he.js": 430,
-	"./hi": 431,
-	"./hi.js": 431,
-	"./hr": 432,
-	"./hr.js": 432,
-	"./hu": 433,
-	"./hu.js": 433,
-	"./hy-am": 434,
-	"./hy-am.js": 434,
-	"./id": 435,
-	"./id.js": 435,
-	"./is": 436,
-	"./is.js": 436,
-	"./it": 437,
-	"./it.js": 437,
-	"./ja": 438,
-	"./ja.js": 438,
-	"./jv": 439,
-	"./jv.js": 439,
-	"./ka": 440,
-	"./ka.js": 440,
-	"./kk": 441,
-	"./kk.js": 441,
-	"./km": 442,
-	"./km.js": 442,
-	"./kn": 443,
-	"./kn.js": 443,
-	"./ko": 444,
-	"./ko.js": 444,
-	"./ky": 445,
-	"./ky.js": 445,
-	"./lb": 446,
-	"./lb.js": 446,
-	"./lo": 447,
-	"./lo.js": 447,
-	"./lt": 448,
-	"./lt.js": 448,
-	"./lv": 449,
-	"./lv.js": 449,
-	"./me": 450,
-	"./me.js": 450,
-	"./mi": 451,
-	"./mi.js": 451,
-	"./mk": 452,
-	"./mk.js": 452,
-	"./ml": 453,
-	"./ml.js": 453,
-	"./mr": 454,
-	"./mr.js": 454,
-	"./ms": 455,
-	"./ms-my": 456,
-	"./ms-my.js": 456,
-	"./ms.js": 455,
-	"./my": 457,
-	"./my.js": 457,
-	"./nb": 458,
-	"./nb.js": 458,
-	"./ne": 459,
-	"./ne.js": 459,
-	"./nl": 460,
-	"./nl-be": 461,
-	"./nl-be.js": 461,
-	"./nl.js": 460,
-	"./nn": 462,
-	"./nn.js": 462,
-	"./pa-in": 463,
-	"./pa-in.js": 463,
-	"./pl": 464,
-	"./pl.js": 464,
-	"./pt": 465,
-	"./pt-br": 466,
-	"./pt-br.js": 466,
-	"./pt.js": 465,
-	"./ro": 467,
-	"./ro.js": 467,
-	"./ru": 468,
-	"./ru.js": 468,
-	"./sd": 469,
-	"./sd.js": 469,
-	"./se": 470,
-	"./se.js": 470,
-	"./si": 471,
-	"./si.js": 471,
-	"./sk": 472,
-	"./sk.js": 472,
-	"./sl": 473,
-	"./sl.js": 473,
-	"./sq": 474,
-	"./sq.js": 474,
-	"./sr": 475,
-	"./sr-cyrl": 476,
-	"./sr-cyrl.js": 476,
-	"./sr.js": 475,
-	"./ss": 477,
-	"./ss.js": 477,
-	"./sv": 478,
-	"./sv.js": 478,
-	"./sw": 479,
-	"./sw.js": 479,
-	"./ta": 480,
-	"./ta.js": 480,
-	"./te": 481,
-	"./te.js": 481,
-	"./tet": 482,
-	"./tet.js": 482,
-	"./th": 483,
-	"./th.js": 483,
-	"./tl-ph": 484,
-	"./tl-ph.js": 484,
-	"./tlh": 485,
-	"./tlh.js": 485,
-	"./tr": 486,
-	"./tr.js": 486,
-	"./tzl": 487,
-	"./tzl.js": 487,
-	"./tzm": 488,
-	"./tzm-latn": 489,
-	"./tzm-latn.js": 489,
-	"./tzm.js": 488,
-	"./uk": 490,
-	"./uk.js": 490,
-	"./ur": 491,
-	"./ur.js": 491,
-	"./uz": 492,
-	"./uz-latn": 493,
-	"./uz-latn.js": 493,
-	"./uz.js": 492,
-	"./vi": 494,
-	"./vi.js": 494,
-	"./x-pseudo": 495,
-	"./x-pseudo.js": 495,
-	"./yo": 496,
-	"./yo.js": 496,
-	"./zh-cn": 497,
-	"./zh-cn.js": 497,
-	"./zh-hk": 498,
-	"./zh-hk.js": 498,
-	"./zh-tw": 499,
-	"./zh-tw.js": 499
+	"./af": 381,
+	"./af.js": 381,
+	"./ar": 382,
+	"./ar-dz": 383,
+	"./ar-dz.js": 383,
+	"./ar-kw": 384,
+	"./ar-kw.js": 384,
+	"./ar-ly": 385,
+	"./ar-ly.js": 385,
+	"./ar-ma": 386,
+	"./ar-ma.js": 386,
+	"./ar-sa": 387,
+	"./ar-sa.js": 387,
+	"./ar-tn": 388,
+	"./ar-tn.js": 388,
+	"./ar.js": 382,
+	"./az": 389,
+	"./az.js": 389,
+	"./be": 390,
+	"./be.js": 390,
+	"./bg": 391,
+	"./bg.js": 391,
+	"./bm": 392,
+	"./bm.js": 392,
+	"./bn": 393,
+	"./bn.js": 393,
+	"./bo": 394,
+	"./bo.js": 394,
+	"./br": 395,
+	"./br.js": 395,
+	"./bs": 396,
+	"./bs.js": 396,
+	"./ca": 397,
+	"./ca.js": 397,
+	"./cs": 398,
+	"./cs.js": 398,
+	"./cv": 399,
+	"./cv.js": 399,
+	"./cy": 400,
+	"./cy.js": 400,
+	"./da": 401,
+	"./da.js": 401,
+	"./de": 402,
+	"./de-at": 403,
+	"./de-at.js": 403,
+	"./de-ch": 404,
+	"./de-ch.js": 404,
+	"./de.js": 402,
+	"./dv": 405,
+	"./dv.js": 405,
+	"./el": 406,
+	"./el.js": 406,
+	"./en-au": 407,
+	"./en-au.js": 407,
+	"./en-ca": 408,
+	"./en-ca.js": 408,
+	"./en-gb": 409,
+	"./en-gb.js": 409,
+	"./en-ie": 410,
+	"./en-ie.js": 410,
+	"./en-nz": 411,
+	"./en-nz.js": 411,
+	"./eo": 412,
+	"./eo.js": 412,
+	"./es": 413,
+	"./es-do": 414,
+	"./es-do.js": 414,
+	"./es-us": 415,
+	"./es-us.js": 415,
+	"./es.js": 413,
+	"./et": 416,
+	"./et.js": 416,
+	"./eu": 417,
+	"./eu.js": 417,
+	"./fa": 418,
+	"./fa.js": 418,
+	"./fi": 419,
+	"./fi.js": 419,
+	"./fo": 420,
+	"./fo.js": 420,
+	"./fr": 421,
+	"./fr-ca": 422,
+	"./fr-ca.js": 422,
+	"./fr-ch": 423,
+	"./fr-ch.js": 423,
+	"./fr.js": 421,
+	"./fy": 424,
+	"./fy.js": 424,
+	"./gd": 425,
+	"./gd.js": 425,
+	"./gl": 426,
+	"./gl.js": 426,
+	"./gom-latn": 427,
+	"./gom-latn.js": 427,
+	"./gu": 428,
+	"./gu.js": 428,
+	"./he": 429,
+	"./he.js": 429,
+	"./hi": 430,
+	"./hi.js": 430,
+	"./hr": 431,
+	"./hr.js": 431,
+	"./hu": 432,
+	"./hu.js": 432,
+	"./hy-am": 433,
+	"./hy-am.js": 433,
+	"./id": 434,
+	"./id.js": 434,
+	"./is": 435,
+	"./is.js": 435,
+	"./it": 436,
+	"./it.js": 436,
+	"./ja": 437,
+	"./ja.js": 437,
+	"./jv": 438,
+	"./jv.js": 438,
+	"./ka": 439,
+	"./ka.js": 439,
+	"./kk": 440,
+	"./kk.js": 440,
+	"./km": 441,
+	"./km.js": 441,
+	"./kn": 442,
+	"./kn.js": 442,
+	"./ko": 443,
+	"./ko.js": 443,
+	"./ky": 444,
+	"./ky.js": 444,
+	"./lb": 445,
+	"./lb.js": 445,
+	"./lo": 446,
+	"./lo.js": 446,
+	"./lt": 447,
+	"./lt.js": 447,
+	"./lv": 448,
+	"./lv.js": 448,
+	"./me": 449,
+	"./me.js": 449,
+	"./mi": 450,
+	"./mi.js": 450,
+	"./mk": 451,
+	"./mk.js": 451,
+	"./ml": 452,
+	"./ml.js": 452,
+	"./mr": 453,
+	"./mr.js": 453,
+	"./ms": 454,
+	"./ms-my": 455,
+	"./ms-my.js": 455,
+	"./ms.js": 454,
+	"./my": 456,
+	"./my.js": 456,
+	"./nb": 457,
+	"./nb.js": 457,
+	"./ne": 458,
+	"./ne.js": 458,
+	"./nl": 459,
+	"./nl-be": 460,
+	"./nl-be.js": 460,
+	"./nl.js": 459,
+	"./nn": 461,
+	"./nn.js": 461,
+	"./pa-in": 462,
+	"./pa-in.js": 462,
+	"./pl": 463,
+	"./pl.js": 463,
+	"./pt": 464,
+	"./pt-br": 465,
+	"./pt-br.js": 465,
+	"./pt.js": 464,
+	"./ro": 466,
+	"./ro.js": 466,
+	"./ru": 467,
+	"./ru.js": 467,
+	"./sd": 468,
+	"./sd.js": 468,
+	"./se": 469,
+	"./se.js": 469,
+	"./si": 470,
+	"./si.js": 470,
+	"./sk": 471,
+	"./sk.js": 471,
+	"./sl": 472,
+	"./sl.js": 472,
+	"./sq": 473,
+	"./sq.js": 473,
+	"./sr": 474,
+	"./sr-cyrl": 475,
+	"./sr-cyrl.js": 475,
+	"./sr.js": 474,
+	"./ss": 476,
+	"./ss.js": 476,
+	"./sv": 477,
+	"./sv.js": 477,
+	"./sw": 478,
+	"./sw.js": 478,
+	"./ta": 479,
+	"./ta.js": 479,
+	"./te": 480,
+	"./te.js": 480,
+	"./tet": 481,
+	"./tet.js": 481,
+	"./th": 482,
+	"./th.js": 482,
+	"./tl-ph": 483,
+	"./tl-ph.js": 483,
+	"./tlh": 484,
+	"./tlh.js": 484,
+	"./tr": 485,
+	"./tr.js": 485,
+	"./tzl": 486,
+	"./tzl.js": 486,
+	"./tzm": 487,
+	"./tzm-latn": 488,
+	"./tzm-latn.js": 488,
+	"./tzm.js": 487,
+	"./uk": 489,
+	"./uk.js": 489,
+	"./ur": 490,
+	"./ur.js": 490,
+	"./uz": 491,
+	"./uz-latn": 492,
+	"./uz-latn.js": 492,
+	"./uz.js": 491,
+	"./vi": 493,
+	"./vi.js": 493,
+	"./x-pseudo": 494,
+	"./x-pseudo.js": 494,
+	"./yo": 495,
+	"./yo.js": 495,
+	"./zh-cn": 496,
+	"./zh-cn.js": 496,
+	"./zh-hk": 497,
+	"./zh-hk.js": 497,
+	"./zh-tw": 498,
+	"./zh-tw.js": 498
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1389,7 +1396,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 864;
+webpackContext.id = 863;
 
 /***/ }),
 
@@ -1401,7 +1408,7 @@ webpackContext.id = 864;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__avatar_avatar__ = __webpack_require__(868);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__places_auto_complete_places_auto_complete__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__places_auto_complete_places_auto_complete__ = __webpack_require__(379);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1521,5 +1528,5 @@ var AvatarComponent = (function () {
 
 /***/ })
 
-},[511]);
+},[510]);
 //# sourceMappingURL=main.js.map

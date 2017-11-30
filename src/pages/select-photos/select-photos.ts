@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
 declare var cordova: any;
 import { PhotoLibrary, LibraryItem, GetLibraryOptions,  } from '@ionic-native/photo-library';
-import { Observable,Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 /**
  * Generated class for the SelectPhotosPage page.

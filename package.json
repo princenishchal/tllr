@@ -32,12 +32,10 @@
     "angular2-autosize": "^1.0.2",
     "angular2-emojify": "^0.1.0",
     "angular2-moment": "^1.7.0",
-    "com.dbaq.cordova.contactsPhoneNumbers": "~0.0.9",
     "com.synconset.imagepicker": "~2.1.8",
     "cordova-android": "6.3.0",
     "cordova-ios": "4.5.4",
     "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-contacts-phonenumbers": "0.0.9",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^4.3.2",
     "cordova-plugin-geolocation": "^3.0.0",
@@ -65,9 +63,6 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
-      "com.dbaq.cordova.contactsPhoneNumbers": {
-        "CONTACTS_USAGE_DESCRIPTION": " "
-      },
       "com.synconset.imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "access photo gallery"
       },
