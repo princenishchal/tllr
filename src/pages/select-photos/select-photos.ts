@@ -21,7 +21,7 @@ export class SelectPhotosPage {
   private gallaryImages = null;
   private pauser:Subject<boolean>; // used for pausing the library sequesnce
   private infiniteScrollHandle:any; 
-  private page = 1 ;
+  private page = 0 ;
   private chunk = 30;
   listNotEmpty:boolean;
   isLoading:boolean = true;
@@ -77,6 +77,8 @@ export class SelectPhotosPage {
             }
           );
 
+          
+
           this.gallaryImages.slice(this.page*this.chunk,(this.page+1)*this.chunk).map(img => {
             
                         let imjObj = {
@@ -93,7 +95,7 @@ export class SelectPhotosPage {
             
                       })
 
-        
+                      console.log(this.images);
                       this.page+= 1;
                       this.isLoading = false;
                       this.changeRef.detectChanges();
