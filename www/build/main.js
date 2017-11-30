@@ -1420,6 +1420,8 @@ var AvatarComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlacesAutoCompleteComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1430,6 +1432,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 /**
  * Generated class for the PlacesAutoCompleteComponent component.
  *
@@ -1438,10 +1441,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var PlacesAutoCompleteComponent = (function () {
     function PlacesAutoCompleteComponent() {
+        var _this = this;
         this.autocompleteItems = [];
         this.autocomplete = {};
+        this.Input = new __WEBPACK_IMPORTED_MODULE_1_rxjs__["Subject"]();
         console.log('Hello PlacesAutoCompleteComponent Component');
         this.placeChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        // add a debounce time to the input 
+        var subscription = this.Input
+            .map(function (event) { return event.target.value; })
+            .debounceTime(100)
+            .distinctUntilChanged()
+            .subscribe(function (val) {
+            _this.updateSearch(val);
+        });
     }
     PlacesAutoCompleteComponent.prototype.ngOnInit = function () {
         this.acService = new google.maps.places.AutocompleteService();
@@ -1450,7 +1463,7 @@ var PlacesAutoCompleteComponent = (function () {
             query: ''
         };
     };
-    PlacesAutoCompleteComponent.prototype.updateSearch = function () {
+    PlacesAutoCompleteComponent.prototype.updateSearch = function (event) {
         //console.log('modal > updateSearch');
         if (this.autocomplete.query == '') {
             this.autocompleteItems = [];
@@ -1496,7 +1509,7 @@ var PlacesAutoCompleteComponent = (function () {
     ], PlacesAutoCompleteComponent.prototype, "input", void 0);
     PlacesAutoCompleteComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'places-auto-complete',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\components\places-auto-complete\places-auto-complete.html"*/'<!-- Generated template for the PlacesAutoCompleteComponent component -->\n\n<input [(ngModel)]="autocomplete.query" (input)="updateSearch()" placeholder="Enter location name or address" #input/>\n\n<ul>\n\n        <li *ngFor="let item of autocompleteItems" \n\n            (click)="chooseItem(item)">\n\n            {{ item.description }}\n\n        </li>\n\n</ul>\n\n    '/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\components\places-auto-complete\places-auto-complete.html"*/
+            selector: 'places-auto-complete',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\components\places-auto-complete\places-auto-complete.html"*/'<!-- Generated template for the PlacesAutoCompleteComponent component -->\n\n<input [(ngModel)]="autocomplete.query" (input)="Input.next($event)" placeholder="Enter location name or address" #input/>\n\n<ul>\n\n        <li *ngFor="let item of autocompleteItems" \n\n            (click)="chooseItem(item)">\n\n            {{ item.description }}\n\n        </li>\n\n</ul>\n\n    '/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\components\places-auto-complete\places-auto-complete.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], PlacesAutoCompleteComponent);

@@ -1,5 +1,6 @@
 import { Component,Input,Output , EventEmitter, ViewChild,ElementRef} from '@angular/core';
 declare var google:any;
+import {Observable,Subject} from 'rxjs'
 /**
  * Generated class for the PlacesAutoCompleteComponent component.
  *
@@ -15,6 +16,9 @@ export class PlacesAutoCompleteComponent {
   private acService:any;
   public autocompleteItems:any[] = [];
   private autocomplete:any ={};
+
+  public Input = new Subject<string>();
+
   @Input('center') center:any;
   @Output('placeChanged')  placeChanged: EventEmitter<any>;
   @ViewChild('input') input:ElementRef;
@@ -22,6 +26,17 @@ export class PlacesAutoCompleteComponent {
   constructor() {
     console.log('Hello PlacesAutoCompleteComponent Component');
     this.placeChanged = new EventEmitter<any>();
+
+
+    // add a debounce time to the input 
+    const subscription = this.Input
+    .map((event:any) => event.target.value)
+    .debounceTime(100)
+    .distinctUntilChanged()
+    .subscribe(val=>{
+      this.updateSearch(val)
+    });
+
   }
 
   ngOnInit() {
@@ -32,7 +47,7 @@ export class PlacesAutoCompleteComponent {
     };        
 }
 
-updateSearch() {
+updateSearch(event) {
   //console.log('modal > updateSearch');
   if (this.autocomplete.query == '') {
       this.autocompleteItems = [];
