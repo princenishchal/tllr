@@ -25701,7 +25701,7 @@ ion-header {
 }
 
 ion-header .custom-navbar {
-  padding: 20px 20px 20px 10px;
+  padding: 20px 20px 20px 0px;
   background: #fafafa;
   -webkit-box-shadow: 1px 2px 1px #eee;
   box-shadow: 1px 2px 1px #eee;
@@ -25714,6 +25714,7 @@ ion-header .custom-navbar .back {
   font-size: 40px;
   font-size: 20.5px;
   margin-top: 5px;
+  margin-left: -20px;
 }
 
 ion-header .custom-navbar h4.title {
@@ -25740,6 +25741,10 @@ ion-header .custom-navbar h6.subtitle {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 
 avatar img.avatar {
@@ -26152,13 +26157,14 @@ page-send-location .scroll-content ngui-map {
 
 page-send-location .custom-navbar {
   background: #ffffff;
-  padding: 20px 20px 20px 20px;
+  padding: 40px 0px 20px 20px;
 }
 
 page-send-location .custom-navbar .back {
   color: #5a7f8e;
-  font-size: 20.5px;
+  font-size: 22.5px;
   margin-top: 5px;
+  margin-left: -20px;
 }
 
 page-send-location .custom-navbar div.search-bar {

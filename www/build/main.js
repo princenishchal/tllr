@@ -43,8 +43,8 @@ webpackEmptyAsyncContext.id = 214;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_picker_location_picker__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__transdetail_transdetail__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__send_location_send_location__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__send_location_send_location__ = __webpack_require__(377);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -71,7 +71,7 @@ var HomePage = (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Ionic Blank\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <button ion-button [navPush]="pushPage" [navParams]="params">select location</button>\n\n	<br><br>\n\n  <button ion-button [navPush]="pushTransPage" [navParams]="params">Transaction Detail Page</button>\n\n\n\n\n\n  <button ion-button [navPush]="photosPage" [navParams]="params">add photos</button>\n\n\n\n  <button ion-button [navPush]="sendLocation" [navParams]="params">send location</button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <button ion-button [navPush]="pushPage" [navParams]="params">select location</button>\n	<br><br>\n  <button ion-button [navPush]="pushTransPage" [navParams]="params">Transaction Detail Page</button>\n\n\n  <button ion-button [navPush]="photosPage" [navParams]="params">add photos</button>\n\n  <button ion-button [navPush]="sendLocation" [navParams]="params">send location</button>\n\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], HomePage);
@@ -150,7 +150,7 @@ var LocationPickerPage = (function () {
     };
     LocationPickerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-location-picker',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\location-picker\location-picker.html"*/'<!--\n\n  Generated template for the LocationPickerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <div class="custom-navbar">\n\n    <div class="flex-row">\n\n      <button class="back" navPop>\n\n        <</button>\n\n          <h4 class="title">Pick a location</h4>\n\n    </div>\n\n    <h6 class="subtitle"> tell us where your business is located</h6>\n\n  </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true">\n\n    <custom-marker [position]="center">\n\n      <div>\n\n        <b>{{address.name}}</b>\n\n        <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n\n      </div>\n\n    </custom-marker>\n\n  </ngui-map>\n\n\n\n  <!-- address search bar -->\n\n  <div class="address-search-box">\n\n    <input type="text" places-auto-complete (place_changed)="placeChanged($event)" (input)="checkIfnotEmpty($event)" [types]="[\'geocode\']" placeholder="Enter business location"\n\n    />\n\n  </div>\n\n\n\n  <div class="continue-button" *ngIf="canContinue">\n\n    <button class="continue" (click)="confirm()">continue</button>\n\n  </div>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\location-picker\location-picker.html"*/,
+            selector: 'page-location-picker',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/location-picker/location-picker.html"*/'<!--\n  Generated template for the LocationPickerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n          <h4 class="title">Pick a location</h4>\n    </div>\n    <h6 class="subtitle"> tell us where your business is located</h6>\n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true">\n    <custom-marker [position]="center">\n      <div>\n        <b>{{address.name}}</b>\n        <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n      </div>\n    </custom-marker>\n  </ngui-map>\n\n  <!-- address search bar -->\n  <div class="address-search-box">\n    <input type="text" places-auto-complete (place_changed)="placeChanged($event)" (input)="checkIfnotEmpty($event)" [types]="[\'geocode\']" placeholder="Enter business location"\n    />\n  </div>\n\n  <div class="continue-button" *ngIf="canContinue">\n    <button class="continue" (click)="confirm()">continue</button>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/location-picker/location-picker.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
     ], LocationPickerPage);
@@ -245,7 +245,7 @@ var SelectContactsPage = (function () {
     };
     SelectContactsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-select-contacts',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-contacts\select-contacts.html"*/'<!--\n\n  Generated ng-template for the SelectContactsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <div class="custom-navbar">\n\n        <div class="flex-row">\n\n          <button class="back" navPop>\n\n            <</button>\n\n              <h4 class="title">invite employees</h4>\n\n        </div>\n\n       \n\n      </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <div class="flex-center">\n\n    <img src="assets/imgs/emoji_hi.png" class="title-image"/>\n\n  </div>\n\n\n\n  <div class="flex-center">\n\n    <input class="searchbar" placeholder="search employees" />\n\n  </div>\n\n\n\n  <div class="selected-employees">\n\n    <h6>selected employees</h6>\n\n    <p class="no-selection" *ngIf="!listNotEmpty">you haven’t selected anyone yet</p>\n\n\n\n    <span  *ngFor="let contact of contacts">\n\n    <div class="contact-card" *ngIf="contact.selected">\n\n        <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n\n\n        <div class="info">\n\n          <h4>{{contact.name}}</h4>\n\n          <p>{{contact.phone}}</p>\n\n        </div>\n\n        \n\n        <div class="controls">\n\n            <button  class="delete" (click)="removeContact(contact.idx)">Delete</button>\n\n        </div>\n\n    </div>\n\n  </span> \n\n    \n\n  </div>\n\n\n\n  <div class="existing-employees">\n\n      <h6>Employees on Teller</h6>\n\n\n\n      <!-- dummy contact card \n\n\n\n      <div class="contact-card" >\n\n          <img class="avatar" src="https://placeholdit.co//i/26x26?">\n\n\n\n          <div class="info">\n\n            <h4>aman gupta</h4>\n\n            <p>9717748633</p>\n\n          </div>\n\n          \n\n          <div class="controls">\n\n            <button  class="add">Add</button>\n\n            \n\n          </div>\n\n      </div>\n\n   dummy card ends -->\n\n      <span  *ngFor="let contact of contacts">\n\n      <div class="contact-card" *ngIf="!contact.selected" >\n\n          <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n          <div class="info">\n\n            <h4>{{contact.name}}</h4>\n\n            <p>{{contact.phone}}</p>\n\n          </div>\n\n          \n\n          <div class="controls">\n\n            <button  class="add" (click)="selectContact(contact.idx)">Add</button>\n\n            \n\n          </div>\n\n      </div>\n\n    </span>\n\n  </div>\n\n\n\n  <div class="continue-button" *ngIf="listNotEmpty">\n\n      <button class="continue" (click)="confirm()">continue</button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-contacts\select-contacts.html"*/,
+            selector: 'page-select-contacts',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/select-contacts/select-contacts.html"*/'<!--\n  Generated ng-template for the SelectContactsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n    <div class="custom-navbar">\n        <div class="flex-row">\n          <button class="back" navPop>\n            <</button>\n              <h4 class="title">invite employees</h4>\n        </div>\n       \n      </div>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div class="flex-center">\n    <img src="assets/imgs/emoji_hi.png" class="title-image"/>\n  </div>\n\n  <div class="flex-center">\n    <input class="searchbar" placeholder="search employees" />\n  </div>\n\n  <div class="selected-employees">\n    <h6>selected employees</h6>\n    <p class="no-selection" *ngIf="!listNotEmpty">you haven’t selected anyone yet</p>\n\n    <span  *ngFor="let contact of contacts">\n    <div class="contact-card" *ngIf="contact.selected">\n        <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n        <div class="info">\n          <h4>{{contact.name}}</h4>\n          <p>{{contact.phone}}</p>\n        </div>\n        \n        <div class="controls">\n            <button  class="delete" (click)="removeContact(contact.idx)">Delete</button>\n        </div>\n    </div>\n  </span> \n    \n  </div>\n\n  <div class="existing-employees">\n      <h6>Employees on Teller</h6>\n\n      <!-- dummy contact card \n\n      <div class="contact-card" >\n          <img class="avatar" src="https://placeholdit.co//i/26x26?">\n\n          <div class="info">\n            <h4>aman gupta</h4>\n            <p>9717748633</p>\n          </div>\n          \n          <div class="controls">\n            <button  class="add">Add</button>\n            \n          </div>\n      </div>\n   dummy card ends -->\n      <span  *ngFor="let contact of contacts">\n      <div class="contact-card" *ngIf="!contact.selected" >\n          <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n          <div class="info">\n            <h4>{{contact.name}}</h4>\n            <p>{{contact.phone}}</p>\n          </div>\n          \n          <div class="controls">\n            <button  class="add" (click)="selectContact(contact.idx)">Add</button>\n            \n          </div>\n      </div>\n    </span>\n  </div>\n\n  <div class="continue-button" *ngIf="listNotEmpty">\n      <button class="continue" (click)="confirm()">continue</button>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/select-contacts/select-contacts.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]])
     ], SelectContactsPage);
@@ -318,7 +318,7 @@ var TransdetailPage = (function () {
     ], TransdetailPage.prototype, "tagFriendsDivBlock", void 0);
     TransdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-transdetail',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail.html"*/'<ion-content style="text-align:center" no-bounce overflow-scroll="true">\n\n	<div #transDetailBlock class="transDetailBlock animated" id="transDetailBlock">\n\n		<div class="headerSection" (tap)="closeTransDetail()">\n\n      		<div class="leftBackBtn"><img src="assets/imgs/icn_back.png" class="back-icon" ></div>\n\n      		<div class="rightOnHeader">Transaction Details</div>\n\n    	</div>\n\n    	<div class="mainTransViewDataBlock" id="mainTransViewDataBlock">\n\n    		<div class="transactionDetails">\n\n    			<!-- Summary Card -->\n\n    			<div id="transDetailCard" class="transDetailCard">\n\n    				<ion-card class="statsCard"><div class="scTopLeft"><img  src="assets/imgs/shopping.png" class="search_buttons"></div><div class="scTopRight"><div class="scTopRightName">Audible</div><div class="scTopRightInfoTextLessOpacity">Citi Double Cash Card xxx - 8010</div></div><div class="scDivider"></div><br><div class="scAmountLabel">Fri<br><div class="scAmountLabelSpan">Day</div></div><div class="scAmountLabel" style="margin-left:10px">24 Nov<br><div class="scAmountLabelSpan">Date</div></div><div class="scAmountLabel" style="width:116px;text-align:right;color:#d0011b">($ 14.95)<br><div class="scAmountLabelSpan" style="text-align:right">Spent</div></div></ion-card>\n\n    			</div>\n\n    			<!-- Additional Stuff Card -->\n\n    			<div class="detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Additional stuff</div>\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn"  src="assets/imgs/icn_expand.png" (tap)="showTransDetailContent()"></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent" (tap)="showTransDetailContent()"><div class="detailsCardTipText" id="transDetailsContent">Click to view additionald details from the bank</div></div>\n\n    			</div>\n\n    			<!-- Content Separator -->\n\n    			<div class="transDetailSeparator">\n\n    				<div class="linePiece"></div><div class="lineSeparatorText">Add more details & search better</div><div class="linePiece"></div>\n\n    			</div>\n\n    			<div class="cardsGap"></div>\n\n    			<!-- Tag Friends Card -->\n\n    			<div #tagFriendsDivBlock class="tagFriendsCard detailsCard" id="tagFriendsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Friends</div>\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams" ></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">\n\n    					<div class="detailsCardTipText">Group expenses easily by tagging friends & family</div>\n\n    				</div>\n\n    			</div>\n\n    			<!-- Category Card -->\n\n    			<div class="reCategorizeCard detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Category<!--  -> &nbsp;<span id="categoryValue"></span> --></div>\n\n    					<!-- <div class="recategorizeHeaderButton"><img src="assets/imgs/btn_edit.png" (tap)="showReCategorizationView()"></div> -->\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showReCategorizationView()"></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;margin-top: 0px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Category is wrong? Feel free to change it</div></div>\n\n    			</div>\n\n    			<!-- Business Expense Card -->\n\n    			<div class="isBusinessExpenseCard detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Business Expense</div>\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="bizExpenseBtn" src="assets/imgs/icn_add.png" (tap)="saveBizExpenseFlag()"></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent"><div class="detailsCardTipText" id="bizExpenseText">Just click “+” and easily search biz expenses</div></div>\n\n    			</div>\n\n    			<!-- Tags Card -->\n\n    			<div class="tagsCard detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Tags</div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent">\n\n    					<div class="detailsCardTipText" (tap)="clickEditTransactionTags()" >\n\n    						<span #transDetailTagSpan id="transDetailTagSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span>\n\n    						<input #transDetailTags id="transDetailTags" type="text" class="detailsCardTagEditInput" style="display:none;" (keyup)="handleKeyUpForEditTags($event)" (blur)="userPrefsOnSaveTags()"/>\n\n    					</div>\n\n    				</div>\n\n    			</div>\n\n    			<!-- Reminder Card -->\n\n    			<div class="reminderCard detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Reminder</div>\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="remindTransBtn" src="assets/imgs/icn_add.png" (tap)="saveReminderFlag()"></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent"><div class="detailsCardTipText" id="remindTransText">Click “+”  to remind you when this happens again</div></div>\n\n    			</div>\n\n    			<!-- Location Card -->\n\n    			<div class="locationCard detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Location</div>\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Search easily with locations, add it now! </div></div>\n\n    			</div>\n\n    			<!-- Photo Card -->\n\n    			<div class="photoCard detailsCard">\n\n    				<div class="verticalSpace"></div>\n\n    				<div class="detailsCardHeader">\n\n    					<div class="detailsCardHeaderLeftText">Photos</div>\n\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>\n\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Add photos, bring back memories when you search</div></div>\n\n    			</div>\n\n    			<!-- Notes Card -->\n\n    			<div class="notesCard detailsCard" style="height:205px" (tap)="clickEditNotes()" >\n\n    				<div class="verticalSpace" (tap)="clickEditNotes()"></div>\n\n    				<div class="detailsCardHeader" (tap)="clickEditNotes()">\n\n    					<div class="detailsCardHeaderLeftText" (tap)="clickEditNotes()">Notes</div>\n\n    					<div class="scDividerCards" style="margin-left:12px;" (tap)="clickEditNotes()"></div>\n\n    				</div>\n\n    				<div class="detailsCardContent"><div class="detailsCardTipText" (tap)="clickEditNotes()">\n\n    					<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span><textarea #transDetailNotes id="transDetailNotes" type="text" class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>\n\n    				</div></div>\n\n    			</div>\n\n    			<div style="height:40px">&nbsp;</div>\n\n    		</div>\n\n		</div>	\n\n	</div>\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail.html"*/,
+            selector: 'page-transdetail',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail.html"*/'<ion-content style="text-align:center" no-bounce overflow-scroll="true">\n	<div #transDetailBlock class="transDetailBlock animated" id="transDetailBlock">\n		<div class="headerSection" (tap)="closeTransDetail()">\n      		<div class="leftBackBtn"><img src="assets/imgs/icn_back.png" class="back-icon" ></div>\n      		<div class="rightOnHeader">Transaction Details</div>\n    	</div>\n    	<div class="mainTransViewDataBlock" id="mainTransViewDataBlock">\n    		<div class="transactionDetails">\n    			<!-- Summary Card -->\n    			<div id="transDetailCard" class="transDetailCard">\n    				<ion-card class="statsCard"><div class="scTopLeft"><img  src="assets/imgs/shopping.png" class="search_buttons"></div><div class="scTopRight"><div class="scTopRightName">Audible</div><div class="scTopRightInfoTextLessOpacity">Citi Double Cash Card xxx - 8010</div></div><div class="scDivider"></div><br><div class="scAmountLabel">Fri<br><div class="scAmountLabelSpan">Day</div></div><div class="scAmountLabel" style="margin-left:10px">24 Nov<br><div class="scAmountLabelSpan">Date</div></div><div class="scAmountLabel" style="width:116px;text-align:right;color:#d0011b">($ 14.95)<br><div class="scAmountLabelSpan" style="text-align:right">Spent</div></div></ion-card>\n    			</div>\n    			<!-- Additional Stuff Card -->\n    			<div class="detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Additional stuff</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn"  src="assets/imgs/icn_expand.png" (tap)="showTransDetailContent()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent" (tap)="showTransDetailContent()"><div class="detailsCardTipText" id="transDetailsContent">Click to view additionald details from the bank</div></div>\n    			</div>\n    			<!-- Content Separator -->\n    			<div class="transDetailSeparator">\n    				<div class="linePiece"></div><div class="lineSeparatorText">Add more details & search better</div><div class="linePiece"></div>\n    			</div>\n    			<div class="cardsGap"></div>\n    			<!-- Tag Friends Card -->\n    			<div #tagFriendsDivBlock class="tagFriendsCard detailsCard" id="tagFriendsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Friends</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams" ></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">\n    					<div class="detailsCardTipText">Group expenses easily by tagging friends & family</div>\n    				</div>\n    			</div>\n    			<!-- Category Card -->\n    			<div class="reCategorizeCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Category<!--  -> &nbsp;<span id="categoryValue"></span> --></div>\n    					<!-- <div class="recategorizeHeaderButton"><img src="assets/imgs/btn_edit.png" (tap)="showReCategorizationView()"></div> -->\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showReCategorizationView()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;margin-top: 0px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Category is wrong? Feel free to change it</div></div>\n    			</div>\n    			<!-- Business Expense Card -->\n    			<div class="isBusinessExpenseCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Business Expense</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="bizExpenseBtn" src="assets/imgs/icn_add.png" (tap)="saveBizExpenseFlag()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText" id="bizExpenseText">Just click “+” and easily search biz expenses</div></div>\n    			</div>\n    			<!-- Tags Card -->\n    			<div class="tagsCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Tags</div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent">\n    					<div class="detailsCardTipText" (tap)="clickEditTransactionTags()" >\n    						<span #transDetailTagSpan id="transDetailTagSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span>\n    						<input #transDetailTags id="transDetailTags" type="text" class="detailsCardTagEditInput" style="display:none;" (keyup)="handleKeyUpForEditTags($event)" (blur)="userPrefsOnSaveTags()"/>\n    					</div>\n    				</div>\n    			</div>\n    			<!-- Reminder Card -->\n    			<div class="reminderCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Reminder</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="remindTransBtn" src="assets/imgs/icn_add.png" (tap)="saveReminderFlag()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText" id="remindTransText">Click “+”  to remind you when this happens again</div></div>\n    			</div>\n    			<!-- Location Card -->\n    			<div class="locationCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Location</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Search easily with locations, add it now! </div></div>\n    			</div>\n    			<!-- Photo Card -->\n    			<div class="photoCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Photos</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Add photos, bring back memories when you search</div></div>\n    			</div>\n    			<!-- Notes Card -->\n    			<div class="notesCard detailsCard" style="height:205px" (tap)="clickEditNotes()" >\n    				<div class="verticalSpace" (tap)="clickEditNotes()"></div>\n    				<div class="detailsCardHeader" (tap)="clickEditNotes()">\n    					<div class="detailsCardHeaderLeftText" (tap)="clickEditNotes()">Notes</div>\n    					<div class="scDividerCards" style="margin-left:12px;" (tap)="clickEditNotes()"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText" (tap)="clickEditNotes()">\n    					<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span><textarea #transDetailNotes id="transDetailNotes" type="text" class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>\n    				</div></div>\n    			</div>\n    			<div style="height:40px">&nbsp;</div>\n    		</div>\n		</div>	\n	</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]])
     ], TransdetailPage);
@@ -336,7 +336,7 @@ var TransdetailPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TransdetailChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__ = __webpack_require__(560);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -465,7 +465,7 @@ var TransdetailChatPage = (function () {
     };
     TransdetailChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-transdetail-chat',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail-chat\transdetail-chat.html"*/'<!--\n  Generated template for the TransactionDetailsChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  \n   \n      <div class="custom-navbar">\n        <div class="flex-row">\n          <button class="back" navPop>\n            <</button>\n              <h4 class="title">Chat @ {{chatName}}</h4>\n        </div>\n        \n      </div>\n    \n  \n  </ion-header>\n  \n  \n  <ion-content padding class="chat-window"  no-bounce overflow-scroll="true">\n\n   <div *ngFor="let chatMessage of chatMessages; let i = index">\n\n    <h6 class="date-stamp" *ngIf="shouldAddStamp(chatMessage,i)">\n      {{ getDateStamp(chatMessage.time)  |  amCalendar}} \n    </h6>\n\n    \n    <chat-message   [data]="chatMessage"></chat-message>\n\n    </div>\n\n\n<div id="myScrollLabel" style="height:10px">&nbsp;</div>\n\n\n\n    <div class="chat-bar-container">\n      <textarea [(ngModel)]="message" placeholder="Write your message .."></textarea>\n      <button class="send" (click)="sendMessage(message,\'text\')" [attr.disabled]="message.length? null: true"> \n         <img src="assets/imgs/send_on.png" *ngIf="message.length">\n         <img src="assets/imgs/send_off.png " *ngIf="!message.length">\n      </button>\n    </div>\n  \n  </ion-content>\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail-chat\transdetail-chat.html"*/,
+            selector: 'page-transdetail-chat',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail-chat/transdetail-chat.html"*/'<!--\n  Generated template for the TransactionDetailsChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  \n   \n      <div class="custom-navbar">\n        <div class="flex-row">\n          <button class="back" navPop>\n            <</button>\n              <h4 class="title">Chat @ {{chatName}}</h4>\n        </div>\n        \n      </div>\n    \n  \n  </ion-header>\n  \n  \n  <ion-content padding class="chat-window"  no-bounce overflow-scroll="true">\n\n   <div *ngFor="let chatMessage of chatMessages; let i = index">\n\n    <h6 class="date-stamp" *ngIf="shouldAddStamp(chatMessage,i)">\n      {{ getDateStamp(chatMessage.time)  |  amCalendar}} \n    </h6>\n\n    \n    <chat-message   [data]="chatMessage"></chat-message>\n\n    </div>\n\n\n<div id="myScrollLabel" style="height:10px">&nbsp;</div>\n\n\n\n    <div class="chat-bar-container">\n      <textarea [(ngModel)]="message" placeholder="Write your message .."></textarea>\n      <button class="send" (click)="sendMessage(message,\'text\')" [attr.disabled]="message.length? null: true"> \n         <img src="assets/imgs/send_on.png" *ngIf="message.length">\n         <img src="assets/imgs/send_off.png " *ngIf="!message.length">\n      </button>\n    </div>\n  \n  </ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail-chat/transdetail-chat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]])
@@ -477,7 +477,7 @@ var TransdetailChatPage = (function () {
 
 /***/ }),
 
-/***/ 374:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -485,7 +485,7 @@ var TransdetailChatPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__ = __webpack_require__(376);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -634,7 +634,7 @@ var SelectPhotosPage = (function () {
     };
     SelectPhotosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-select-photos',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/'<!--\n\n  Generated template for the SelectPhotosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n\n\n<ion-header>\n\n\n\n  <div class="custom-navbar">\n\n    <div class="flex-row">\n\n      <button class="back" navPop>\n\n        <</button>\n\n          <h4 class="title">Add photos</h4>\n\n    </div>\n\n    \n\n  </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  \n\n  <div class="vertical-align" *ngIf="isLoading">\n\n    <div class="center-align">\n\n    <ion-spinner></ion-spinner>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-list *ngFor="let img of images; let i = index">\n\n        \n\n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n\n      </h6>\n\n      <br *ngIf="shouldAddStamp(img,i)">\n\n    \n\n      <div class="thumbnail">\n\n        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">\n\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n\n        </div>\n\n      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>\n\n      </div>  \n\n    \n\n    </ion-list>  \n\n\n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n\n\n    <div class="continue-button" *ngIf="listNotEmpty">\n\n      <button class="continue" (click)="getPhotos()">Done</button>\n\n  </div>\n\n \n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-photos\select-photos.html"*/,
+            selector: 'page-select-photos',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/select-photos/select-photos.html"*/'<!--\n  Generated template for the SelectPhotosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n          <h4 class="title">Add photos</h4>\n    </div>\n    \n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n  \n  <div class="vertical-align" *ngIf="isLoading">\n    <div class="center-align">\n    <ion-spinner></ion-spinner>\n    </div>\n  </div>\n\n  <ion-list *ngFor="let img of images; let i = index">\n        \n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n      </h6>\n      <br *ngIf="shouldAddStamp(img,i)">\n    \n      <div class="thumbnail">\n        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n        </div>\n      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>\n      </div>  \n    \n    </ion-list>  \n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n    <div class="continue-button" *ngIf="listNotEmpty">\n      <button class="continue" (click)="getPhotos()">Done</button>\n  </div>\n \n  \n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/select-photos/select-photos.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__["a" /* PhotoLibrary */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]])
     ], SelectPhotosPage);
@@ -645,16 +645,16 @@ var SelectPhotosPage = (function () {
 
 /***/ }),
 
-/***/ 376:
+/***/ 377:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SendLocationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngui_map__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngui_map__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__ = __webpack_require__(380);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -688,6 +688,7 @@ var SendLocationPage = (function () {
         this.canContinue = false;
         this.selectedPlace = null;
         this.geoLocaction.getCurrentPosition().then(function (loc) {
+            console.log("user location", loc);
             _this.center = {
                 lat: loc.coords.latitude,
                 lng: loc.coords.longitude
@@ -729,7 +730,7 @@ var SendLocationPage = (function () {
     ], SendLocationPage.prototype, "marker", void 0);
     SendLocationPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-send-location',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\send-location\send-location.html"*/'<!--\n\n  Generated template for the SendLocationPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <div class="custom-navbar">\n\n    <div class="flex-row">\n\n      <button class="back" navPop>\n\n        <</button>\n\n        <div class="search-bar" placeholder="Enter location name or address">\n\n          \n\n          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>\n\n        </div>\n\n    </div>\n\n    \n\n  </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n\n        <custom-marker [position]="center" #marker>\n\n          <div>\n\n            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n\n            <b>{{center}}</b>\n\n           \n\n          </div>\n\n        </custom-marker>\n\n      </ngui-map>\n\n    \n\n    \n\n      <div class="continue-button" *ngIf="canContinue">\n\n        <button class="continue" (click)="confirm()">Done</button>\n\n      </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\send-location\send-location.html"*/,
+            selector: 'page-send-location',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/'<!--\n  Generated template for the SendLocationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n        <div class="search-bar" placeholder="Enter location name or address">\n          \n          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>\n        </div>\n    </div>\n    \n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n        <custom-marker [position]="center" #marker>\n          <div>\n            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n            <b>{{center}}</b>\n           \n          </div>\n        </custom-marker>\n      </ngui-map>\n    \n    \n      <div class="continue-button" *ngIf="canContinue">\n        <button class="continue" (click)="confirm()">Done</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]) === "function" && _h || Object])
     ], SendLocationPage);
@@ -741,13 +742,119 @@ var SendLocationPage = (function () {
 
 /***/ }),
 
-/***/ 509:
+/***/ 380:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlacesAutoCompleteComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the PlacesAutoCompleteComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var PlacesAutoCompleteComponent = (function () {
+    function PlacesAutoCompleteComponent() {
+        var _this = this;
+        this.autocompleteItems = [];
+        this.autocomplete = {};
+        this.Input = new __WEBPACK_IMPORTED_MODULE_1_rxjs__["Subject"]();
+        console.log('Hello PlacesAutoCompleteComponent Component');
+        this.placeChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        // add a debounce time to the input 
+        var subscription = this.Input
+            .map(function (event) { return event.target.value; })
+            .debounceTime(100)
+            .distinctUntilChanged()
+            .subscribe(function (val) {
+            _this.updateSearch(val);
+        });
+    }
+    PlacesAutoCompleteComponent.prototype.ngOnInit = function () {
+        this.acService = new google.maps.places.AutocompleteService();
+        this.autocompleteItems = [];
+        this.autocomplete = {
+            query: ''
+        };
+    };
+    PlacesAutoCompleteComponent.prototype.updateSearch = function (event) {
+        //console.log('modal > updateSearch');
+        if (this.autocomplete.query == '') {
+            this.autocompleteItems = [];
+            return;
+        }
+        var self = this;
+        //console.log("Update Search", this.userLat, this.userLng);
+        var config = {
+            location: new google.maps.LatLng(this.center.lat, this.center.lng),
+            radius: 1000,
+            //componentRestrictions: { country: 'US' },
+            //types:  ['geocode', 'establishment', 'regions', 'cities'], // other types available in the API: 'establishment', 'regions', and 'cities'
+            input: this.autocomplete.query //componentRestrictions: { country: 'AR' } 
+        };
+        this.acService.getPlacePredictions(config, function (predictions, status) {
+            //console.log('modal > getPlacePredictions > status > ', status);
+            self.autocompleteItems = [];
+            if (status == 'OK') {
+                if (predictions) {
+                    predictions.forEach(function (prediction) {
+                        self.autocompleteItems.push(prediction);
+                    });
+                }
+            }
+        });
+    };
+    PlacesAutoCompleteComponent.prototype.chooseItem = function (item) {
+        this.placeChanged.emit(item);
+        this.autocomplete.query = item.description;
+        this.autocompleteItems = [];
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('center'),
+        __metadata("design:type", Object)
+    ], PlacesAutoCompleteComponent.prototype, "center", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('placeChanged'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+    ], PlacesAutoCompleteComponent.prototype, "placeChanged", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], PlacesAutoCompleteComponent.prototype, "input", void 0);
+    PlacesAutoCompleteComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'places-auto-complete',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/components/places-auto-complete/places-auto-complete.html"*/'<!-- Generated template for the PlacesAutoCompleteComponent component -->\n<input [(ngModel)]="autocomplete.query" (input)="Input.next($event)" placeholder="Enter location name or address" #input/>\n<ul>\n        <li *ngFor="let item of autocompleteItems" \n            (click)="chooseItem(item)">\n            {{ item.description }}\n        </li>\n</ul>\n    '/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/components/places-auto-complete/places-auto-complete.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], PlacesAutoCompleteComponent);
+    return PlacesAutoCompleteComponent;
+}());
+
+//# sourceMappingURL=places-auto-complete.js.map
+
+/***/ }),
+
+/***/ 511:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(510);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(516);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -755,7 +862,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 514:
+/***/ 516:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -765,25 +872,25 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(557);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(559);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_transdetail_transdetail__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_picker_location_picker__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_select_contacts_select_contacts__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngui_map__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify__ = __webpack_require__(856);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngui_map__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify__ = __webpack_require__(857);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_emojify__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_transdetail_transdetail_chat_transdetail_chat__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_transdetail_transdetail_chat_chat_message_chat_message__ = __webpack_require__(861);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_send_location_send_location__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_transdetail_transdetail_chat_chat_message_chat_message__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_send_location_send_location__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_ng_socket_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment__ = __webpack_require__(862);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment__ = __webpack_require__(863);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_angular2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_photo_library__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_geolocation__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_components_module__ = __webpack_require__(866);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_photo_library__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_geolocation__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_components_module__ = __webpack_require__(867);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -873,7 +980,7 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 557:
+/***/ 559:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -908,7 +1015,7 @@ var MyApp = (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -919,7 +1026,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 558:
+/***/ 560:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -927,7 +1034,7 @@ var MyApp = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng_socket_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -973,14 +1080,14 @@ var ChatServiceProvider = (function () {
 
 /***/ }),
 
-/***/ 576:
+/***/ 578:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 861:
+/***/ 862:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1016,7 +1123,7 @@ var ChatMessageComponent = (function () {
     ], ChatMessageComponent.prototype, "data", void 0);
     ChatMessageComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'chat-message',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail-chat\chat-message\chat-message.html"*/'<!-- Generated template for the ChatMessageComponent component -->\n<div class="chat-message-container" *ngIf="currentUserID != data.userID">\n\n  <!-- section for the messages from other users  -->\n\n  <avatar [img]="data.userImage" [userName]="data.displayName"></avatar>\n\n  <!-- chat messages of the user start here -->\n  <div class="messages-container">\n    <p class="user-name">{{data.displayName}}</p>\n\n    <div *ngFor="let message of data.data">\n      {{message.data | json}}\n      <p class="text-message" *ngIf="message.messageType == \'text\'">{{ message.payload | emojify }}</p>\n\n      <!-- emoji only -->\n\n      <p class="emoji-only" *ngIf="message.messageType == \'emoji-only\'">{{ message.payload | emojify }}</p>\n\n\n      <!-- location attachment -->\n      <div class="location-message" *ngIf="message.messageType == \'location\'">\n        <div class="location-container">\n          <ngui-map [center]="\'RR Nagar, Bengaluru, Karnataka, India\'" [fullscreenControl]="false" [disableDefaultUI]="true">\n            <custom-marker [position]="\'RR Nagar, Bengaluru, Karnataka, India\'">\n              <div>\n                <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n              </div>\n            </custom-marker>\n          </ngui-map>\n        </div>\n        <div class="location-display">\n          <h6>title</h6>\n          <p>address</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<!--section for app user message, needs to be put in ng-if -->\n\n\n\n\n<div class="chat-message-container self" *ngIf="currentUserID == data.userID">\n\n  <!-- this is just for creating an empty space for the flex to work correctly -->\n\n\n  <!-- chat messages of the user start here -->\n  <div class="messages-container">\n    \n  \n      <div *ngFor="let message of data.data">\n          <p class="text-message" *ngIf="message.messageType == \'text\'">{{ message.payload | emojify }}</p>\n          \n                <!-- emoji only -->\n          \n                <p class="emoji-only" *ngIf="message.messageType == \'emoji-only\'">{{ message.payload | emojify }}</p>\n  \n  \n        <!-- location attachment -->\n        <div class="location-message" *ngIf="message.messageType == \'location\'">\n          <div class="location-container">\n            <ngui-map [center]="\'RR Nagar, Bengaluru, Karnataka, India\'" [fullscreenControl]="false" [disableDefaultUI]="true">\n              <custom-marker [position]="\'RR Nagar, Bengaluru, Karnataka, India\'">\n                <div>\n                  <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n                </div>\n              </custom-marker>\n            </ngui-map>\n          </div>\n          <div class="location-display">\n            <h6>title</h6>\n            <p>address</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  <div class="delivery-status">\n    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>\n  </div>\n</div>'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\transdetail\transdetail-chat\chat-message\chat-message.html"*/
+            selector: 'chat-message',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail-chat/chat-message/chat-message.html"*/'<!-- Generated template for the ChatMessageComponent component -->\n<div class="chat-message-container" *ngIf="currentUserID != data.userID">\n\n  <!-- section for the messages from other users  -->\n\n  <avatar [img]="data.userImage" [userName]="data.displayName"></avatar>\n\n  <!-- chat messages of the user start here -->\n  <div class="messages-container">\n    <p class="user-name">{{data.displayName}}</p>\n\n    <div *ngFor="let message of data.data">\n      {{message.data | json}}\n      <p class="text-message" *ngIf="message.messageType == \'text\'">{{ message.payload | emojify }}</p>\n\n      <!-- emoji only -->\n\n      <p class="emoji-only" *ngIf="message.messageType == \'emoji-only\'">{{ message.payload | emojify }}</p>\n\n\n      <!-- location attachment -->\n      <div class="location-message" *ngIf="message.messageType == \'location\'">\n        <div class="location-container">\n          <ngui-map [center]="\'RR Nagar, Bengaluru, Karnataka, India\'" [fullscreenControl]="false" [disableDefaultUI]="true">\n            <custom-marker [position]="\'RR Nagar, Bengaluru, Karnataka, India\'">\n              <div>\n                <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n              </div>\n            </custom-marker>\n          </ngui-map>\n        </div>\n        <div class="location-display">\n          <h6>title</h6>\n          <p>address</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<!--section for app user message, needs to be put in ng-if -->\n\n\n\n\n<div class="chat-message-container self" *ngIf="currentUserID == data.userID">\n\n  <!-- this is just for creating an empty space for the flex to work correctly -->\n\n\n  <!-- chat messages of the user start here -->\n  <div class="messages-container">\n    \n  \n      <div *ngFor="let message of data.data">\n          <p class="text-message" *ngIf="message.messageType == \'text\'">{{ message.payload | emojify }}</p>\n          \n                <!-- emoji only -->\n          \n                <p class="emoji-only" *ngIf="message.messageType == \'emoji-only\'">{{ message.payload | emojify }}</p>\n  \n  \n        <!-- location attachment -->\n        <div class="location-message" *ngIf="message.messageType == \'location\'">\n          <div class="location-container">\n            <ngui-map [center]="\'RR Nagar, Bengaluru, Karnataka, India\'" [fullscreenControl]="false" [disableDefaultUI]="true">\n              <custom-marker [position]="\'RR Nagar, Bengaluru, Karnataka, India\'">\n                <div>\n                  <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n                </div>\n              </custom-marker>\n            </ngui-map>\n          </div>\n          <div class="location-display">\n            <h6>title</h6>\n            <p>address</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  <div class="delivery-status">\n    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>\n  </div>\n</div>'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail-chat/chat-message/chat-message.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], ChatMessageComponent);
@@ -1027,246 +1134,246 @@ var ChatMessageComponent = (function () {
 
 /***/ }),
 
-/***/ 863:
+/***/ 864:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 380,
-	"./af.js": 380,
-	"./ar": 381,
-	"./ar-dz": 382,
-	"./ar-dz.js": 382,
-	"./ar-kw": 383,
-	"./ar-kw.js": 383,
-	"./ar-ly": 384,
-	"./ar-ly.js": 384,
-	"./ar-ma": 385,
-	"./ar-ma.js": 385,
-	"./ar-sa": 386,
-	"./ar-sa.js": 386,
-	"./ar-tn": 387,
-	"./ar-tn.js": 387,
-	"./ar.js": 381,
-	"./az": 388,
-	"./az.js": 388,
-	"./be": 389,
-	"./be.js": 389,
-	"./bg": 390,
-	"./bg.js": 390,
-	"./bm": 391,
-	"./bm.js": 391,
-	"./bn": 392,
-	"./bn.js": 392,
-	"./bo": 393,
-	"./bo.js": 393,
-	"./br": 394,
-	"./br.js": 394,
-	"./bs": 395,
-	"./bs.js": 395,
-	"./ca": 396,
-	"./ca.js": 396,
-	"./cs": 397,
-	"./cs.js": 397,
-	"./cv": 398,
-	"./cv.js": 398,
-	"./cy": 399,
-	"./cy.js": 399,
-	"./da": 400,
-	"./da.js": 400,
-	"./de": 401,
-	"./de-at": 402,
-	"./de-at.js": 402,
-	"./de-ch": 403,
-	"./de-ch.js": 403,
-	"./de.js": 401,
-	"./dv": 404,
-	"./dv.js": 404,
-	"./el": 405,
-	"./el.js": 405,
-	"./en-au": 406,
-	"./en-au.js": 406,
-	"./en-ca": 407,
-	"./en-ca.js": 407,
-	"./en-gb": 408,
-	"./en-gb.js": 408,
-	"./en-ie": 409,
-	"./en-ie.js": 409,
-	"./en-nz": 410,
-	"./en-nz.js": 410,
-	"./eo": 411,
-	"./eo.js": 411,
-	"./es": 412,
-	"./es-do": 413,
-	"./es-do.js": 413,
-	"./es-us": 414,
-	"./es-us.js": 414,
-	"./es.js": 412,
-	"./et": 415,
-	"./et.js": 415,
-	"./eu": 416,
-	"./eu.js": 416,
-	"./fa": 417,
-	"./fa.js": 417,
-	"./fi": 418,
-	"./fi.js": 418,
-	"./fo": 419,
-	"./fo.js": 419,
-	"./fr": 420,
-	"./fr-ca": 421,
-	"./fr-ca.js": 421,
-	"./fr-ch": 422,
-	"./fr-ch.js": 422,
-	"./fr.js": 420,
-	"./fy": 423,
-	"./fy.js": 423,
-	"./gd": 424,
-	"./gd.js": 424,
-	"./gl": 425,
-	"./gl.js": 425,
-	"./gom-latn": 426,
-	"./gom-latn.js": 426,
-	"./gu": 427,
-	"./gu.js": 427,
-	"./he": 428,
-	"./he.js": 428,
-	"./hi": 429,
-	"./hi.js": 429,
-	"./hr": 430,
-	"./hr.js": 430,
-	"./hu": 431,
-	"./hu.js": 431,
-	"./hy-am": 432,
-	"./hy-am.js": 432,
-	"./id": 433,
-	"./id.js": 433,
-	"./is": 434,
-	"./is.js": 434,
-	"./it": 435,
-	"./it.js": 435,
-	"./ja": 436,
-	"./ja.js": 436,
-	"./jv": 437,
-	"./jv.js": 437,
-	"./ka": 438,
-	"./ka.js": 438,
-	"./kk": 439,
-	"./kk.js": 439,
-	"./km": 440,
-	"./km.js": 440,
-	"./kn": 441,
-	"./kn.js": 441,
-	"./ko": 442,
-	"./ko.js": 442,
-	"./ky": 443,
-	"./ky.js": 443,
-	"./lb": 444,
-	"./lb.js": 444,
-	"./lo": 445,
-	"./lo.js": 445,
-	"./lt": 446,
-	"./lt.js": 446,
-	"./lv": 447,
-	"./lv.js": 447,
-	"./me": 448,
-	"./me.js": 448,
-	"./mi": 449,
-	"./mi.js": 449,
-	"./mk": 450,
-	"./mk.js": 450,
-	"./ml": 451,
-	"./ml.js": 451,
-	"./mr": 452,
-	"./mr.js": 452,
-	"./ms": 453,
-	"./ms-my": 454,
-	"./ms-my.js": 454,
-	"./ms.js": 453,
-	"./my": 455,
-	"./my.js": 455,
-	"./nb": 456,
-	"./nb.js": 456,
-	"./ne": 457,
-	"./ne.js": 457,
-	"./nl": 458,
-	"./nl-be": 459,
-	"./nl-be.js": 459,
-	"./nl.js": 458,
-	"./nn": 460,
-	"./nn.js": 460,
-	"./pa-in": 461,
-	"./pa-in.js": 461,
-	"./pl": 462,
-	"./pl.js": 462,
-	"./pt": 463,
-	"./pt-br": 464,
-	"./pt-br.js": 464,
-	"./pt.js": 463,
-	"./ro": 465,
-	"./ro.js": 465,
-	"./ru": 466,
-	"./ru.js": 466,
-	"./sd": 467,
-	"./sd.js": 467,
-	"./se": 468,
-	"./se.js": 468,
-	"./si": 469,
-	"./si.js": 469,
-	"./sk": 470,
-	"./sk.js": 470,
-	"./sl": 471,
-	"./sl.js": 471,
-	"./sq": 472,
-	"./sq.js": 472,
-	"./sr": 473,
-	"./sr-cyrl": 474,
-	"./sr-cyrl.js": 474,
-	"./sr.js": 473,
-	"./ss": 475,
-	"./ss.js": 475,
-	"./sv": 476,
-	"./sv.js": 476,
-	"./sw": 477,
-	"./sw.js": 477,
-	"./ta": 478,
-	"./ta.js": 478,
-	"./te": 479,
-	"./te.js": 479,
-	"./tet": 480,
-	"./tet.js": 480,
-	"./th": 481,
-	"./th.js": 481,
-	"./tl-ph": 482,
-	"./tl-ph.js": 482,
-	"./tlh": 483,
-	"./tlh.js": 483,
-	"./tr": 484,
-	"./tr.js": 484,
-	"./tzl": 485,
-	"./tzl.js": 485,
-	"./tzm": 486,
-	"./tzm-latn": 487,
-	"./tzm-latn.js": 487,
-	"./tzm.js": 486,
-	"./uk": 488,
-	"./uk.js": 488,
-	"./ur": 489,
-	"./ur.js": 489,
-	"./uz": 490,
-	"./uz-latn": 491,
-	"./uz-latn.js": 491,
-	"./uz.js": 490,
-	"./vi": 492,
-	"./vi.js": 492,
-	"./x-pseudo": 493,
-	"./x-pseudo.js": 493,
-	"./yo": 494,
-	"./yo.js": 494,
-	"./zh-cn": 495,
-	"./zh-cn.js": 495,
-	"./zh-hk": 496,
-	"./zh-hk.js": 496,
-	"./zh-tw": 497,
-	"./zh-tw.js": 497
+	"./af": 382,
+	"./af.js": 382,
+	"./ar": 383,
+	"./ar-dz": 384,
+	"./ar-dz.js": 384,
+	"./ar-kw": 385,
+	"./ar-kw.js": 385,
+	"./ar-ly": 386,
+	"./ar-ly.js": 386,
+	"./ar-ma": 387,
+	"./ar-ma.js": 387,
+	"./ar-sa": 388,
+	"./ar-sa.js": 388,
+	"./ar-tn": 389,
+	"./ar-tn.js": 389,
+	"./ar.js": 383,
+	"./az": 390,
+	"./az.js": 390,
+	"./be": 391,
+	"./be.js": 391,
+	"./bg": 392,
+	"./bg.js": 392,
+	"./bm": 393,
+	"./bm.js": 393,
+	"./bn": 394,
+	"./bn.js": 394,
+	"./bo": 395,
+	"./bo.js": 395,
+	"./br": 396,
+	"./br.js": 396,
+	"./bs": 397,
+	"./bs.js": 397,
+	"./ca": 398,
+	"./ca.js": 398,
+	"./cs": 399,
+	"./cs.js": 399,
+	"./cv": 400,
+	"./cv.js": 400,
+	"./cy": 401,
+	"./cy.js": 401,
+	"./da": 402,
+	"./da.js": 402,
+	"./de": 403,
+	"./de-at": 404,
+	"./de-at.js": 404,
+	"./de-ch": 405,
+	"./de-ch.js": 405,
+	"./de.js": 403,
+	"./dv": 406,
+	"./dv.js": 406,
+	"./el": 407,
+	"./el.js": 407,
+	"./en-au": 408,
+	"./en-au.js": 408,
+	"./en-ca": 409,
+	"./en-ca.js": 409,
+	"./en-gb": 410,
+	"./en-gb.js": 410,
+	"./en-ie": 411,
+	"./en-ie.js": 411,
+	"./en-nz": 412,
+	"./en-nz.js": 412,
+	"./eo": 413,
+	"./eo.js": 413,
+	"./es": 414,
+	"./es-do": 415,
+	"./es-do.js": 415,
+	"./es-us": 416,
+	"./es-us.js": 416,
+	"./es.js": 414,
+	"./et": 417,
+	"./et.js": 417,
+	"./eu": 418,
+	"./eu.js": 418,
+	"./fa": 419,
+	"./fa.js": 419,
+	"./fi": 420,
+	"./fi.js": 420,
+	"./fo": 421,
+	"./fo.js": 421,
+	"./fr": 422,
+	"./fr-ca": 423,
+	"./fr-ca.js": 423,
+	"./fr-ch": 424,
+	"./fr-ch.js": 424,
+	"./fr.js": 422,
+	"./fy": 425,
+	"./fy.js": 425,
+	"./gd": 426,
+	"./gd.js": 426,
+	"./gl": 427,
+	"./gl.js": 427,
+	"./gom-latn": 428,
+	"./gom-latn.js": 428,
+	"./gu": 429,
+	"./gu.js": 429,
+	"./he": 430,
+	"./he.js": 430,
+	"./hi": 431,
+	"./hi.js": 431,
+	"./hr": 432,
+	"./hr.js": 432,
+	"./hu": 433,
+	"./hu.js": 433,
+	"./hy-am": 434,
+	"./hy-am.js": 434,
+	"./id": 435,
+	"./id.js": 435,
+	"./is": 436,
+	"./is.js": 436,
+	"./it": 437,
+	"./it.js": 437,
+	"./ja": 438,
+	"./ja.js": 438,
+	"./jv": 439,
+	"./jv.js": 439,
+	"./ka": 440,
+	"./ka.js": 440,
+	"./kk": 441,
+	"./kk.js": 441,
+	"./km": 442,
+	"./km.js": 442,
+	"./kn": 443,
+	"./kn.js": 443,
+	"./ko": 444,
+	"./ko.js": 444,
+	"./ky": 445,
+	"./ky.js": 445,
+	"./lb": 446,
+	"./lb.js": 446,
+	"./lo": 447,
+	"./lo.js": 447,
+	"./lt": 448,
+	"./lt.js": 448,
+	"./lv": 449,
+	"./lv.js": 449,
+	"./me": 450,
+	"./me.js": 450,
+	"./mi": 451,
+	"./mi.js": 451,
+	"./mk": 452,
+	"./mk.js": 452,
+	"./ml": 453,
+	"./ml.js": 453,
+	"./mr": 454,
+	"./mr.js": 454,
+	"./ms": 455,
+	"./ms-my": 456,
+	"./ms-my.js": 456,
+	"./ms.js": 455,
+	"./my": 457,
+	"./my.js": 457,
+	"./nb": 458,
+	"./nb.js": 458,
+	"./ne": 459,
+	"./ne.js": 459,
+	"./nl": 460,
+	"./nl-be": 461,
+	"./nl-be.js": 461,
+	"./nl.js": 460,
+	"./nn": 462,
+	"./nn.js": 462,
+	"./pa-in": 463,
+	"./pa-in.js": 463,
+	"./pl": 464,
+	"./pl.js": 464,
+	"./pt": 465,
+	"./pt-br": 466,
+	"./pt-br.js": 466,
+	"./pt.js": 465,
+	"./ro": 467,
+	"./ro.js": 467,
+	"./ru": 468,
+	"./ru.js": 468,
+	"./sd": 469,
+	"./sd.js": 469,
+	"./se": 470,
+	"./se.js": 470,
+	"./si": 471,
+	"./si.js": 471,
+	"./sk": 472,
+	"./sk.js": 472,
+	"./sl": 473,
+	"./sl.js": 473,
+	"./sq": 474,
+	"./sq.js": 474,
+	"./sr": 475,
+	"./sr-cyrl": 476,
+	"./sr-cyrl.js": 476,
+	"./sr.js": 475,
+	"./ss": 477,
+	"./ss.js": 477,
+	"./sv": 478,
+	"./sv.js": 478,
+	"./sw": 479,
+	"./sw.js": 479,
+	"./ta": 480,
+	"./ta.js": 480,
+	"./te": 481,
+	"./te.js": 481,
+	"./tet": 482,
+	"./tet.js": 482,
+	"./th": 483,
+	"./th.js": 483,
+	"./tl-ph": 484,
+	"./tl-ph.js": 484,
+	"./tlh": 485,
+	"./tlh.js": 485,
+	"./tr": 486,
+	"./tr.js": 486,
+	"./tzl": 487,
+	"./tzl.js": 487,
+	"./tzm": 488,
+	"./tzm-latn": 489,
+	"./tzm-latn.js": 489,
+	"./tzm.js": 488,
+	"./uk": 490,
+	"./uk.js": 490,
+	"./ur": 491,
+	"./ur.js": 491,
+	"./uz": 492,
+	"./uz-latn": 493,
+	"./uz-latn.js": 493,
+	"./uz.js": 492,
+	"./vi": 494,
+	"./vi.js": 494,
+	"./x-pseudo": 495,
+	"./x-pseudo.js": 495,
+	"./yo": 496,
+	"./yo.js": 496,
+	"./zh-cn": 497,
+	"./zh-cn.js": 497,
+	"./zh-hk": 498,
+	"./zh-hk.js": 498,
+	"./zh-tw": 499,
+	"./zh-tw.js": 499
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1282,19 +1389,19 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 863;
+webpackContext.id = 864;
 
 /***/ }),
 
-/***/ 866:
+/***/ 867:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__avatar_avatar__ = __webpack_require__(867);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__places_auto_complete_places_auto_complete__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__avatar_avatar__ = __webpack_require__(868);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__places_auto_complete_places_auto_complete__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1328,7 +1435,7 @@ var ComponentsModule = (function () {
 
 /***/ }),
 
-/***/ 867:
+/***/ 868:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1403,7 +1510,7 @@ var AvatarComponent = (function () {
     ], AvatarComponent.prototype, "getInitials", null);
     AvatarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'avatar',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\components\avatar\avatar.html"*/'<!-- Generated template for the AvatarComponent component -->\n\n<div class="avatar" *ngIf="!img">\n  {{initials}}\n</div>\n<img class="avatar" [attr.src]="img" *ngIf="img" />\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\components\avatar\avatar.html"*/
+            selector: 'avatar',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/components/avatar/avatar.html"*/'<!-- Generated template for the AvatarComponent component -->\n\n<div class="avatar" *ngIf="!img">\n  {{initials}}\n</div>\n<img class="avatar" [attr.src]="img" *ngIf="img" />\n\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/components/avatar/avatar.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], AvatarComponent);
@@ -1412,114 +1519,7 @@ var AvatarComponent = (function () {
 
 //# sourceMappingURL=avatar.js.map
 
-/***/ }),
-
-/***/ 868:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlacesAutoCompleteComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the PlacesAutoCompleteComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
-var PlacesAutoCompleteComponent = (function () {
-    function PlacesAutoCompleteComponent() {
-        var _this = this;
-        this.autocompleteItems = [];
-        this.autocomplete = {};
-        this.Input = new __WEBPACK_IMPORTED_MODULE_1_rxjs__["Subject"]();
-        console.log('Hello PlacesAutoCompleteComponent Component');
-        this.placeChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        // add a debounce time to the input 
-        var subscription = this.Input
-            .map(function (event) { return event.target.value; })
-            .debounceTime(100)
-            .distinctUntilChanged()
-            .subscribe(function (val) {
-            _this.updateSearch(val);
-        });
-    }
-    PlacesAutoCompleteComponent.prototype.ngOnInit = function () {
-        this.acService = new google.maps.places.AutocompleteService();
-        this.autocompleteItems = [];
-        this.autocomplete = {
-            query: ''
-        };
-    };
-    PlacesAutoCompleteComponent.prototype.updateSearch = function (event) {
-        //console.log('modal > updateSearch');
-        if (this.autocomplete.query == '') {
-            this.autocompleteItems = [];
-            return;
-        }
-        var self = this;
-        //console.log("Update Search", this.userLat, this.userLng);
-        var config = {
-            location: new google.maps.LatLng(this.center.lat, this.center.lng),
-            radius: 1000,
-            //componentRestrictions: { country: 'US' },
-            //types:  ['geocode', 'establishment', 'regions', 'cities'], // other types available in the API: 'establishment', 'regions', and 'cities'
-            input: this.autocomplete.query //componentRestrictions: { country: 'AR' } 
-        };
-        this.acService.getPlacePredictions(config, function (predictions, status) {
-            //console.log('modal > getPlacePredictions > status > ', status);
-            self.autocompleteItems = [];
-            if (status == 'OK') {
-                if (predictions) {
-                    predictions.forEach(function (prediction) {
-                        self.autocompleteItems.push(prediction);
-                    });
-                }
-            }
-        });
-    };
-    PlacesAutoCompleteComponent.prototype.chooseItem = function (item) {
-        this.placeChanged.emit(item);
-        this.autocomplete.query = item.description;
-        this.autocompleteItems = [];
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('center'),
-        __metadata("design:type", Object)
-    ], PlacesAutoCompleteComponent.prototype, "center", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])('placeChanged'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]) === "function" && _a || Object)
-    ], PlacesAutoCompleteComponent.prototype, "placeChanged", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === "function" && _b || Object)
-    ], PlacesAutoCompleteComponent.prototype, "input", void 0);
-    PlacesAutoCompleteComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'places-auto-complete',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\components\places-auto-complete\places-auto-complete.html"*/'<!-- Generated template for the PlacesAutoCompleteComponent component -->\n\n<input [(ngModel)]="autocomplete.query" (input)="Input.next($event)" placeholder="Enter location name or address" #input/>\n\n<ul>\n\n        <li *ngFor="let item of autocompleteItems" \n\n            (click)="chooseItem(item)">\n\n            {{ item.description }}\n\n        </li>\n\n</ul>\n\n    '/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\components\places-auto-complete\places-auto-complete.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], PlacesAutoCompleteComponent);
-    return PlacesAutoCompleteComponent;
-    var _a, _b;
-}());
-
-//# sourceMappingURL=places-auto-complete.js.map
-
 /***/ })
 
-},[509]);
+},[511]);
 //# sourceMappingURL=main.js.map

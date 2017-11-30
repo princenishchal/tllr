@@ -29,8 +29,9 @@ export class SendLocationPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams ,private geoLocaction: Geolocation, private changeDetector:ChangeDetectorRef, private render:Renderer) {
 
-
+    
     this.geoLocaction.getCurrentPosition().then((loc:Geoposition)=>{
+      console.log("user location",loc)
       this.center = {
         lat:loc.coords.latitude,
         lng: loc.coords.longitude
