@@ -144,7 +144,7 @@
 						<div class="detailsCardTipText" *ngIf="!transactionDetails.location">Search easily with locations, add it now! </div>
 						<div class="detailsCardTipText" *ngIf="transactionDetails.location">
 							<div class="location-header">
-								<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" />
+								<img class="detailsCardPlusBtn" src="assets/imgs/icn_location.png" />
 								<span>{{transactionDetails.location.description}}</span>
 							</div>
 							<ngui-map [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>

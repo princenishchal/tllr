@@ -26578,7 +26578,7 @@ page-transdetail .location-header img {
 page-transdetail .location-header span {
   font-size: 14px;
   color: #a5adb7;
-  margin-left: 10px;
+  padding-left: 20px;
   width: auto;
   display: block;
 }
