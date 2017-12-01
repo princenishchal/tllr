@@ -2,6 +2,10 @@ import { Component,ViewChild , ElementRef} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import {ChatServiceProvider} from "../../../providers/chat-service/chat-service"
+
+
+
+
 /**
  * Generated class for the TransdetailChatPage page.
  *

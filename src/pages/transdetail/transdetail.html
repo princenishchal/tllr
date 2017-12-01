@@ -97,8 +97,10 @@
     				<div class="verticalSpace"></div>
     				<div class="detailsCardHeader">
     					<div class="detailsCardHeaderLeftText">Photos</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
+    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="selectPhotos()"></div>
+    					<div class="scDividerCards" style="margin-left:12px;">
+							{{transactionDetails.photos | json}}
+						</div>
     				</div>
     				<div class="detailsCardContent"><div class="detailsCardTipText">Add photos, bring back memories when you search</div></div>
     			</div>

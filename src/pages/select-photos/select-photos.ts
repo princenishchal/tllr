@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
 declare var cordova: any;
-import { PhotoLibrary, LibraryItem, GetLibraryOptions,  } from '@ionic-native/photo-library';
+import { PhotoLibrary, LibraryItem, GetLibraryOptions, } from '@ionic-native/photo-library';
 import { Subject } from 'rxjs';
 
 /**
@@ -19,39 +19,41 @@ import { Subject } from 'rxjs';
 export class SelectPhotosPage {
   images = [];
   private gallaryImages = null;
-  private pauser:Subject<boolean>; // used for pausing the library sequesnce
-  private infiniteScrollHandle:any; 
-  private page = 0 ;
+  private pauser: Subject<boolean>; // used for pausing the library sequesnce
+  private infiniteScrollHandle: any;
+  private page = 0;
   private chunk = 30;
-  listNotEmpty:boolean;
-  isLoading:boolean = true;
+  private callback: Function; // a pomise type function 
+  listNotEmpty: boolean;
+  isLoading: boolean = true;
   constructor(public navCtrl: NavController, public navParams: NavParams, private photoLibrary: PhotoLibrary, private changeRef: ChangeDetectorRef, private sanitizer: DomSanitizer) {
 
+    this.callback = this.navParams.data.callback;
 
-       /**
-     * TODO : remove this after testing 
-     */
-    
+    /**
+  * TODO : remove this after testing 
+  */
 
-   /* this.images = new Array(100).fill({
-      creationDate:Date.now(),
-      thumbnailURL: "https://placeholdit.co//i/71x76?&bg=9b9b9b"
-    }).map((img,index,arr)=>{
-      img.index = index;
-      return img
-    }) */
+
+    /* this.images = new Array(100).fill({
+       creationDate:Date.now(),
+       thumbnailURL: "https://placeholdit.co//i/71x76?&bg=9b9b9b"
+     }).map((img,index,arr)=>{
+       img.index = index;
+       return img
+     }) */
 
     this.listNotEmpty = false;
     let opts: GetLibraryOptions = {};
-    opts.thumbnailHeight =76;
+    opts.thumbnailHeight = 76;
     opts.thumbnailWidth = 71;
     opts.includeAlbumData = true;
-   
+
     this.photoLibrary.requestAuthorization().then(() => {
       this.photoLibrary.getLibrary(opts).subscribe({
         next: library => {
 
-         
+
 
           /* library.forEach(function(libraryItem) {
              console.log(libraryItem.id);          // ID of the photo
@@ -71,34 +73,34 @@ export class SelectPhotosPage {
 
 
 
-           this.gallaryImages = library.sort(
+          this.gallaryImages = library.sort(
             (a: LibraryItem, b: LibraryItem) => {
               return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
             }
           );
 
-          
 
-          this.gallaryImages.slice(this.page*this.chunk,(this.page+1)*this.chunk).map(img => {
-            
-                        let imjObj = {
-                          thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
-                          fileName: img.fileName,
-                          id: img.id,
-                          creationDate: img.creationDate,
-                          index: this.images.length,
-                          selected: false
-                        }
-                        // sanitize the urls before pushing 
-            
-                        this.images.push(imjObj);
-            
-                      })
 
-                      console.log(this.images);
-                      this.page+= 1;
-                      this.isLoading = false;
-                      this.changeRef.detectChanges();
+          this.gallaryImages.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map(img => {
+
+            let imjObj = {
+              thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+              fileName: img.fileName,
+              id: img.id,
+              creationDate: img.creationDate,
+              index: this.images.length,
+              selected: false
+            }
+            // sanitize the urls before pushing 
+
+            this.images.push(imjObj);
+
+          })
+
+          console.log(this.images);
+          this.page += 1;
+          this.isLoading = false;
+          this.changeRef.detectChanges();
 
         },
         error: err => { console.log('could not get photos'); },
@@ -111,25 +113,25 @@ export class SelectPhotosPage {
   }
 
   doInfinite(infiniteScroll) {
-    this.gallaryImages.slice(this.page*this.chunk,(this.page+1)*this.chunk).map(img => {
-      
-                  let imjObj = {
-                    thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
-                    fileName: img.fileName,
-                    id: img.id,
-                    creationDate: img.creationDate,
-                    index: this.images.length
-                  }
-                  // sanitize the urls before pushing 
-      
-                  this.images.push(imjObj);
-      
-                })
+    this.gallaryImages.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map(img => {
 
-                infiniteScroll.complete();
-                this.page +=1;
+      let imjObj = {
+        thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+        fileName: img.fileName,
+        id: img.id,
+        creationDate: img.creationDate,
+        index: this.images.length
+      }
+      // sanitize the urls before pushing 
 
-                this.changeRef.detectChanges();
+      this.images.push(imjObj);
+
+    })
+
+    infiniteScroll.complete();
+    this.page += 1;
+
+    this.changeRef.detectChanges();
   }
 
   shouldAddStamp(img) {
@@ -143,37 +145,45 @@ export class SelectPhotosPage {
 
   }
 
-    select(index){
-      this.images[index].selected = true;
-      this.checkListEmpty();
-      this.changeRef.detectChanges();
-    }
+  select(index) {
+    this.images[index].selected = true;
+    this.checkListEmpty();
+    this.changeRef.detectChanges();
+  }
 
-    unselect(index){
-      this.images[index].selected = false;
-      this.checkListEmpty();
-      this.changeRef.detectChanges();
-    }
+  unselect(index) {
+    this.images[index].selected = false;
+    this.checkListEmpty();
+    this.changeRef.detectChanges();
+  }
 
-    // get actual iamges
-    getPhotos(){
-      let selectedPhotos = this.images.filter(i=> i.selected);
+  // get actual iamges
+  getPhotos() {
+    let selectedPhotos = this.images.filter(i => i.selected);
 
-      // fetch photos from the ionic native 
-      Promise.all(
-        selectedPhotos.map(sp=>{
-          return this.photoLibrary.getPhoto(sp.id)
-        })
-      ).then(photos=>{
-              // returns the images as an arary ob blobs 
-              console.log("photso fetched",photos);
+    // fetch photos from the ionic native 
+    Promise.all(
+      selectedPhotos.map(sp => {
+        return this.photoLibrary.getPhoto(sp.id)
       })
-     
-    }
+    ).then(photos => {
+      // convert ehe bolbs to data urls :
+
+      Promise.all(photos.map(p => this.blobToDataURL(p)))
+        .then(urlcoll => {
+          console.log("photso fetched", photos);
+          this.callback(urlcoll).then(() => {
+            this.navCtrl.pop()
+          })
+
+        })
+    })
+
+  }
 
 
-  private checkListEmpty(){
-    this.listNotEmpty = this.images.filter(i=>i.selected).length ? true : false;
+  private checkListEmpty() {
+    this.listNotEmpty = this.images.filter(i => i.selected).length ? true : false;
   }
 
   private sameDay(date1, date2) {
@@ -189,5 +199,16 @@ export class SelectPhotosPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectPhotosPage');
   }
+
+  private blobToDataURL(blob) {
+    return new Promise((resolve, reject) => {
+      var a = new FileReader();
+      a.onload = (e: any) => { resolve(e.target.result); }
+      a.onerror = (e) => { reject(e) };
+      a.readAsDataURL(blob);
+    })
+
+  }
+
 
 }

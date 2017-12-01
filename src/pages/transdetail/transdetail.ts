@@ -1,12 +1,25 @@
 import { Component, Input, ViewChild, ElementRef, Renderer2, NgZone} from '@angular/core';
 import { NavController, NavParams, AlertController, Platform, Events } from 'ionic-angular';
+
+/**
+ * import pages here 
+ */
 import {TransdetailChatPage} from './transdetail-chat/transdetail-chat';
+import {SendLocationPage} from '../send-location/send-location'
+import {SelectPhotosPage} from '../select-photos/select-photos';
 
 @Component({
   selector: 'page-transdetail',
   templateUrl: 'transdetail.html',
 })
 export class TransdetailPage {
+	// the main transaction details object.
+	transactionDetails:any = {
+		photos:[],
+		locaiton:[],
+		friends:[],
+		chat:{}
+	}
 	chatPage = TransdetailChatPage;
 	chatParams = {}; 
 	@ViewChild('transDetailBlock') transDetailBlock:ElementRef;
@@ -22,6 +35,20 @@ export class TransdetailPage {
 
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TransdetailPage');
+	}
+
+	// pushes the add photos page with a call back to do processing after the photos have been collected
+	selectPhotos(){
+		this.navCtrl.push(SelectPhotosPage,{
+			callback:(photos)=>{
+				return new Promise((resolve,reject)=>{
+					debugger;
+					this.transactionDetails.photos = photos;
+					resolve();
+				})
+
+			}
+		})
 	}
 
 
