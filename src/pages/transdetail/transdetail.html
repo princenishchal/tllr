@@ -174,27 +174,36 @@
 					<div class="detailsCardContent">
 						<div class="detailsCardTipText" *ngIf="!transactionDetails.photos">Add photos, bring back memories when you search</div>
 						<div class="detailsCardTipText" *ngIf="transactionDetails.photos">
+							<!-- when just one image-->
+					
+							<div class="img-collection" *ngIf="transactionDetails.photos.length ==1">
+									<div class="photo-container" *ngFor="let photo of transactionDetails.photos">
+										<img [src]="photo" />
+									
+									</div>
+								</div>
 							<!-- when less than three images -->
 					
-							<div class="img-collection" *ngIf="transactionDetails.photos.length <=3">
-								<div class="photo-container" *ngFor="let photo of transactionDetails.photos">
-									<img [src]="photo" />
-									{{photo}}
-								</div>
-							</div>
-							<!-- when more than three images -->
-							<div class="img-collection" *ngIf="transactionDetails.photos.length >3">
-								<div *ngFor="let photo of transactionDetails.photos.slice(0,3); let i = index">
-									<div class="photo-container" *ngFor="let photo of transactionDetails.photos">
-										<img  [src]="photo" />
-										{{photo}}
-										<!-- cover image -->
-										<div class="image-count" *ngIf="i>3"> 
-											+ {{ transactionDetails.photos.length }}
+							<div class="img-collection" *ngIf="transactionDetails.photos.length >1 ">
+								<div class="album">
+									<div class="first-img-container">
+										<img [src]="transactionDetails.photos[0]" />
+									</div>
+									<div class="second-img-container">
+										<div class="img-1">
+												<img [src]="transactionDetails.photos[1]" />
+										</div>
+										<div class="img-2" *ngIf="transactionDetails.photos.length >=3">
+												<div class="overlay">
+														+{{transactionDetails.photos.length-3}}
+													</div>
+												<img [src]="transactionDetails.photos[2]" />
+												
 										</div>
 									</div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
