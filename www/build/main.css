@@ -26390,6 +26390,7 @@ page-transdetail .detailsCardContent {
   float: left;
   margin-top: 12px;
   margin-left: 12px;
+  width: 87vw;
 }
 
 page-transdetail .detailsCardTipText {
@@ -26566,6 +26567,40 @@ page-transdetail .scAmountLabelSpan {
   font-size: 14px;
   font-weight: 400;
   color: rgba(30, 49, 74, 0.4);
+}
+
+page-transdetail .location-header img {
+  float: left;
+  width: 12px;
+  height: 15px;
+}
+
+page-transdetail .location-header span {
+  font-size: 14px;
+  color: #a5adb7;
+  margin-left: 10px;
+  width: auto;
+  display: block;
+}
+
+page-transdetail ngui-map {
+  min-width: 295px;
+  min-height: 218px;
+  margin: 15px 0;
+}
+
+page-transdetail ngui-map > div {
+  border-radius: 10px;
+  border: 1px solid #9b9b9b;
+}
+
+page-transdetail custom-marker b {
+  color: #892c20;
+  font-size: 13px;
+  font-weight: bold;
+  display: block;
+  position: absolute;
+  width: 50vw;
 }
 
 page-transdetail-chat .custom-navbar {

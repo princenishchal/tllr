@@ -167,10 +167,7 @@ export class SelectPhotosPage {
         return this.photoLibrary.getPhoto(sp.id)
       })
     ).then(photos => {
-      // convert ehe bolbs to data urls :
-
      
-       
           console.log("photso fetched", photos);
           this.callback(photos).then(() => {
             this.navCtrl.pop()

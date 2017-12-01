@@ -9,6 +9,7 @@ import {SendLocationPage} from '../send-location/send-location'
 import {SelectPhotosPage} from '../select-photos/select-photos';
 import {Observable} from 'rxjs';
 
+
 @Component({
   selector: 'page-transdetail',
   templateUrl: 'transdetail.html',
@@ -16,8 +17,8 @@ import {Observable} from 'rxjs';
 export class TransdetailPage {
 	// the main transaction details object.
 	transactionDetails:any = {
-		photos:[],
-		locaiton:[],
+		photos:null,
+		location:null,
 		friends:[],
 		chat:{}
 	}
@@ -46,6 +47,22 @@ export class TransdetailPage {
 				//TODO: upload images and then show them in the images.
 				
 
+			}
+		})
+	}
+
+	// fetches a location object and shows it in the transaction details page
+	addLocation(){
+		this.navCtrl.push(SendLocationPage,{
+			callback:(location)=>{
+				return new Promise((resolve,reject)=>{
+
+					//TODO: uplaod the location and then add it to the local object
+					console.log(location)
+					this.transactionDetails.location = location;
+
+				 resolve();
+				})
 			}
 		})
 	}

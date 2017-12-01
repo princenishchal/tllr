@@ -1,123 +1,198 @@
 <ion-content style="text-align:center" no-bounce overflow-scroll="true">
 	<div #transDetailBlock class="transDetailBlock animated" id="transDetailBlock">
 		<div class="headerSection" (tap)="closeTransDetail()">
-      		<div class="leftBackBtn"><img src="assets/imgs/icn_back.png" class="back-icon" ></div>
-      		<div class="rightOnHeader">Transaction Details</div>
-    	</div>
-    	<div class="mainTransViewDataBlock" id="mainTransViewDataBlock">
-    		<div class="transactionDetails">
-    			<!-- Summary Card -->
-    			<div id="transDetailCard" class="transDetailCard">
-    				<ion-card class="statsCard"><div class="scTopLeft"><img  src="assets/imgs/shopping.png" class="search_buttons"></div><div class="scTopRight"><div class="scTopRightName">Audible</div><div class="scTopRightInfoTextLessOpacity">Citi Double Cash Card xxx - 8010</div></div><div class="scDivider"></div><br><div class="scAmountLabel">Fri<br><div class="scAmountLabelSpan">Day</div></div><div class="scAmountLabel" style="margin-left:10px">24 Nov<br><div class="scAmountLabelSpan">Date</div></div><div class="scAmountLabel" style="width:116px;text-align:right;color:#d0011b">($ 14.95)<br><div class="scAmountLabelSpan" style="text-align:right">Spent</div></div></ion-card>
-    			</div>
-    			<!-- Additional Stuff Card -->
-    			<div class="detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Additional stuff</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn"  src="assets/imgs/icn_expand.png" (tap)="showTransDetailContent()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
-    				</div>
-    				<div class="detailsCardContent" (tap)="showTransDetailContent()"><div class="detailsCardTipText" id="transDetailsContent">Click to view additionald details from the bank</div></div>
-    			</div>
-    			<!-- Content Separator -->
-    			<div class="transDetailSeparator">
-    				<div class="linePiece"></div><div class="lineSeparatorText">Add more details & search better</div><div class="linePiece"></div>
-    			</div>
-    			<div class="cardsGap"></div>
-    			<!-- Tag Friends Card -->
-    			<div #tagFriendsDivBlock class="tagFriendsCard detailsCard" id="tagFriendsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Friends</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams" ></div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
-    				</div>
-    				<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">
-    					<div class="detailsCardTipText">Group expenses easily by tagging friends & family</div>
-    				</div>
-    			</div>
-    			<!-- Category Card -->
-    			<div class="reCategorizeCard detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Category<!--  -> &nbsp;<span id="categoryValue"></span> --></div>
-    					<!-- <div class="recategorizeHeaderButton"><img src="assets/imgs/btn_edit.png" (tap)="showReCategorizationView()"></div> -->
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showReCategorizationView()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;margin-top: 0px;"></div>
-    				</div>
-    				<div class="detailsCardContent"><div class="detailsCardTipText">Category is wrong? Feel free to change it</div></div>
-    			</div>
-    			<!-- Business Expense Card -->
-    			<div class="isBusinessExpenseCard detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Business Expense</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="bizExpenseBtn" src="assets/imgs/icn_add.png" (tap)="saveBizExpenseFlag()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
-    				</div>
-    				<div class="detailsCardContent"><div class="detailsCardTipText" id="bizExpenseText">Just click “+” and easily search biz expenses</div></div>
-    			</div>
-    			<!-- Tags Card -->
-    			<div class="tagsCard detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Tags</div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
-    				</div>
-    				<div class="detailsCardContent">
-    					<div class="detailsCardTipText" (tap)="clickEditTransactionTags()" >
-    						<span #transDetailTagSpan id="transDetailTagSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span>
-    						<input #transDetailTags id="transDetailTags" type="text" class="detailsCardTagEditInput" style="display:none;" (keyup)="handleKeyUpForEditTags($event)" (blur)="userPrefsOnSaveTags()"/>
-    					</div>
-    				</div>
-    			</div>
-    			<!-- Reminder Card -->
-    			<div class="reminderCard detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Reminder</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="remindTransBtn" src="assets/imgs/icn_add.png" (tap)="saveReminderFlag()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
-    				</div>
-    				<div class="detailsCardContent"><div class="detailsCardTipText" id="remindTransText">Click “+”  to remind you when this happens again</div></div>
-    			</div>
-    			<!-- Location Card -->
-    			<div class="locationCard detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Location</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;"></div>
-    				</div>
-    				<div class="detailsCardContent"><div class="detailsCardTipText">Search easily with locations, add it now! </div></div>
-    			</div>
-    			<!-- Photo Card -->
-    			<div class="photoCard detailsCard">
-    				<div class="verticalSpace"></div>
-    				<div class="detailsCardHeader">
-    					<div class="detailsCardHeaderLeftText">Photos</div>
-    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="selectPhotos()"></div>
-    					<div class="scDividerCards" style="margin-left:12px;">
-							{{transactionDetails.photos | json}}
+			<div class="leftBackBtn">
+				<img src="assets/imgs/icn_back.png" class="back-icon">
+			</div>
+			<div class="rightOnHeader">Transaction Details</div>
+		</div>
+		<div class="mainTransViewDataBlock" id="mainTransViewDataBlock">
+			<div class="transactionDetails">
+				<!-- Summary Card -->
+				<div id="transDetailCard" class="transDetailCard">
+					<ion-card class="statsCard">
+						<div class="scTopLeft">
+							<img src="assets/imgs/shopping.png" class="search_buttons">
 						</div>
-    				</div>
-    				<div class="detailsCardContent"><div class="detailsCardTipText">Add photos, bring back memories when you search</div></div>
-    			</div>
-    			<!-- Notes Card -->
-    			<div class="notesCard detailsCard" style="height:205px" (tap)="clickEditNotes()" >
-    				<div class="verticalSpace" (tap)="clickEditNotes()"></div>
-    				<div class="detailsCardHeader" (tap)="clickEditNotes()">
-    					<div class="detailsCardHeaderLeftText" (tap)="clickEditNotes()">Notes</div>
-    					<div class="scDividerCards" style="margin-left:12px;" (tap)="clickEditNotes()"></div>
-    				</div>
-    				<div class="detailsCardContent"><div class="detailsCardTipText" (tap)="clickEditNotes()">
-    					<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span><textarea #transDetailNotes id="transDetailNotes" type="text" class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>
-    				</div></div>
-    			</div>
-    			<div style="height:40px">&nbsp;</div>
-    		</div>
-		</div>	
+						<div class="scTopRight">
+							<div class="scTopRightName">Audible</div>
+							<div class="scTopRightInfoTextLessOpacity">Citi Double Cash Card xxx - 8010</div>
+						</div>
+						<div class="scDivider"></div>
+						<br>
+						<div class="scAmountLabel">Fri
+							<br>
+							<div class="scAmountLabelSpan">Day</div>
+						</div>
+						<div class="scAmountLabel" style="margin-left:10px">24 Nov
+							<br>
+							<div class="scAmountLabelSpan">Date</div>
+						</div>
+						<div class="scAmountLabel" style="width:116px;text-align:right;color:#d0011b">($ 14.95)
+							<br>
+							<div class="scAmountLabelSpan" style="text-align:right">Spent</div>
+						</div>
+					</ion-card>
+				</div>
+				<!-- Additional Stuff Card -->
+				<div class="detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Additional stuff</div>
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" src="assets/imgs/icn_expand.png" (tap)="showTransDetailContent()">
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;"></div>
+					</div>
+					<div class="detailsCardContent" (tap)="showTransDetailContent()">
+						<div class="detailsCardTipText" id="transDetailsContent">Click to view additionald details from the bank</div>
+					</div>
+				</div>
+				<!-- Content Separator -->
+				<div class="transDetailSeparator">
+					<div class="linePiece"></div>
+					<div class="lineSeparatorText">Add more details & search better</div>
+					<div class="linePiece"></div>
+				</div>
+				<div class="cardsGap"></div>
+				<!-- Tag Friends Card -->
+				<div #tagFriendsDivBlock class="tagFriendsCard detailsCard" id="tagFriendsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Friends</div>
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams">
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;"></div>
+					</div>
+					<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">
+						<div class="detailsCardTipText">Group expenses easily by tagging friends & family</div>
+					</div>
+				</div>
+				<!-- Category Card -->
+				<div class="reCategorizeCard detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Category
+							<!--  -> &nbsp;<span id="categoryValue"></span> -->
+						</div>
+						<!-- <div class="recategorizeHeaderButton"><img src="assets/imgs/btn_edit.png" (tap)="showReCategorizationView()"></div> -->
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showReCategorizationView()">
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;margin-top: 0px;"></div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText">Category is wrong? Feel free to change it</div>
+					</div>
+				</div>
+				<!-- Business Expense Card -->
+				<div class="isBusinessExpenseCard detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Business Expense</div>
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" id="bizExpenseBtn" src="assets/imgs/icn_add.png" (tap)="saveBizExpenseFlag()">
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;"></div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText" id="bizExpenseText">Just click “+” and easily search biz expenses</div>
+					</div>
+				</div>
+				<!-- Tags Card -->
+				<div class="tagsCard detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Tags</div>
+						<div class="scDividerCards" style="margin-left:12px;"></div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText" (tap)="clickEditTransactionTags()">
+							<span #transDetailTagSpan id="transDetailTagSpan" class="detailsCardTipText">Type here, seperate with commas, search with tags</span>
+							<input #transDetailTags id="transDetailTags" type="text" class="detailsCardTagEditInput" style="display:none;" (keyup)="handleKeyUpForEditTags($event)"
+							 (blur)="userPrefsOnSaveTags()" />
+						</div>
+					</div>
+				</div>
+				<!-- Reminder Card -->
+				<div class="reminderCard detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Reminder</div>
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" id="remindTransBtn" src="assets/imgs/icn_add.png" (tap)="saveReminderFlag()">
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;"></div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText" id="remindTransText">Click “+” to remind you when this happens again</div>
+					</div>
+				</div>
+				<!-- Location Card -->
+				<div class="locationCard detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Location</div>
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" *ngIf="!transactionDetails.location" src="assets/imgs/icn_add.png" (tap)="addLocation()">
+							<img class="detailsCardPlusBtn" *ngIf="transactionDetails.location" src="assets/imgs/icn_added.png" >
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;"></div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText" *ngIf="!transactionDetails.location">Search easily with locations, add it now! </div>
+						<div class="detailsCardTipText" *ngIf="transactionDetails.location">
+							<div class="location-header">
+								<img class="detailsCardPlusBtn"  src="assets/imgs/icn_add.png" />
+								<span>{{transactionDetails.location.description}}</span>
+							</div>
+								<ngui-map [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>
+										<custom-marker [position]="transactionDetails.location.description" #marker>
+										  <div>
+											<img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+											<b>{{transactionDetails.location.description}}</b>
+										   
+										  </div>
+										</custom-marker>
+									  </ngui-map>
+						</div>
+					</div>
+				</div>
+				<!-- Photo Card -->
+				<div class="photoCard detailsCard">
+					<div class="verticalSpace"></div>
+					<div class="detailsCardHeader">
+						<div class="detailsCardHeaderLeftText">Photos</div>
+						<div class="detailsCardHeaderButton">
+							<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="selectPhotos()">
+						</div>
+						<div class="scDividerCards" style="margin-left:12px;">
+						
+						</div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText">Add photos, bring back memories when you search</div>
+					</div>
+				</div>
+				<!-- Notes Card -->
+				<div class="notesCard detailsCard" style="height:205px" (tap)="clickEditNotes()">
+					<div class="verticalSpace" (tap)="clickEditNotes()"></div>
+					<div class="detailsCardHeader" (tap)="clickEditNotes()">
+						<div class="detailsCardHeaderLeftText" (tap)="clickEditNotes()">Notes</div>
+						<div class="scDividerCards" style="margin-left:12px;" (tap)="clickEditNotes()"></div>
+					</div>
+					<div class="detailsCardContent">
+						<div class="detailsCardTipText" (tap)="clickEditNotes()">
+							<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText">Type here, seperate with commas, search with tags</span>
+							<textarea #transDetailNotes id="transDetailNotes" type="text"
+							 class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>
+						</div>
+					</div>
+				</div>
+				<div style="height:40px">&nbsp;</div>
+			</div>
+		</div>
 	</div>
 
 

@@ -1,6 +1,286 @@
 webpackJsonp([0],{
 
-/***/ 169:
+/***/ 157:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SendLocationPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngui_map__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__ = __webpack_require__(379);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the SendLocationPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SendLocationPage = (function () {
+    function SendLocationPage(platform, navCtrl, navParams, changeDetector, render, geo) {
+        var _this = this;
+        this.platform = platform;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.changeDetector = changeDetector;
+        this.render = render;
+        this.geo = geo;
+        this.address = {};
+        this.center = "";
+        this.canContinue = false;
+        this.selectedPlace = null;
+        // register the callback 
+        this.callback = navParams.data.callback;
+        platform.ready().then(function () {
+            geo.getCurrentPosition().then(function (loc) {
+                console.log("user location", loc);
+                _this.center = {
+                    lat: loc.coords.latitude,
+                    lng: loc.coords.longitude
+                };
+            })
+                .catch(function (err) {
+                _this.err = err;
+            });
+        });
+    }
+    SendLocationPage.prototype.placeChanged = function (place) {
+        if (place.description) {
+            this.center = place.description;
+            this.address = place.description;
+            this.selectedPlace = place;
+            this.canContinue = true;
+        }
+        else {
+            this.center = "";
+            this.address = "";
+            this.selectedPlace = null;
+            this.canContinue = false;
+        }
+        this.changeDetector.detectChanges();
+    };
+    SendLocationPage.prototype.ngAfterViewInit = function () {
+        this.render.invokeElementMethod(this.searchBar.input.nativeElement, 'focus', []);
+    };
+    SendLocationPage.prototype.confirm = function () {
+        var _this = this;
+        // send back the current 
+        this.callback(this.selectedPlace)
+            .then(function () {
+            _this.navCtrl.pop();
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('searchBar'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__["a" /* PlacesAutoCompleteComponent */])
+    ], SendLocationPage.prototype, "searchBar", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__ngui_map__["b" /* NguiMapComponent */])
+    ], SendLocationPage.prototype, "map", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('marker'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__ngui_map__["a" /* CustomMarker */])
+    ], SendLocationPage.prototype, "marker", void 0);
+    SendLocationPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-send-location',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/'<!--\n  Generated template for the SendLocationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n        <div class="search-bar" placeholder="Enter location name or address">\n          \n          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>\n        </div>\n    </div>\n    \n  </div>\n{{err|json}}\n</ion-header>\n\n\n<ion-content padding>\n    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n        <custom-marker [position]="center" #marker>\n          <div>\n            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n            <b>{{center}}</b>\n           \n          </div>\n        </custom-marker>\n      </ngui-map>\n    \n    \n      <div class="continue-button" *ngIf="canContinue">\n        <button class="continue" (click)="confirm()">Done</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
+    ], SendLocationPage);
+    return SendLocationPage;
+}());
+
+//# sourceMappingURL=send-location.js.map
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectPhotosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__ = __webpack_require__(380);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the SelectPhotosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SelectPhotosPage = (function () {
+    function SelectPhotosPage(navCtrl, navParams, photoLibrary, changeRef, sanitizer) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.photoLibrary = photoLibrary;
+        this.changeRef = changeRef;
+        this.sanitizer = sanitizer;
+        this.images = [];
+        this.gallaryImages = null;
+        this.page = 0;
+        this.chunk = 30;
+        this.isLoading = true;
+        this.callback = this.navParams.data.callback;
+        /**
+      * TODO : remove this after testing
+      */
+        /* this.images = new Array(100).fill({
+           creationDate:Date.now(),
+           thumbnailURL: "https://placeholdit.co//i/71x76?&bg=9b9b9b"
+         }).map((img,index,arr)=>{
+           img.index = index;
+           return img
+         }) */
+        this.listNotEmpty = false;
+        var opts = {};
+        opts.thumbnailHeight = 76;
+        opts.thumbnailWidth = 71;
+        opts.includeAlbumData = true;
+        this.photoLibrary.requestAuthorization().then(function () {
+            _this.photoLibrary.getLibrary(opts).subscribe({
+                next: function (library) {
+                    /* library.forEach(function(libraryItem) {
+                       console.log(libraryItem.id);          // ID of the photo
+                       console.log(libraryItem.photoURL);    // Cross-platform access to photo
+                       console.log(libraryItem.thumbnailURL);// Cross-platform access to thumbnail
+                       console.log(libraryItem.fileName);
+                       console.log(libraryItem.width);
+                       console.log(libraryItem.height);
+                       console.log(libraryItem.creationDate);
+                       console.log(libraryItem.latitude);
+                       console.log(libraryItem.longitude);
+                       console.log(libraryItem.albumIds);    // array of ids of appropriate AlbumItem, only of includeAlbumsData was used
+                     });*/
+                    _this.gallaryImages = library.sort(function (a, b) {
+                        return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
+                    });
+                    _this.gallaryImages.slice(_this.page * _this.chunk, (_this.page + 1) * _this.chunk).map(function (img) {
+                        var imjObj = {
+                            thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+                            fileName: img.fileName,
+                            id: img.id,
+                            creationDate: img.creationDate,
+                            index: _this.images.length,
+                            selected: false
+                        };
+                        // sanitize the urls before pushing 
+                        _this.images.push(imjObj);
+                    });
+                    console.log(_this.images);
+                    _this.page += 1;
+                    _this.isLoading = false;
+                    _this.changeRef.detectChanges();
+                },
+                error: function (err) { console.log('could not get photos'); },
+                complete: function () { console.log('done getting photos'); }
+            });
+        })
+            .catch(function (err) { return console.log('permissions weren\'t granted'); });
+    }
+    SelectPhotosPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.gallaryImages.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map(function (img) {
+            var imjObj = {
+                thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+                fileName: img.fileName,
+                id: img.id,
+                creationDate: img.creationDate,
+                index: _this.images.length
+            };
+            // sanitize the urls before pushing 
+            _this.images.push(imjObj);
+        });
+        infiniteScroll.complete();
+        this.page += 1;
+        this.changeRef.detectChanges();
+    };
+    SelectPhotosPage.prototype.shouldAddStamp = function (img) {
+        if (this.images.length >= 2 && img.index != 0)
+            return !this.sameDay(img.creationDate, this.images[img.index - 1].creationDate);
+        else
+            return true;
+    };
+    SelectPhotosPage.prototype.select = function (index) {
+        this.images[index].selected = true;
+        this.checkListEmpty();
+        this.changeRef.detectChanges();
+    };
+    SelectPhotosPage.prototype.unselect = function (index) {
+        this.images[index].selected = false;
+        this.checkListEmpty();
+        this.changeRef.detectChanges();
+    };
+    // get actual iamges
+    SelectPhotosPage.prototype.getPhotos = function () {
+        var _this = this;
+        var selectedPhotos = this.images.filter(function (i) { return i.selected; });
+        // fetch photos from the ionic native 
+        Promise.all(selectedPhotos.map(function (sp) {
+            return _this.photoLibrary.getPhoto(sp.id);
+        })).then(function (photos) {
+            console.log("photso fetched", photos);
+            _this.callback(photos).then(function () {
+                _this.navCtrl.pop();
+            });
+        });
+    };
+    SelectPhotosPage.prototype.checkListEmpty = function () {
+        this.listNotEmpty = this.images.filter(function (i) { return i.selected; }).length ? true : false;
+    };
+    SelectPhotosPage.prototype.sameDay = function (date1, date2) {
+        var d1 = new Date(date1);
+        var d2 = new Date(date2);
+        return d1.getFullYear() === d2.getFullYear() &&
+            d1.getMonth() === d2.getMonth() &&
+            d1.getDate() === d2.getDate();
+    };
+    SelectPhotosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SelectPhotosPage');
+    };
+    SelectPhotosPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-select-photos',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/select-photos/select-photos.html"*/'<!--\n  Generated template for the SelectPhotosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n          <h4 class="title">Add photos</h4>\n    </div>\n    \n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n  \n  <div class="vertical-align" *ngIf="isLoading">\n    <div class="center-align">\n    <ion-spinner></ion-spinner>\n    </div>\n  </div>\n\n  <ion-list *ngFor="let img of images; let i = index">\n        \n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n      </h6>\n      <br *ngIf="shouldAddStamp(img,i)">\n    \n      <div class="thumbnail">\n        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n        </div>\n      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>\n      </div>  \n    \n    </ion-list>  \n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n    <div class="continue-button" *ngIf="listNotEmpty">\n      <button class="continue" (click)="getPhotos()">Done</button>\n  </div>\n \n  \n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/select-photos/select-photos.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__["a" /* PhotoLibrary */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]])
+    ], SelectPhotosPage);
+    return SelectPhotosPage;
+}());
+
+//# sourceMappingURL=select-photos.js.map
+
+/***/ }),
+
+/***/ 171:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +293,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 169;
+webpackEmptyAsyncContext.id = 171;
 
 /***/ }),
 
-/***/ 214:
+/***/ 216:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,21 +310,21 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 214;
+webpackEmptyAsyncContext.id = 216;
 
 /***/ }),
 
-/***/ 259:
+/***/ 261:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_picker_location_picker__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__transdetail_transdetail__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__send_location_send_location__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_picker_location_picker__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__transdetail_transdetail__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__send_location_send_location__ = __webpack_require__(157);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -82,14 +362,14 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 260:
+/***/ 262:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationPickerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_contacts_select_contacts__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_contacts_select_contacts__ = __webpack_require__(263);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -161,7 +441,7 @@ var LocationPickerPage = (function () {
 
 /***/ }),
 
-/***/ 261:
+/***/ 263:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -256,15 +536,16 @@ var SelectContactsPage = (function () {
 
 /***/ }),
 
-/***/ 262:
+/***/ 264:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TransdetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__transdetail_chat_transdetail_chat__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__select_photos_select_photos__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__transdetail_chat_transdetail_chat__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__send_location_send_location__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -281,6 +562,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 
 
+
 var TransdetailPage = (function () {
     function TransdetailPage(navCtrl, navParams, alertCtrl, renderer) {
         this.navCtrl = navCtrl;
@@ -289,8 +571,8 @@ var TransdetailPage = (function () {
         this.renderer = renderer;
         // the main transaction details object.
         this.transactionDetails = {
-            photos: [],
-            locaiton: [],
+            photos: null,
+            location: null,
             friends: [],
             chat: {}
         };
@@ -302,9 +584,23 @@ var TransdetailPage = (function () {
     };
     // pushes the add photos page with a call back to do processing after the photos have been collected
     TransdetailPage.prototype.selectPhotos = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__select_photos_select_photos__["a" /* SelectPhotosPage */], {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__select_photos_select_photos__["a" /* SelectPhotosPage */], {
             callback: function (photos) {
                 //TODO: upload images and then show them in the images.
+            }
+        });
+    };
+    // fetches a location object and shows it in the transaction details page
+    TransdetailPage.prototype.addLocation = function () {
+        var _this = this;
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__send_location_send_location__["a" /* SendLocationPage */], {
+            callback: function (location) {
+                return new Promise(function (resolve, reject) {
+                    //TODO: uplaod the location and then add it to the local object
+                    console.log(location);
+                    _this.transactionDetails.location = location;
+                    resolve();
+                });
             }
         });
     };
@@ -338,7 +634,7 @@ var TransdetailPage = (function () {
     ], TransdetailPage.prototype, "tagFriendsDivBlock", void 0);
     TransdetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-transdetail',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail.html"*/'<ion-content style="text-align:center" no-bounce overflow-scroll="true">\n	<div #transDetailBlock class="transDetailBlock animated" id="transDetailBlock">\n		<div class="headerSection" (tap)="closeTransDetail()">\n      		<div class="leftBackBtn"><img src="assets/imgs/icn_back.png" class="back-icon" ></div>\n      		<div class="rightOnHeader">Transaction Details</div>\n    	</div>\n    	<div class="mainTransViewDataBlock" id="mainTransViewDataBlock">\n    		<div class="transactionDetails">\n    			<!-- Summary Card -->\n    			<div id="transDetailCard" class="transDetailCard">\n    				<ion-card class="statsCard"><div class="scTopLeft"><img  src="assets/imgs/shopping.png" class="search_buttons"></div><div class="scTopRight"><div class="scTopRightName">Audible</div><div class="scTopRightInfoTextLessOpacity">Citi Double Cash Card xxx - 8010</div></div><div class="scDivider"></div><br><div class="scAmountLabel">Fri<br><div class="scAmountLabelSpan">Day</div></div><div class="scAmountLabel" style="margin-left:10px">24 Nov<br><div class="scAmountLabelSpan">Date</div></div><div class="scAmountLabel" style="width:116px;text-align:right;color:#d0011b">($ 14.95)<br><div class="scAmountLabelSpan" style="text-align:right">Spent</div></div></ion-card>\n    			</div>\n    			<!-- Additional Stuff Card -->\n    			<div class="detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Additional stuff</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn"  src="assets/imgs/icn_expand.png" (tap)="showTransDetailContent()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent" (tap)="showTransDetailContent()"><div class="detailsCardTipText" id="transDetailsContent">Click to view additionald details from the bank</div></div>\n    			</div>\n    			<!-- Content Separator -->\n    			<div class="transDetailSeparator">\n    				<div class="linePiece"></div><div class="lineSeparatorText">Add more details & search better</div><div class="linePiece"></div>\n    			</div>\n    			<div class="cardsGap"></div>\n    			<!-- Tag Friends Card -->\n    			<div #tagFriendsDivBlock class="tagFriendsCard detailsCard" id="tagFriendsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Friends</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams" ></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">\n    					<div class="detailsCardTipText">Group expenses easily by tagging friends & family</div>\n    				</div>\n    			</div>\n    			<!-- Category Card -->\n    			<div class="reCategorizeCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Category<!--  -> &nbsp;<span id="categoryValue"></span> --></div>\n    					<!-- <div class="recategorizeHeaderButton"><img src="assets/imgs/btn_edit.png" (tap)="showReCategorizationView()"></div> -->\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showReCategorizationView()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;margin-top: 0px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Category is wrong? Feel free to change it</div></div>\n    			</div>\n    			<!-- Business Expense Card -->\n    			<div class="isBusinessExpenseCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Business Expense</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="bizExpenseBtn" src="assets/imgs/icn_add.png" (tap)="saveBizExpenseFlag()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText" id="bizExpenseText">Just click “+” and easily search biz expenses</div></div>\n    			</div>\n    			<!-- Tags Card -->\n    			<div class="tagsCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Tags</div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent">\n    					<div class="detailsCardTipText" (tap)="clickEditTransactionTags()" >\n    						<span #transDetailTagSpan id="transDetailTagSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span>\n    						<input #transDetailTags id="transDetailTags" type="text" class="detailsCardTagEditInput" style="display:none;" (keyup)="handleKeyUpForEditTags($event)" (blur)="userPrefsOnSaveTags()"/>\n    					</div>\n    				</div>\n    			</div>\n    			<!-- Reminder Card -->\n    			<div class="reminderCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Reminder</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" id="remindTransBtn" src="assets/imgs/icn_add.png" (tap)="saveReminderFlag()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText" id="remindTransText">Click “+”  to remind you when this happens again</div></div>\n    			</div>\n    			<!-- Location Card -->\n    			<div class="locationCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Location</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showWIPAlert()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Search easily with locations, add it now! </div></div>\n    			</div>\n    			<!-- Photo Card -->\n    			<div class="photoCard detailsCard">\n    				<div class="verticalSpace"></div>\n    				<div class="detailsCardHeader">\n    					<div class="detailsCardHeaderLeftText">Photos</div>\n    					<div class="detailsCardHeaderButton"><img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="selectPhotos()"></div>\n    					<div class="scDividerCards" style="margin-left:12px;">\n							{{transactionDetails.photos | json}}\n						</div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText">Add photos, bring back memories when you search</div></div>\n    			</div>\n    			<!-- Notes Card -->\n    			<div class="notesCard detailsCard" style="height:205px" (tap)="clickEditNotes()" >\n    				<div class="verticalSpace" (tap)="clickEditNotes()"></div>\n    				<div class="detailsCardHeader" (tap)="clickEditNotes()">\n    					<div class="detailsCardHeaderLeftText" (tap)="clickEditNotes()">Notes</div>\n    					<div class="scDividerCards" style="margin-left:12px;" (tap)="clickEditNotes()"></div>\n    				</div>\n    				<div class="detailsCardContent"><div class="detailsCardTipText" (tap)="clickEditNotes()">\n    					<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText" >Type here, seperate with commas, search with tags</span><textarea #transDetailNotes id="transDetailNotes" type="text" class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>\n    				</div></div>\n    			</div>\n    			<div style="height:40px">&nbsp;</div>\n    		</div>\n		</div>	\n	</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail.html"*/,
+            selector: 'page-transdetail',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail.html"*/'<ion-content style="text-align:center" no-bounce overflow-scroll="true">\n	<div #transDetailBlock class="transDetailBlock animated" id="transDetailBlock">\n		<div class="headerSection" (tap)="closeTransDetail()">\n			<div class="leftBackBtn">\n				<img src="assets/imgs/icn_back.png" class="back-icon">\n			</div>\n			<div class="rightOnHeader">Transaction Details</div>\n		</div>\n		<div class="mainTransViewDataBlock" id="mainTransViewDataBlock">\n			<div class="transactionDetails">\n				<!-- Summary Card -->\n				<div id="transDetailCard" class="transDetailCard">\n					<ion-card class="statsCard">\n						<div class="scTopLeft">\n							<img src="assets/imgs/shopping.png" class="search_buttons">\n						</div>\n						<div class="scTopRight">\n							<div class="scTopRightName">Audible</div>\n							<div class="scTopRightInfoTextLessOpacity">Citi Double Cash Card xxx - 8010</div>\n						</div>\n						<div class="scDivider"></div>\n						<br>\n						<div class="scAmountLabel">Fri\n							<br>\n							<div class="scAmountLabelSpan">Day</div>\n						</div>\n						<div class="scAmountLabel" style="margin-left:10px">24 Nov\n							<br>\n							<div class="scAmountLabelSpan">Date</div>\n						</div>\n						<div class="scAmountLabel" style="width:116px;text-align:right;color:#d0011b">($ 14.95)\n							<br>\n							<div class="scAmountLabelSpan" style="text-align:right">Spent</div>\n						</div>\n					</ion-card>\n				</div>\n				<!-- Additional Stuff Card -->\n				<div class="detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Additional stuff</div>\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" src="assets/imgs/icn_expand.png" (tap)="showTransDetailContent()">\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;"></div>\n					</div>\n					<div class="detailsCardContent" (tap)="showTransDetailContent()">\n						<div class="detailsCardTipText" id="transDetailsContent">Click to view additionald details from the bank</div>\n					</div>\n				</div>\n				<!-- Content Separator -->\n				<div class="transDetailSeparator">\n					<div class="linePiece"></div>\n					<div class="lineSeparatorText">Add more details & search better</div>\n					<div class="linePiece"></div>\n				</div>\n				<div class="cardsGap"></div>\n				<!-- Tag Friends Card -->\n				<div #tagFriendsDivBlock class="tagFriendsCard detailsCard" id="tagFriendsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Friends</div>\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" id="tagFriendsBtn" src="assets/imgs/icn_chat.png" [navPush]="chatPage" [navParams]="chatParams">\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;"></div>\n					</div>\n					<div class="detailsCardContent" id="tagFriendsContent" (tap)="tagFriendsContentClick($event)">\n						<div class="detailsCardTipText">Group expenses easily by tagging friends & family</div>\n					</div>\n				</div>\n				<!-- Category Card -->\n				<div class="reCategorizeCard detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Category\n							<!--  -> &nbsp;<span id="categoryValue"></span> -->\n						</div>\n						<!-- <div class="recategorizeHeaderButton"><img src="assets/imgs/btn_edit.png" (tap)="showReCategorizationView()"></div> -->\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="showReCategorizationView()">\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;margin-top: 0px;"></div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText">Category is wrong? Feel free to change it</div>\n					</div>\n				</div>\n				<!-- Business Expense Card -->\n				<div class="isBusinessExpenseCard detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Business Expense</div>\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" id="bizExpenseBtn" src="assets/imgs/icn_add.png" (tap)="saveBizExpenseFlag()">\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;"></div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText" id="bizExpenseText">Just click “+” and easily search biz expenses</div>\n					</div>\n				</div>\n				<!-- Tags Card -->\n				<div class="tagsCard detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Tags</div>\n						<div class="scDividerCards" style="margin-left:12px;"></div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText" (tap)="clickEditTransactionTags()">\n							<span #transDetailTagSpan id="transDetailTagSpan" class="detailsCardTipText">Type here, seperate with commas, search with tags</span>\n							<input #transDetailTags id="transDetailTags" type="text" class="detailsCardTagEditInput" style="display:none;" (keyup)="handleKeyUpForEditTags($event)"\n							 (blur)="userPrefsOnSaveTags()" />\n						</div>\n					</div>\n				</div>\n				<!-- Reminder Card -->\n				<div class="reminderCard detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Reminder</div>\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" id="remindTransBtn" src="assets/imgs/icn_add.png" (tap)="saveReminderFlag()">\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;"></div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText" id="remindTransText">Click “+” to remind you when this happens again</div>\n					</div>\n				</div>\n				<!-- Location Card -->\n				<div class="locationCard detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Location</div>\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" *ngIf="!transactionDetails.location" src="assets/imgs/icn_add.png" (tap)="addLocation()">\n							<img class="detailsCardPlusBtn" *ngIf="transactionDetails.location" src="assets/imgs/icn_added.png" >\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;"></div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText" *ngIf="!transactionDetails.location">Search easily with locations, add it now! </div>\n						<div class="detailsCardTipText" *ngIf="transactionDetails.location">\n							<div class="location-header">\n								<img class="detailsCardPlusBtn"  src="assets/imgs/icn_add.png" />\n								<span>{{transactionDetails.location.description}}</span>\n							</div>\n								<ngui-map [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n										<custom-marker [position]="transactionDetails.location.description" #marker>\n										  <div>\n											<img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n											<b>{{transactionDetails.location.description}}</b>\n										   \n										  </div>\n										</custom-marker>\n									  </ngui-map>\n						</div>\n					</div>\n				</div>\n				<!-- Photo Card -->\n				<div class="photoCard detailsCard">\n					<div class="verticalSpace"></div>\n					<div class="detailsCardHeader">\n						<div class="detailsCardHeaderLeftText">Photos</div>\n						<div class="detailsCardHeaderButton">\n							<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="selectPhotos()">\n						</div>\n						<div class="scDividerCards" style="margin-left:12px;">\n						\n						</div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText">Add photos, bring back memories when you search</div>\n					</div>\n				</div>\n				<!-- Notes Card -->\n				<div class="notesCard detailsCard" style="height:205px" (tap)="clickEditNotes()">\n					<div class="verticalSpace" (tap)="clickEditNotes()"></div>\n					<div class="detailsCardHeader" (tap)="clickEditNotes()">\n						<div class="detailsCardHeaderLeftText" (tap)="clickEditNotes()">Notes</div>\n						<div class="scDividerCards" style="margin-left:12px;" (tap)="clickEditNotes()"></div>\n					</div>\n					<div class="detailsCardContent">\n						<div class="detailsCardTipText" (tap)="clickEditNotes()">\n							<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText">Type here, seperate with commas, search with tags</span>\n							<textarea #transDetailNotes id="transDetailNotes" type="text"\n							 class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>\n						</div>\n					</div>\n				</div>\n				<div style="height:40px">&nbsp;</div>\n			</div>\n		</div>\n	</div>\n\n\n\n</ion-content>'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]) === "function" && _l || Object])
     ], TransdetailPage);
@@ -350,7 +646,7 @@ var TransdetailPage = (function () {
 
 /***/ }),
 
-/***/ 263:
+/***/ 265:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -489,298 +785,22 @@ var TransdetailChatPage = (function () {
             selector: 'page-transdetail-chat',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail-chat/transdetail-chat.html"*/'<!--\n  Generated template for the TransactionDetailsChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  \n   \n      <div class="custom-navbar">\n        <div class="flex-row">\n          <button class="back" navPop>\n            <</button>\n              <h4 class="title">Chat @ {{chatName}}</h4>\n        </div>\n        \n      </div>\n    \n  \n  </ion-header>\n  \n  \n  <ion-content padding class="chat-window"  no-bounce overflow-scroll="true">\n\n   <div *ngFor="let chatMessage of chatMessages; let i = index">\n\n    <h6 class="date-stamp" *ngIf="shouldAddStamp(chatMessage,i)">\n      {{ getDateStamp(chatMessage.time)  |  amCalendar}} \n    </h6>\n\n    \n    <chat-message   [data]="chatMessage"></chat-message>\n\n    </div>\n\n\n<div id="myScrollLabel" style="height:10px">&nbsp;</div>\n\n\n\n    <div class="chat-bar-container">\n      <textarea [(ngModel)]="message" placeholder="Write your message .."></textarea>\n      <button class="send" (click)="sendMessage(message,\'text\')" [attr.disabled]="message.length? null: true"> \n         <img src="assets/imgs/send_on.png" *ngIf="message.length">\n         <img src="assets/imgs/send_off.png " *ngIf="!message.length">\n      </button>\n    </div>\n  \n  </ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/transdetail/transdetail-chat/transdetail-chat.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_chat_service_chat_service__["a" /* ChatServiceProvider */]])
     ], TransdetailChatPage);
     return TransdetailChatPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=transdetail-chat.js.map
 
 /***/ }),
 
-/***/ 375:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectPhotosPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__ = __webpack_require__(376);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the SelectPhotosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SelectPhotosPage = (function () {
-    function SelectPhotosPage(navCtrl, navParams, photoLibrary, changeRef, sanitizer) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.photoLibrary = photoLibrary;
-        this.changeRef = changeRef;
-        this.sanitizer = sanitizer;
-        this.images = [];
-        this.gallaryImages = null;
-        this.page = 0;
-        this.chunk = 30;
-        this.isLoading = true;
-        this.callback = this.navParams.data.callback;
-        /**
-      * TODO : remove this after testing
-      */
-        /* this.images = new Array(100).fill({
-           creationDate:Date.now(),
-           thumbnailURL: "https://placeholdit.co//i/71x76?&bg=9b9b9b"
-         }).map((img,index,arr)=>{
-           img.index = index;
-           return img
-         }) */
-        this.listNotEmpty = false;
-        var opts = {};
-        opts.thumbnailHeight = 76;
-        opts.thumbnailWidth = 71;
-        opts.includeAlbumData = true;
-        this.photoLibrary.requestAuthorization().then(function () {
-            _this.photoLibrary.getLibrary(opts).subscribe({
-                next: function (library) {
-                    /* library.forEach(function(libraryItem) {
-                       console.log(libraryItem.id);          // ID of the photo
-                       console.log(libraryItem.photoURL);    // Cross-platform access to photo
-                       console.log(libraryItem.thumbnailURL);// Cross-platform access to thumbnail
-                       console.log(libraryItem.fileName);
-                       console.log(libraryItem.width);
-                       console.log(libraryItem.height);
-                       console.log(libraryItem.creationDate);
-                       console.log(libraryItem.latitude);
-                       console.log(libraryItem.longitude);
-                       console.log(libraryItem.albumIds);    // array of ids of appropriate AlbumItem, only of includeAlbumsData was used
-                     });*/
-                    _this.gallaryImages = library.sort(function (a, b) {
-                        return new Date(a.creationDate) >= new Date(b.creationDate) ? -1 : 1;
-                    });
-                    _this.gallaryImages.slice(_this.page * _this.chunk, (_this.page + 1) * _this.chunk).map(function (img) {
-                        var imjObj = {
-                            thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
-                            fileName: img.fileName,
-                            id: img.id,
-                            creationDate: img.creationDate,
-                            index: _this.images.length,
-                            selected: false
-                        };
-                        // sanitize the urls before pushing 
-                        _this.images.push(imjObj);
-                    });
-                    console.log(_this.images);
-                    _this.page += 1;
-                    _this.isLoading = false;
-                    _this.changeRef.detectChanges();
-                },
-                error: function (err) { console.log('could not get photos'); },
-                complete: function () { console.log('done getting photos'); }
-            });
-        })
-            .catch(function (err) { return console.log('permissions weren\'t granted'); });
-    }
-    SelectPhotosPage.prototype.doInfinite = function (infiniteScroll) {
-        var _this = this;
-        this.gallaryImages.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map(function (img) {
-            var imjObj = {
-                thumbnailURL: _this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
-                fileName: img.fileName,
-                id: img.id,
-                creationDate: img.creationDate,
-                index: _this.images.length
-            };
-            // sanitize the urls before pushing 
-            _this.images.push(imjObj);
-        });
-        infiniteScroll.complete();
-        this.page += 1;
-        this.changeRef.detectChanges();
-    };
-    SelectPhotosPage.prototype.shouldAddStamp = function (img) {
-        if (this.images.length >= 2 && img.index != 0)
-            return !this.sameDay(img.creationDate, this.images[img.index - 1].creationDate);
-        else
-            return true;
-    };
-    SelectPhotosPage.prototype.select = function (index) {
-        this.images[index].selected = true;
-        this.checkListEmpty();
-        this.changeRef.detectChanges();
-    };
-    SelectPhotosPage.prototype.unselect = function (index) {
-        this.images[index].selected = false;
-        this.checkListEmpty();
-        this.changeRef.detectChanges();
-    };
-    // get actual iamges
-    SelectPhotosPage.prototype.getPhotos = function () {
-        var _this = this;
-        var selectedPhotos = this.images.filter(function (i) { return i.selected; });
-        // fetch photos from the ionic native 
-        Promise.all(selectedPhotos.map(function (sp) {
-            return _this.photoLibrary.getPhoto(sp.id);
-        })).then(function (photos) {
-            // convert ehe bolbs to data urls :
-            console.log("photso fetched", photos);
-            _this.callback(photos).then(function () {
-                _this.navCtrl.pop();
-            });
-        });
-    };
-    SelectPhotosPage.prototype.checkListEmpty = function () {
-        this.listNotEmpty = this.images.filter(function (i) { return i.selected; }).length ? true : false;
-    };
-    SelectPhotosPage.prototype.sameDay = function (date1, date2) {
-        var d1 = new Date(date1);
-        var d2 = new Date(date2);
-        return d1.getFullYear() === d2.getFullYear() &&
-            d1.getMonth() === d2.getMonth() &&
-            d1.getDate() === d2.getDate();
-    };
-    SelectPhotosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SelectPhotosPage');
-    };
-    SelectPhotosPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-select-photos',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/select-photos/select-photos.html"*/'<!--\n  Generated template for the SelectPhotosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n          <h4 class="title">Add photos</h4>\n    </div>\n    \n  </div>\n\n</ion-header>\n\n\n<ion-content padding>\n  \n  <div class="vertical-align" *ngIf="isLoading">\n    <div class="center-align">\n    <ion-spinner></ion-spinner>\n    </div>\n  </div>\n\n  <ion-list *ngFor="let img of images; let i = index">\n        \n        <h6 class="date-stamp" *ngIf="shouldAddStamp(img,i)">\n\n        {{ img.creationDate |  amParse:\'DD/MM/YYYY\' | amDateFormat:\'LL\'}}\n      </h6>\n      <br *ngIf="shouldAddStamp(img,i)">\n    \n      <div class="thumbnail">\n        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">\n            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>\n        </div>\n      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>\n      </div>  \n    \n    </ion-list>  \n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n\n    <div class="continue-button" *ngIf="listNotEmpty">\n      <button class="continue" (click)="getPhotos()">Done</button>\n  </div>\n \n  \n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/select-photos/select-photos.html"*/,
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__["a" /* PhotoLibrary */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_photo_library__["a" /* PhotoLibrary */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _e || Object])
-    ], SelectPhotosPage);
-    return SelectPhotosPage;
-    var _a, _b, _c, _d, _e;
-}());
-
-//# sourceMappingURL=select-photos.js.map
-
-/***/ }),
-
-/***/ 377:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SendLocationPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngui_map__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__ = __webpack_require__(380);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the SendLocationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SendLocationPage = (function () {
-    function SendLocationPage(platform, navCtrl, navParams, changeDetector, render, geo) {
-        var _this = this;
-        this.platform = platform;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.changeDetector = changeDetector;
-        this.render = render;
-        this.geo = geo;
-        this.address = {};
-        this.center = "";
-        this.canContinue = false;
-        this.selectedPlace = null;
-        platform.ready().then(function () {
-            geo.getCurrentPosition().then(function (loc) {
-                console.log("user location", loc);
-                _this.center = {
-                    lat: loc.coords.latitude,
-                    lng: loc.coords.longitude
-                };
-            })
-                .catch(function (err) {
-                _this.err = err;
-            });
-        });
-    }
-    SendLocationPage.prototype.placeChanged = function (place) {
-        if (place.description) {
-            this.center = place.description;
-            this.address = place.description;
-            this.selectedPlace = place;
-            this.canContinue = true;
-        }
-        else {
-            this.center = "";
-            this.address = "";
-            this.selectedPlace = null;
-            this.canContinue = false;
-        }
-        this.changeDetector.detectChanges();
-    };
-    SendLocationPage.prototype.ngAfterViewInit = function () {
-        this.render.invokeElementMethod(this.searchBar.input.nativeElement, 'focus', []);
-    };
-    SendLocationPage.prototype.confirm = function () {
-        // send back the current location
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('searchBar'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_4__components_places_auto_complete_places_auto_complete__["a" /* PlacesAutoCompleteComponent */])
-    ], SendLocationPage.prototype, "searchBar", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__ngui_map__["b" /* NguiMapComponent */])
-    ], SendLocationPage.prototype, "map", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('marker'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__ngui_map__["a" /* CustomMarker */])
-    ], SendLocationPage.prototype, "marker", void 0);
-    SendLocationPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-send-location',template:/*ion-inline-start:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/'<!--\n  Generated template for the SendLocationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <div class="custom-navbar">\n    <div class="flex-row">\n      <button class="back" navPop>\n        <</button>\n        <div class="search-bar" placeholder="Enter location name or address">\n          \n          <places-auto-complete [center]="center" (placeChanged)="placeChanged($event)" #searchBar ></places-auto-complete>\n        </div>\n    </div>\n    \n  </div>\n{{err|json}}\n</ion-header>\n\n\n<ion-content padding>\n    <ngui-map [center]="center" [fullscreenControl]="false" [disableDefaultUI]="true" #map>\n        <custom-marker [position]="center" #marker>\n          <div>\n            <img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />\n            <b>{{center}}</b>\n           \n          </div>\n        </custom-marker>\n      </ngui-map>\n    \n    \n      <div class="continue-button" *ngIf="canContinue">\n        <button class="continue" (click)="confirm()">Done</button>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/amangupta/indiez/tllr/src/pages/send-location/send-location.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
-    ], SendLocationPage);
-    return SendLocationPage;
-}());
-
-//# sourceMappingURL=send-location.js.map
-
-/***/ }),
-
-/***/ 380:
+/***/ 379:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlacesAutoCompleteComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -902,26 +922,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(559);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_transdetail_transdetail__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_picker_location_picker__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_select_contacts_select_contacts__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngui_map__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_transdetail_transdetail__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_picker_location_picker__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_select_contacts_select_contacts__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngui_map__ = __webpack_require__(378);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify__ = __webpack_require__(857);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_emojify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_emojify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_transdetail_transdetail_chat_transdetail_chat__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_transdetail_transdetail_chat_transdetail_chat__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_transdetail_transdetail_chat_chat_message_chat_message__ = __webpack_require__(862);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(375);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_send_location_send_location__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_select_photos_select_photos__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_send_location_send_location__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_ng_socket_io__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment__ = __webpack_require__(863);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_angular2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_photo_library__ = __webpack_require__(376);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_geolocation__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_photo_library__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_geolocation__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_components_module__ = __webpack_require__(867);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1019,9 +1039,9 @@ var AppModule = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(261);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1064,9 +1084,9 @@ var MyApp = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng_socket_io___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng_socket_io__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1433,7 +1453,7 @@ webpackContext.id = 864;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__avatar_avatar__ = __webpack_require__(868);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__places_auto_complete_places_auto_complete__ = __webpack_require__(380);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__places_auto_complete_places_auto_complete__ = __webpack_require__(379);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

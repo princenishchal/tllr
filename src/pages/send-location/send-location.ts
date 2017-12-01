@@ -23,6 +23,7 @@ export class SendLocationPage {
   code: string;
   err: any;
   canContinue = false;
+  private callback:any;
   private selectedPlace: any = null;
   @ViewChild('searchBar') searchBar: PlacesAutoCompleteComponent;
   @ViewChild('map') map: NguiMapComponent;
@@ -30,7 +31,10 @@ export class SendLocationPage {
 
   constructor(private platform: Platform, public navCtrl: NavController, public navParams: NavParams,  private changeDetector: ChangeDetectorRef, private render: Renderer, private geo:Geolocation) {
 
-    
+    // register the callback 
+    this.callback = navParams.data.callback;
+
+
     platform.ready().then(()=> {
       geo.getCurrentPosition().then((loc: Geoposition) => {
         console.log("user location", loc)
@@ -72,7 +76,11 @@ export class SendLocationPage {
   }
 
   confirm() {
-    // send back the current location
+    // send back the current 
+    this.callback(this.selectedPlace)
+        .then(()=>{
+          this.navCtrl.pop();
+        })
 
   }
 
