@@ -136,7 +136,7 @@
 						<div class="detailsCardHeaderLeftText">Location</div>
 						<div class="detailsCardHeaderButton">
 							<img class="detailsCardPlusBtn" *ngIf="!transactionDetails.location" src="assets/imgs/icn_add.png" (tap)="addLocation()">
-							<img class="detailsCardPlusBtn" *ngIf="transactionDetails.location" src="assets/imgs/icn_added.png" >
+							<img class="detailsCardPlusBtn" *ngIf="transactionDetails.location" src="assets/imgs/icn_added.png">
 						</div>
 						<div class="scDividerCards" style="margin-left:12px;"></div>
 					</div>
@@ -144,18 +144,18 @@
 						<div class="detailsCardTipText" *ngIf="!transactionDetails.location">Search easily with locations, add it now! </div>
 						<div class="detailsCardTipText" *ngIf="transactionDetails.location">
 							<div class="location-header">
-								<img class="detailsCardPlusBtn"  src="assets/imgs/icn_add.png" />
+								<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" />
 								<span>{{transactionDetails.location.description}}</span>
 							</div>
-								<ngui-map [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>
-										<custom-marker [position]="transactionDetails.location.description" #marker>
-										  <div>
-											<img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
-											<b>{{transactionDetails.location.description}}</b>
-										   
-										  </div>
-										</custom-marker>
-									  </ngui-map>
+							<ngui-map [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>
+								<custom-marker [position]="transactionDetails.location.description" #marker>
+									<div>
+										<img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
+										<b>{{transactionDetails.location.description}}</b>
+
+									</div>
+								</custom-marker>
+							</ngui-map>
 						</div>
 					</div>
 				</div>
@@ -168,11 +168,34 @@
 							<img class="detailsCardPlusBtn" src="assets/imgs/icn_add.png" (tap)="selectPhotos()">
 						</div>
 						<div class="scDividerCards" style="margin-left:12px;">
-						
+
 						</div>
 					</div>
 					<div class="detailsCardContent">
-						<div class="detailsCardTipText">Add photos, bring back memories when you search</div>
+						<div class="detailsCardTipText" *ngIf="!transactionDetails.photos">Add photos, bring back memories when you search</div>
+						<div class="detailsCardTipText" *ngIf="transactionDetails.photos">
+							<!-- when less than three images -->
+					
+							<div class="img-collection" *ngIf="transactionDetails.photos.length <=3">
+								<div class="photo-container" *ngFor="let photo of transactionDetails.photos">
+									<img [src]="photo" />
+									{{photo}}
+								</div>
+							</div>
+							<!-- when more than three images -->
+							<div class="img-collection" *ngIf="transactionDetails.photos.length >3">
+								<div *ngFor="let photo of transactionDetails.photos.slice(0,3); let i = index">
+									<div class="photo-container" *ngFor="let photo of transactionDetails.photos">
+										<img  [src]="photo" />
+										{{photo}}
+										<!-- cover image -->
+										<div class="image-count" *ngIf="i>3"> 
+											+ {{ transactionDetails.photos.length }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!-- Notes Card -->
@@ -185,8 +208,8 @@
 					<div class="detailsCardContent">
 						<div class="detailsCardTipText" (tap)="clickEditNotes()">
 							<span #transDetailNotesSpan id="transDetailNotesSpan" class="detailsCardTipText">Type here, seperate with commas, search with tags</span>
-							<textarea #transDetailNotes id="transDetailNotes" type="text"
-							 class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)" (blur)="saveNotes()"></textarea>
+							<textarea #transDetailNotes id="transDetailNotes" type="text" class="detailsCardNotesEditInput" style="display:none" (keyup)="handleKeyUpForEditNotes($event)"
+							 (blur)="saveNotes()"></textarea>
 						</div>
 					</div>
 				</div>

@@ -85,6 +85,7 @@ export class SelectPhotosPage {
 
             let imjObj = {
               thumbnailURL: this.sanitizer.bypassSecurityTrustUrl(img.thumbnailURL),
+              photoUrl:this.sanitizer.bypassSecurityTrustUrl(img.photoURL),
               fileName: img.fileName,
               id: img.id,
               creationDate: img.creationDate,
@@ -167,9 +168,20 @@ export class SelectPhotosPage {
         return this.photoLibrary.getPhoto(sp.id)
       })
     ).then(photos => {
-     
-          console.log("photso fetched", photos);
-          this.callback(photos).then(() => {
+      
+        // send back selected photos with local urls 
+        
+       let imagestoReurn = selectedPhotos.map((sp,i)=>{
+
+         return {
+          src: sp.photoUrl,
+          blob: photos[i] 
+         };
+
+        })
+
+          console.log("photso fetched", imagestoReurn);
+          this.callback(imagestoReurn).then(() => {
             this.navCtrl.pop()
           })
 

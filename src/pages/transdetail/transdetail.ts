@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, Renderer2, NgZone} from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, Renderer2, NgZone, ChangeDetectorRef} from '@angular/core';
 import { NavController, NavParams, AlertController, Platform, Events } from 'ionic-angular';
 
 /**
@@ -32,7 +32,9 @@ export class TransdetailPage {
 	@ViewChild('chatsDetailBlock') chatsDetailBlock:ElementRef;
 	@ViewChild('tagFriendsDivBlock') tagFriendsDivBlock:ElementRef;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public renderer: Renderer2) {
+	constructor(private ref:ChangeDetectorRef,   public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public renderer: Renderer2) {
+
+
 	}
 
 	ionViewDidLoad() {
@@ -43,10 +45,23 @@ export class TransdetailPage {
 	selectPhotos(){
 		this.navCtrl.push(SelectPhotosPage,{
 			callback:(photos)=>{
+				
+				return new Promise((resolve,reject)=>{
+
 			
+				let photostoUpload = photos.map(p=>{
+					return p.blob
+				});
+
+
+				this.transactionDetails.photos = photos.map(p=> {
+					return	p.src
+				});
 				//TODO: upload images and then show them in the images.
 				
-
+				resolve();
+				this.ref.detectChanges();
+			})
 			}
 		})
 	}
