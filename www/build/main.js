@@ -302,14 +302,9 @@ var TransdetailPage = (function () {
     };
     // pushes the add photos page with a call back to do processing after the photos have been collected
     TransdetailPage.prototype.selectPhotos = function () {
-        var _this = this;
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__select_photos_select_photos__["a" /* SelectPhotosPage */], {
             callback: function (photos) {
-                return new Promise(function (resolve, reject) {
-                    debugger;
-                    _this.transactionDetails.photos = photos;
-                    resolve();
-                });
+                //TODO: upload images and then show them in the images.
             }
         });
     };
@@ -644,12 +639,9 @@ var SelectPhotosPage = (function () {
             return _this.photoLibrary.getPhoto(sp.id);
         })).then(function (photos) {
             // convert ehe bolbs to data urls :
-            Promise.all(photos.map(function (p) { return _this.blobToDataURL(p); }))
-                .then(function (urlcoll) {
-                console.log("photso fetched", photos);
-                _this.callback(urlcoll).then(function () {
-                    _this.navCtrl.pop();
-                });
+            console.log("photso fetched", photos);
+            _this.callback(photos).then(function () {
+                _this.navCtrl.pop();
             });
         });
     };
@@ -665,14 +657,6 @@ var SelectPhotosPage = (function () {
     };
     SelectPhotosPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad SelectPhotosPage');
-    };
-    SelectPhotosPage.prototype.blobToDataURL = function (blob) {
-        return new Promise(function (resolve, reject) {
-            var a = new FileReader();
-            a.onload = function (e) { resolve(e.target.result); };
-            a.onerror = function (e) { reject(e); };
-            a.readAsDataURL(blob);
-        });
     };
     SelectPhotosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({

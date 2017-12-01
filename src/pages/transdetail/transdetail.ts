@@ -7,6 +7,7 @@ import { NavController, NavParams, AlertController, Platform, Events } from 'ion
 import {TransdetailChatPage} from './transdetail-chat/transdetail-chat';
 import {SendLocationPage} from '../send-location/send-location'
 import {SelectPhotosPage} from '../select-photos/select-photos';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'page-transdetail',
@@ -41,15 +42,15 @@ export class TransdetailPage {
 	selectPhotos(){
 		this.navCtrl.push(SelectPhotosPage,{
 			callback:(photos)=>{
-				return new Promise((resolve,reject)=>{
-					debugger;
-					this.transactionDetails.photos = photos;
-					resolve();
-				})
+			
+				//TODO: upload images and then show them in the images.
+				
 
 			}
 		})
 	}
+
+
 
 
 

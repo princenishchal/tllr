@@ -169,14 +169,14 @@ export class SelectPhotosPage {
     ).then(photos => {
       // convert ehe bolbs to data urls :
 
-      Promise.all(photos.map(p => this.blobToDataURL(p)))
-        .then(urlcoll => {
+     
+       
           console.log("photso fetched", photos);
-          this.callback(urlcoll).then(() => {
+          this.callback(photos).then(() => {
             this.navCtrl.pop()
           })
 
-        })
+      
     })
 
   }
@@ -200,15 +200,7 @@ export class SelectPhotosPage {
     console.log('ionViewDidLoad SelectPhotosPage');
   }
 
-  private blobToDataURL(blob) {
-    return new Promise((resolve, reject) => {
-      var a = new FileReader();
-      a.onload = (e: any) => { resolve(e.target.result); }
-      a.onerror = (e) => { reject(e) };
-      a.readAsDataURL(blob);
-    })
-
-  }
+ 
 
 
 }
