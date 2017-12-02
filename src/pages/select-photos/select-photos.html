@@ -37,7 +37,7 @@
     
       <div class="thumbnail">
         <div class="overlay" *ngIf="img.selected"  (tap)="unselect(img.index)">
-            <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>
+            <img class="check-mark" src="assets/imgs/icn_check_mark_white.png"/>
         </div>
       <img class="image" [src]="img.thumbnailURL" (tap)="select(img.index)"/>
       </div>  

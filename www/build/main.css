@@ -26079,6 +26079,11 @@ page-select-photos .thumbnail .overlay {
   z-index: 2;
 }
 
+page-select-photos .thumbnail .overlay .check-mark {
+  width: 25px;
+  height: 18px;
+}
+
 page-select-photos .thumbnail .image {
   width: inherit;
   height: inherit;
