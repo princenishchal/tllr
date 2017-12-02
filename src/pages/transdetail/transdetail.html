@@ -178,26 +178,26 @@
 					
 							<div class="img-collection" *ngIf="transactionDetails.photos.length ==1">
 									<div class="photo-container" *ngFor="let photo of transactionDetails.photos">
-										<img [src]="photo" />
+										<img [src]="photo" (click)="previewImages(transactionDetails.photos,0)" />
 									
 									</div>
 								</div>
 							<!-- when less than three images -->
 					
-							<div class="img-collection" *ngIf="transactionDetails.photos.length >1 ">
+							<div class="img-collection" *ngIf="transactionDetails.photos.length >1 ; let i = index">
 								<div class="album">
-									<div class="first-img-container">
+									<div class="first-img-container" (click)="previewImages(transactionDetails.photos,0)">
 										<img [src]="transactionDetails.photos[0]" />
 									</div>
 									<div class="second-img-container">
-										<div class="img-1">
+										<div class="img-1" (click)="previewImages(transactionDetails.photos,1)">
 												<img [src]="transactionDetails.photos[1]" />
 										</div>
 										<div class="img-2" *ngIf="transactionDetails.photos.length >=3">
-												<div class="overlay">
+												<div class="overlay" (click)="previewImages(transactionDetails.photos,0)" *ngIf="transactionDetails.photos.length >3">
 														+{{transactionDetails.photos.length-3}}
 													</div>
-												<img [src]="transactionDetails.photos[2]" />
+												<img [src]="transactionDetails.photos[2]" (click)="previewImages(transactionDetails.photos,2)"/>
 												
 										</div>
 									</div>

@@ -19,6 +19,7 @@ import { TransdetailChatPage } from '../pages/transdetail/transdetail-chat/trans
 import { ChatMessageComponent } from '../pages/transdetail/transdetail-chat/chat-message/chat-message';
 import { SelectPhotosPage} from '../pages/select-photos/select-photos';
 import {SendLocationPage} from '../pages/send-location/send-location';
+import {ImagePreviewPage} from '../pages/image-preview/image-preview';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 import {MomentModule} from 'angular2-moment';
 import {PhotoLibrary} from '@ionic-native/photo-library';
@@ -43,6 +44,7 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     ChatMessageComponent,
     SelectPhotosPage,
     SendLocationPage,
+    ImagePreviewPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     TransdetailChatPage,
     ChatMessageComponent,
     SelectPhotosPage,
-    SendLocationPage
+    SendLocationPage,
+    ImagePreviewPage
   ],
   providers: [
     StatusBar,

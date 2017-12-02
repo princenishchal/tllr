@@ -7,6 +7,7 @@ import { NavController, NavParams, AlertController, Platform, Events } from 'ion
 import {TransdetailChatPage} from './transdetail-chat/transdetail-chat';
 import {SendLocationPage} from '../send-location/send-location'
 import {SelectPhotosPage} from '../select-photos/select-photos';
+import {ImagePreviewPage} from '../image-preview/image-preview';
 import {Observable} from 'rxjs';
 
 
@@ -79,6 +80,14 @@ export class TransdetailPage {
 				 resolve();
 				})
 			}
+		})
+	}
+
+
+	previewImages(images,startAt){
+		this.navCtrl.push(ImagePreviewPage,{
+			images:images,
+			startAt:startAt
 		})
 	}
 
