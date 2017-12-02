@@ -26602,6 +26602,20 @@ page-transdetail .location-header span {
   display: block;
 }
 
+page-transdetail .photos-header img {
+  float: left;
+  width: 20px;
+  height: 15px;
+}
+
+page-transdetail .photos-header span {
+  font-size: 14px;
+  color: #a5adb7;
+  padding-left: 30px;
+  width: auto;
+  display: block;
+}
+
 page-transdetail ngui-map {
   min-width: 295px;
   min-height: 218px;

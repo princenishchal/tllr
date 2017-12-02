@@ -308,6 +308,21 @@ page-transdetail {
 		}
 	}	
 
+	.photos-header{
+		img{
+			float:left;
+			width:20px;
+			height:15px;
+		}
+		span{
+			font-size: 14px;
+			color:#a5adb7;
+			padding-left:30px;
+			width:auto;
+			display: block;
+		}
+	}	
+
 	ngui-map{
 		min-width: 295px;
 		min-height: 218px;

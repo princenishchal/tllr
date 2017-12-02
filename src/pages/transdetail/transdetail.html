@@ -174,6 +174,10 @@
 					<div class="detailsCardContent">
 						<div class="detailsCardTipText" *ngIf="!transactionDetails.photos">Add photos, bring back memories when you search</div>
 						<div class="detailsCardTipText" *ngIf="transactionDetails.photos">
+								<div class="photos-header">
+										<img class="detailsCardPlusBtn" src="assets/imgs/icn_photos.png" />
+										<span>{{transactionDetails.photos.length}} photos</span>
+									</div>
 							<!-- when just one image-->
 					
 							<div class="img-collection" *ngIf="transactionDetails.photos.length ==1">
