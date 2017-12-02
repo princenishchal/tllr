@@ -17,15 +17,25 @@ import { Slide } from 'ionic-angular/components/slides/slide';
 export class ImagePreviewPage {
  images:any[];
  private startAt:number;
+ title:string= "";
+ currentSlide:number;
 
  @ViewChild('slider') slider :Slides;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.images = navParams.data.images;
     this.startAt = navParams.data.startAt;
+    this.title = navParams.data.title;
+    this.currentSlide = this.startAt+1;
+
+    
+    
 
   }
 
-  
+  onSlideChange(val){
+    
+    this.currentSlide = this.slider.getActiveIndex()+1;
+  }
 
 }

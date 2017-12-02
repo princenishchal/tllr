@@ -25790,6 +25790,34 @@ page-image-preview .custom-navbar h4.title {
   color: #5a7f8e;
 }
 
+page-image-preview .pager {
+  position: absolute;
+  bottom: 0;
+  color: black;
+  z-index: 100;
+  display: block;
+  width: 100%;
+  text-align: center;
+  left: 0;
+}
+
+page-image-preview .pager span {
+  font-size: 20px;
+  text-align: center;
+  color: #5a7f8e;
+  font-size: 18px;
+  font-family: 'KGAlwaysAGoodTime';
+  padding: 10px 20px;
+  background: white;
+  border-radius: 20px;
+}
+
+page-location-picker .custom-navbar .back {
+  font-size: 40.5px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
 page-location-picker .scroll-content {
   padding: 0 !important;
 }
@@ -25888,6 +25916,12 @@ page-select-contacts .flex-center {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+page-select-contacts .custom-navbar .back {
+  font-size: 40.5px;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 
 page-select-contacts .fixed-content {

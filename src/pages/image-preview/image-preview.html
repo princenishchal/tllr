@@ -9,7 +9,7 @@
     <div class="flex-row">
       <button class="back" navPop>
         <</button>
-          <h4 class="title">&nbsp;</h4>
+          <h4 class="title">Photos @ {{title}}</h4>
     </div>
     
   </div>
@@ -17,11 +17,15 @@
 
 
 <ion-content padding>
-  <ion-slides #slider [initialSlide]="startAt">
+  <ion-slides #slider [initialSlide]="startAt" (ionSlideDidChange)="onSlideChange()">
     <ion-slide *ngFor="let img of images">
       <img [src]="img"/>
     </ion-slide>
   
   </ion-slides>
-  
+  <p class="pager">
+    <span>
+    {{currentSlide}}/{{this.images.length}}
+    </span> 
+  </p>
 </ion-content>

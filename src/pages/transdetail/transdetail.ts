@@ -87,7 +87,8 @@ export class TransdetailPage {
 	previewImages(images,startAt){
 		this.navCtrl.push(ImagePreviewPage,{
 			images:images,
-			startAt:startAt
+			startAt:startAt,
+			title:"chic-fill-a"
 		})
 	}
 
