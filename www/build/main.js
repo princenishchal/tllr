@@ -34,8 +34,10 @@ var SelectContactsPage = (function () {
         this.domsanitizer = domsanitizer;
         this.contacts = [];
         this.listNotEmpty = false;
+        this.searchResults = [];
         this.page = 0;
         this.chunk = 30;
+        this.search = null;
         this.isLoading = true;
         this.address = navParams.data; // just keep the data here
     }
@@ -46,15 +48,25 @@ var SelectContactsPage = (function () {
             navigator.contactsPhoneNumbers.list(function (contacts) {
                 _this.contacts = [];
                 // sort in asc
-                _this.allContacts = contacts.sort(function (a, b) { return a.displayName >= b.displayName ? 1 : -1; });
+                _this.allContacts = contacts.sort(function (a, b) { return a.displayName >= b.displayName ? 1 : -1; }).map(function (ac, i) {
+                    return {
+                        idx: i,
+                        id: ac.id,
+                        picture: ac.thumbnail ? _this.domsanitizer.bypassSecurityTrustUrl(ac.thumbnail) : null,
+                        phone: ac.phoneNumbers[0].normalizedNumber,
+                        name: ac.displayName,
+                        selected: false
+                    };
+                });
                 _this.allContacts.slice(_this.page * _this.chunk, (_this.page + 1) * _this.chunk).map(function (contact, i) {
                     _this.contacts.push({
-                        idx: i,
+                        idx: contact.idx,
+                        idy: i,
                         id: contact.id,
                         picture: contact.thumbnail ? _this.domsanitizer.bypassSecurityTrustUrl(contact.thumbnail) : null,
-                        phone: contact.phoneNumbers[0].normalizedNumber,
-                        name: contact.displayName,
-                        selected: false
+                        phone: contact.phone,
+                        name: contact.name,
+                        selected: contact.selected
                     });
                 });
                 _this.page += 1;
@@ -65,13 +77,31 @@ var SelectContactsPage = (function () {
                 console.error(error);
             });
     };
-    SelectContactsPage.prototype.selectContact = function (index) {
-        this.contacts[index].selected = true;
+    SelectContactsPage.prototype.selectContact = function (idx, idy) {
+        var _this = this;
+        this.allContacts[idx].selected = true;
+        if (idy && this.contacts[idy])
+            this.contacts[idy].selected = true;
+        else {
+            this.contacts.map(function (c, i) {
+                if (c.idx == idx)
+                    _this.contacts[i].selected = true;
+            });
+        }
         this.isListEmpty();
         this.changeRef.detectChanges();
     };
-    SelectContactsPage.prototype.removeContact = function (index) {
-        this.contacts[index].selected = false;
+    SelectContactsPage.prototype.removeContact = function (idx, idy) {
+        var _this = this;
+        this.allContacts[idx].selected = false;
+        if (idy && this.contacts[idy])
+            this.contacts[idy].selected = false;
+        else {
+            this.contacts.map(function (c, i) {
+                if (c.idx == idx)
+                    _this.contacts[i].selected = false;
+            });
+        }
         this.isListEmpty();
         this.changeRef.detectChanges();
     };
@@ -91,21 +121,31 @@ var SelectContactsPage = (function () {
         var _this = this;
         this.allContacts.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map(function (contact, i) {
             _this.contacts.push({
-                idx: i,
+                idx: contact.idx,
+                idy: i,
                 id: contact.id,
                 picture: contact.thumbnail ? _this.domsanitizer.bypassSecurityTrustUrl(contact.thumbnail) : null,
-                phone: contact.phoneNumbers[0].normalizedNumber,
-                name: contact.displayName,
-                selected: false
+                phone: contact.phone,
+                name: contact.name,
+                selected: contact.selected
             });
         });
         infiniteScroll.complete();
         this.page += 1;
         this.changeRef.detectChanges();
     };
+    SelectContactsPage.prototype.searchEmployee = function (name) {
+        this.searchResults = name ? this.allContacts.filter(function (c) { return c.name.indexOf(name) > -1; }) || [] : [];
+    };
+    SelectContactsPage.prototype.addFromSearch = function (contact) {
+        this.searchResults = [];
+        this.search = null;
+        // mark as selected in all contacts 
+        this.selectContact(contact.idx, contact.idy || null);
+    };
     SelectContactsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-select-contacts',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-contacts\select-contacts.html"*/'<!--\n\n  Generated ng-template for the SelectContactsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <div class="custom-navbar">\n\n        <div class="flex-row">\n\n          <button class="back" navPop>\n\n            <</button>\n\n              <h4 class="title">invite employees</h4>\n\n        </div>\n\n       \n\n      </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <div class="flex-center">\n\n    <img src="assets/imgs/emoji_hi.png" class="title-image"/>\n\n  </div>\n\n\n\n  <div class="flex-center">\n\n    <input class="searchbar" placeholder="search employees" />\n\n  </div>\n\n\n\n  <div class="selected-employees">\n\n    <h6>selected employees</h6>\n\n    <p class="no-selection" *ngIf="!listNotEmpty">you haven’t selected anyone yet</p>\n\n\n\n    <span  *ngFor="let contact of contacts">\n\n    <div class="contact-card" *ngIf="contact.selected">\n\n        <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n\n\n        <div class="info">\n\n          <h4>{{contact.name}}</h4>\n\n          <p>{{contact.phone}}</p>\n\n        </div>\n\n        \n\n        <div class="controls">\n\n            <button  class="delete" (click)="removeContact(contact.idx)">Delete</button>\n\n        </div>\n\n    </div>\n\n  </span> \n\n    \n\n  </div>\n\n\n\n  <div class="existing-employees">\n\n      <h6>Employees on Teller</h6>\n\n\n\n      <!-- dummy contact card \n\n\n\n      <div class="contact-card" >\n\n          <img class="avatar" src="https://placeholdit.co//i/26x26?">\n\n\n\n          <div class="info">\n\n            <h4>aman gupta</h4>\n\n            <p>9717748633</p>\n\n          </div>\n\n          \n\n          <div class="controls">\n\n            <button  class="add">Add</button>\n\n            \n\n          </div>\n\n      </div>\n\n   dummy card ends -->\n\n      <span  *ngFor="let contact of contacts">\n\n      <div class="contact-card" *ngIf="!contact.selected" >\n\n          <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n          <div class="info">\n\n            <h4>{{contact.name}}</h4>\n\n            <p>{{contact.phone}}</p>\n\n          </div>\n\n          \n\n          <div class="controls">\n\n            <button  class="add" (click)="selectContact(contact.idx)">Add</button>\n\n            \n\n          </div>\n\n      </div>\n\n    </span>\n\n\n\n    \n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n\n\n  </div>\n\n\n\n  <div class="continue-button" *ngIf="listNotEmpty">\n\n      <button class="continue" (click)="confirm()">continue</button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-contacts\select-contacts.html"*/,
+            selector: 'page-select-contacts',template:/*ion-inline-start:"C:\Users\amang\indiez\tllr\src\pages\select-contacts\select-contacts.html"*/'<!--\n\n  Generated ng-template for the SelectContactsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <div class="custom-navbar">\n\n        <div class="flex-row">\n\n          <button class="back" navPop>\n\n            <</button>\n\n              <h4 class="title">invite employees</h4>\n\n        </div>\n\n       \n\n      </div>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <div class="flex-center">\n\n    <img src="assets/imgs/emoji_hi.png" class="title-image"/>\n\n  </div>\n\n\n\n  <div class="flex-center">\n\n    <input class="searchbar" [(ngModel)]="search" placeholder="search employees" (input)="searchEmployee(search)" />\n\n    <ul class="search-results" *ngIf="searchResults.length!=0">\n\n      <li *ngFor="let item of searchResults" (tap)="addFromSearch(item)" >{{item.name}}</li>\n\n    </ul>\n\n  </div>\n\n\n\n  <div class="selected-employees">\n\n    <h6>selected employees</h6>\n\n    <p class="no-selection" *ngIf="!listNotEmpty">you haven’t selected anyone yet</p>\n\n\n\n    <span  *ngFor="let contact of allContacts">\n\n    <div class="contact-card" *ngIf="contact.selected">\n\n        <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n\n\n        <div class="info">\n\n          <h4>{{contact.name}}</h4>\n\n          <p>{{contact.phone}}</p>\n\n        </div>\n\n        \n\n        <div class="controls">\n\n            <button  class="delete" (click)="removeContact(contact.idx,contact.idy)">Delete</button>\n\n        </div>\n\n    </div>\n\n  </span> \n\n    \n\n  </div>\n\n\n\n  <div class="existing-employees">\n\n      <h6>Employees on Teller</h6>\n\n\n\n      <!-- dummy contact card \n\n\n\n      <div class="contact-card" >\n\n          <img class="avatar" src="https://placeholdit.co//i/26x26?">\n\n\n\n          <div class="info">\n\n            <h4>aman gupta</h4>\n\n            <p>9717748633</p>\n\n          </div>\n\n          \n\n          <div class="controls">\n\n            <button  class="add">Add</button>\n\n            \n\n          </div>\n\n      </div>\n\n   dummy card ends -->\n\n      <span  *ngFor="let contact of contacts">\n\n      <div class="contact-card" *ngIf="!contact.selected" >\n\n          <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>\n\n          <div class="info">\n\n            <h4>{{contact.name}}</h4>\n\n            <p>{{contact.phone}}</p>\n\n          </div>\n\n          \n\n          <div class="controls">\n\n            <button  class="add" (click)="selectContact(contact.idx,contact.idy)">Add</button>\n\n            \n\n          </div>\n\n      </div>\n\n    </span>\n\n\n\n    \n\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">\n\n      <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n    </ion-infinite-scroll>\n\n\n\n  </div>\n\n\n\n  <div class="continue-button" *ngIf="listNotEmpty">\n\n      <button class="continue" (click)="confirm()">continue</button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\amang\indiez\tllr\src\pages\select-contacts\select-contacts.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]])
     ], SelectContactsPage);

@@ -19,8 +19,10 @@ export class SelectContactsPage {
   listNotEmpty: boolean = false;
   private infiniteScrollHandle: any;
   private allContacts: any[];
+  private searchResults:any[] = [];
   private page = 0;
   private chunk = 30;
+  search:string = null;
   isLoading: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private changeRef: ChangeDetectorRef, private domsanitizer: DomSanitizer) {
@@ -35,20 +37,33 @@ export class SelectContactsPage {
         this.contacts = [];
 
         // sort in asc
-        this.allContacts = contacts.sort((a, b) => a.displayName >= b.displayName ? 1 : -1)
+        this.allContacts = contacts.sort((a, b) => a.displayName >= b.displayName ? 1 : -1).map((ac,i)=>{
+          return {
+          
+            idx: i,
+            id: ac.id,
+            picture: ac.thumbnail ? this.domsanitizer.bypassSecurityTrustUrl(ac.thumbnail) : null,
+            phone: ac.phoneNumbers[0].normalizedNumber,
+            name: ac.displayName,
+            selected: false
+          }
+          
+        })
 
 
 
 
         this.allContacts.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map((contact, i) => {
 
+        
           this.contacts.push({
-            idx: i,
+            idx: contact.idx,
+            idy: i,
             id: contact.id,
             picture: contact.thumbnail ? this.domsanitizer.bypassSecurityTrustUrl(contact.thumbnail) : null,
-            phone: contact.phoneNumbers[0].normalizedNumber,
-            name: contact.displayName,
-            selected: false
+            phone: contact.phone,
+            name: contact.name,
+            selected: contact.selected
           });
 
         })
@@ -66,14 +81,26 @@ export class SelectContactsPage {
 
   }
 
-  selectContact(index) {
-    this.contacts[index].selected = true;
+  selectContact(idx,idy) {
+    this.allContacts[idx].selected = true;
+     if( idy && this.contacts[idy])  this.contacts[idy].selected = true;
+     else{
+       this.contacts.map((c,i)=>{
+         if(c.idx == idx)  this.contacts[i].selected = true;
+       })
+     }
     this.isListEmpty()
     this.changeRef.detectChanges();
   }
 
-  removeContact(index) {
-    this.contacts[index].selected = false;
+  removeContact(idx,idy) {
+    this.allContacts[idx].selected = false;
+    if( idy && this.contacts[idy]) this.contacts[idy].selected = false;
+    else{
+      this.contacts.map((c,i)=>{
+        if(c.idx == idx)  this.contacts[i].selected = false;
+      })
+    }
     this.isListEmpty();
     this.changeRef.detectChanges();
   }
@@ -97,12 +124,13 @@ export class SelectContactsPage {
     this.allContacts.slice(this.page * this.chunk, (this.page + 1) * this.chunk).map((contact, i) => {
       
                 this.contacts.push({
-                  idx: i,
+                  idx: contact.idx,
+                  idy:i,
                   id: contact.id,
                   picture: contact.thumbnail ? this.domsanitizer.bypassSecurityTrustUrl(contact.thumbnail) : null,
-                  phone: contact.phoneNumbers[0].normalizedNumber,
-                  name: contact.displayName,
-                  selected: false
+                  phone: contact.phone,
+                  name: contact.name,
+                  selected: contact.selected
                 });
       
               })
@@ -111,6 +139,19 @@ export class SelectContactsPage {
     this.page += 1;
 
     this.changeRef.detectChanges();
+  }
+
+  searchEmployee(name){
+    this.searchResults = name? this.allContacts.filter(c=>c.name.indexOf(name) > -1) || [] : [];
+  }
+
+  addFromSearch(contact){
+    this.searchResults = [];
+    this.search = null;
+    
+    // mark as selected in all contacts 
+    this.selectContact(contact.idx, contact.idy || null)
+
   }
 
 }

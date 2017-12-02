@@ -24,14 +24,17 @@
   </div>
 
   <div class="flex-center">
-    <input class="searchbar" placeholder="search employees" />
+    <input class="searchbar" [(ngModel)]="search" placeholder="search employees" (input)="searchEmployee(search)" />
+    <ul class="search-results" *ngIf="searchResults.length!=0">
+      <li *ngFor="let item of searchResults" (tap)="addFromSearch(item)" >{{item.name}}</li>
+    </ul>
   </div>
 
   <div class="selected-employees">
     <h6>selected employees</h6>
     <p class="no-selection" *ngIf="!listNotEmpty">you haven’t selected anyone yet</p>
 
-    <span  *ngFor="let contact of contacts">
+    <span  *ngFor="let contact of allContacts">
     <div class="contact-card" *ngIf="contact.selected">
         <avatar  [img]="contact.picture" [userName]="contact.name" ></avatar>
 
@@ -41,7 +44,7 @@
         </div>
         
         <div class="controls">
-            <button  class="delete" (click)="removeContact(contact.idx)">Delete</button>
+            <button  class="delete" (click)="removeContact(contact.idx,contact.idy)">Delete</button>
         </div>
     </div>
   </span> 
@@ -76,7 +79,7 @@
           </div>
           
           <div class="controls">
-            <button  class="add" (click)="selectContact(contact.idx)">Add</button>
+            <button  class="add" (click)="selectContact(contact.idx,contact.idy)">Add</button>
             
           </div>
       </div>

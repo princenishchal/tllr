@@ -25912,6 +25912,29 @@ page-select-contacts .searchbar {
   box-shadow: inset 1px 1px 2px #eee;
 }
 
+page-select-contacts .search-results {
+  position: absolute;
+  margin-top: 60px;
+  background: white;
+  width: 95vw;
+  padding: 10px 0px;
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 2px 5px #9b9b9b;
+  box-shadow: 1px 2px 5px #9b9b9b;
+  max-height: 30vh;
+  overflow-y: auto;
+  list-style: none;
+}
+
+page-select-contacts .search-results li {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+}
+
+page-select-contacts .search-results li:last-child {
+  border-bottom: none;
+}
+
 page-select-contacts .selected-employees, page-select-contacts .existing-employees {
   border-top: 1px solid #5a7f8e;
   padding-bottom: 15px;
@@ -25995,6 +26018,10 @@ page-select-contacts .contact-card .controls button.add {
 
 page-select-contacts .contact-card .controls button.delete {
   color: #d0021b;
+}
+
+page-select-contacts ion-infinite-scroll {
+  clear: both;
 }
 
 page-select-contacts .continue-button {
