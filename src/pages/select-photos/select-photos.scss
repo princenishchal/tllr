@@ -45,6 +45,10 @@ page-select-photos {
             font-size: 20px;
             padding: 25px;
             z-index: 2;
+            .check-mark{
+                width:25px;
+                height:18px;
+            }
         }
 
         .image{

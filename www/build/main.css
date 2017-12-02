@@ -26079,6 +26079,11 @@ page-select-photos .thumbnail .overlay {
   z-index: 2;
 }
 
+page-select-photos .thumbnail .overlay .check-mark {
+  width: 25px;
+  height: 18px;
+}
+
 page-select-photos .thumbnail .image {
   width: inherit;
   height: inherit;
@@ -26598,6 +26603,20 @@ page-transdetail .location-header span {
   font-size: 14px;
   color: #a5adb7;
   padding-left: 20px;
+  width: auto;
+  display: block;
+}
+
+page-transdetail .photos-header img {
+  float: left;
+  width: 20px;
+  height: 15px;
+}
+
+page-transdetail .photos-header span {
+  font-size: 14px;
+  color: #a5adb7;
+  padding-left: 30px;
   width: auto;
   display: block;
 }
