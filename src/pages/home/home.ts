@@ -4,6 +4,7 @@ import {LocationPickerPage} from '../location-picker/location-picker';
 import { TransdetailPage } from '../transdetail/transdetail';
 import {SelectPhotosPage} from '../select-photos/select-photos';
 import {SendLocationPage} from '../send-location/send-location';
+import {SelectContactsPage} from '../select-contacts/select-contacts';
 
 
 
@@ -17,6 +18,7 @@ export class HomePage {
   public pushTransPage = TransdetailPage;
   public photosPage = SelectPhotosPage;
   public sendLocation = SendLocationPage;
+  public selectContacts = SelectContactsPage;
  
   constructor(public navCtrl: NavController) {
 
