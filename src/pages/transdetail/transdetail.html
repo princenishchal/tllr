@@ -147,7 +147,7 @@
 								<img class="detailsCardPlusBtn" src="assets/imgs/icn_location.png" />
 								<span>{{transactionDetails.location.description}}</span>
 							</div>
-							<ngui-map [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>
+							<ngui-map [draggable]="false" [center]="transactionDetails.location.description" [fullscreenControl]="false" [disableDefaultUI]="true" #map>
 								<custom-marker [position]="transactionDetails.location.description" #marker>
 									<div>
 										<img src="assets/imgs/map_marker.png" width="30px;" height="50px;" />
