@@ -1,4 +1,12 @@
 page-location-picker {
+
+    .custom-navbar{
+        .back{
+            font-size: 40.5px;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+    }
     .scroll-content{
         padding: 0!important;
         ngui-map{
