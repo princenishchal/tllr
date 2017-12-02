@@ -99,6 +99,10 @@ page-select-contacts {
         }
     }
 
+    ion-infinite-scroll{
+        clear: both;
+    }
+
     .continue-button{
         position: fixed;
         display: flex;
