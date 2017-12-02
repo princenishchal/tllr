@@ -36,10 +36,10 @@
       <br *ngIf="shouldAddStamp(img,i)">
     
       <div class="thumbnail">
-        <div class="overlay" *ngIf="img.selected"  (click)="unselect(img.index)">
+        <div class="overlay" *ngIf="img.selected"  (tap)="unselect(img.index)">
             <ion-icon ios="md-checkmark" md="md-checkmark"></ion-icon>
         </div>
-      <img class="image" [src]="img.thumbnailURL" (click)="select(img.index)"/>
+      <img class="image" [src]="img.thumbnailURL" (tap)="select(img.index)"/>
       </div>  
     
     </ion-list>  
@@ -49,7 +49,7 @@
     </ion-infinite-scroll>
 
     <div class="continue-button" *ngIf="listNotEmpty">
-      <button class="continue" (click)="getPhotos()">Done</button>
+      <button class="continue" (tap)="getPhotos()">Done</button>
   </div>
  
   
