@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, Renderer2, NgZone, ChangeDetectorRef} from '@angular/core';
 import { NavController, NavParams, AlertController, Platform, Events } from 'ionic-angular';
-
+import {PlacesPhotoSearchProvider} from '../../providers/places-photo-search/places-photo-search';
 /**
  * import pages here 
  */
@@ -19,7 +19,53 @@ export class TransdetailPage {
 	// the main transaction details object.
 	transactionDetails:any = {
 		photos:null,
-		location:null,
+		location:{
+			"description": "Chick-fil-A, 196th Street Southwest, Lynnwood, WA, United States",
+			"id": "1a14c3873fbad242b3b455336780fe84287b3713",
+			"matched_substrings": [
+				{
+					"length": 11,
+					"offset": 0
+				}
+			],
+			"place_id": "ChIJT6u4r28FkFQRD_LqShyfOvo",
+			"reference": "CoQBeQAAACcgF6SyVSDK1_WRa4s2FV6_i9u6NGBh7zALkB7MEtVbXy8HLyKuRRt4BSG4m2EWPnJchT2kentxJm8bD2Vf_wqoYHz0_Ie0QbppG2VX7Uk9I8I4p6lEW5QQloZogoesa73PdkZ4RlfgHJQkG8Un7yvwc9kgU_XF-iVCbERjDBOGEhAqx6tc89vnbT3yDw1dO2RiGhT6YnEvdlpJr8zJJMlHZECmegSPZg",
+			"structured_formatting": {
+				"main_text": "Chick-fil-A",
+				"main_text_matched_substrings": [
+					{
+						"length": 11,
+						"offset": 0
+					}
+				],
+				"secondary_text": "196th Street Southwest, Lynnwood, WA, United States"
+			},
+			"terms": [
+				{
+					"offset": 0,
+					"value": "Chick-fil-A"
+				},
+				{
+					"offset": 13,
+					"value": "196th Street Southwest"
+				},
+				{
+					"offset": 37,
+					"value": "Lynnwood"
+				},
+				{
+					"offset": 47,
+					"value": "WA"
+				},
+				{
+					"offset": 51,
+					"value": "United States"
+				}
+			],
+			"types": [
+				"establishment"
+			]
+		},
 		friends:[],
 		chat:{}
 	}
@@ -33,9 +79,13 @@ export class TransdetailPage {
 	@ViewChild('chatsDetailBlock') chatsDetailBlock:ElementRef;
 	@ViewChild('tagFriendsDivBlock') tagFriendsDivBlock:ElementRef;
 
-	constructor(private ref:ChangeDetectorRef,   public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public renderer: Renderer2) {
+	constructor(private placesPhotoService: PlacesPhotoSearchProvider ,private ref:ChangeDetectorRef,   public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public renderer: Renderer2) {
 
-
+	 // if the location is already set .. take out the reference and fetch photos 
+		if(this.transactionDetails.location && this.transactionDetails.location.reference){
+			let placeReference = this.transactionDetails.location.reference;
+			this.getLocationPhotos(placeReference);
+		}
 	}
 
 	ionViewDidLoad() {
@@ -76,7 +126,7 @@ export class TransdetailPage {
 					//TODO: uplaod the location and then add it to the local object
 					console.log(location)
 					this.transactionDetails.location = location;
-
+					this.getLocationPhotos(location.reference);
 				 resolve();
 				})
 			}
@@ -93,7 +143,15 @@ export class TransdetailPage {
 	}
 
 
+	private getLocationPhotos(reference){
+		this.placesPhotoService
+		.getPhotos(reference)
+		.subscribe((photos)=>{
 
+			// push these potos in to the location phots prop and also prep them for upload 
+			console.log(photos);
+		})
+	}
 
 
 }

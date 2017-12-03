@@ -27,6 +27,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 /** import the components module here */
 import {ComponentsModule} from '../components/components.module';
+import { HttpClientModule } from '@angular/common/http';
+import { PlacesPhotoSearchProvider } from '../providers/places-photo-search/places-photo-search';
 
 /** COPY this config for socet io */
 
@@ -55,7 +57,8 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     MomentModule,
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?v=3&key=AIzaSyD9o5nDS5Okm1FqSXocY0rhGAoBxeb8-8k&libraries=places'}),
     EmojifyModule,
-    SocketIoModule.forRoot(config) 
+    SocketIoModule.forRoot(config) ,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -76,7 +79,8 @@ const config: SocketIoConfig = { url: 'http://finterest.co:5500/', options: {} }
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PhotoLibrary,
-    Geolocation
+    Geolocation,
+    PlacesPhotoSearchProvider
   ]
 })
 export class AppModule {}
